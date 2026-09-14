@@ -54,7 +54,7 @@ Jadikan angka-angka ini baseline resmi tim untuk evaluasi bulanan, supaya semua 
 
 ## Babak 2: Revenue by Service & Customer — Yang Ramai Belum Tentu Yang Cuan
 
-![Revenue by Service and Customer](images/02-revenue-service-customer.png)
+![Revenue by Service and Customer](images/Screenshot 2026-09-14 021501.png)
 
 ### 🎯 Pertanyaan Bisnis
 Tim ops Kirimlaju mau tahu layanan mana yang paling laku dan nyumbang revenue paling besar, biar keputusan kapasitas armada nggak asal tebak. Tim sales juga ingin tahu: fokus akuisisi ke klien korporat atau ritel?
