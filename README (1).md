@@ -29,7 +29,7 @@
 
 ## Babak 1: Overview Summary — Seberapa Besar Bisnis Kita?
 
-![Overview Summary](images/01-overview-summary.png)
+![Overview Summary](images/Overview-Summary.png)
 
 ### 🎯 Pertanyaan Bisnis
 Sebelum bicara efisiensi atau risiko, tim manajemen perlu tahu dulu: seberapa besar sebenarnya operasi Kirimlaju ini?
