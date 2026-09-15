@@ -6,7 +6,7 @@
 **Leonardo Saragih**
 *Data Analyst | IT Solution Engineer*
 
-Saya adalah seorang profesional yang berfokus pada penyelesaian masalah bisnis melalui analisis data. Berbekal pengalaman praktis di bidang integrasi sistem dan operasional logistik, saya memiliki keahlian dalam memproses data mentah menjadi laporan analitik terstruktur untuk mendukung pengambilan keputusan strategis di tingkat manajemen eksekutif.
+Profesional Sistem Informasi dengan pengalaman dalam analisis data operasional, monitoring proses bisnis, identifikasi anomali, dan quality control di industri logistik, kesehatan, dan konsultan IT. Memiliki pengalaman menganalisis proses pengiriman, tracking paket, integrasi API, serta hasil pengujian sistem untuk mengidentifikasi masalah dan memberikan rekomendasi perbaikan. Terampil menggunakan SQL, Microsoft Excel, Python, dan Power BI untuk pengolahan serta visualisasi data. Memahami monitoring SOP & SLA, root cause analysis, dan penyusunan laporan untuk mendukung efisiensi operasional dan pengambilan keputusan berbasis data. 
 
 [LinkedIn](https://www.linkedin.com/in/leonardo-saragih-4340212aa) | [GitHub](https://github.com/leonardosaragih15000) | [Email](mailto:leonardosaragih15000@gmail.com)
 
