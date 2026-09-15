@@ -357,16 +357,38 @@ status_history — 12.747 baris, 6 kolom (log setiap perubahan status pengiriman
             </ul>
         </div>
 
-        <!-- 09: BUSINESS RECOMMENDATIONS -->
+       <!-- 09: BUSINESS RECOMMENDATIONS -->
         <div class="step-section">
             <span class="step-number">09</span>
             <h2 class="step-title">Business Recommendations</h2>
-            <p><em>[Bagian ini akan diisi dengan saran tindakan untuk manajemen berdasarkan insight yang ditemukan].</em></p>
+            <p>Rekomendasi berikut disusun agar setiap <em>insight</em> punya tindak lanjut yang jelas (<em>actionable</em>) untuk manajemen:</p>
+
+            <ul>
+                <li>
+                    <strong>Diversifikasi Layanan:</strong> Karena <em>revenue</em> terkonsentrasi pada satu <code>service_type</code>, evaluasi strategi <em>pricing</em> atau promosi untuk mendorong pertumbuhan layanan lain agar risiko ketergantungan berkurang.
+                </li>
+                
+                <li>
+                    <strong>Audit Rute dengan SLA Rendah:</strong> Rute-rute dengan <em>SLA Success Rate</em> di bawah rata-rata perlu ditelusuri akar masalahnya — apakah karena jarak, kepadatan lalu lintas, atau kapasitas armada yang tidak memadai di rute tersebut — sebelum keluhan pelanggan meningkat.
+                </li>
+                
+                <li>
+                    <strong>Renegosiasi atau Konsolidasi Rute Tidak Efisien:</strong> Rute pada kuadran "jarak jauh, revenue rendah" bisa dipertimbangkan untuk penyesuaian tarif, digabung dengan rute lain (<em>multi-drop</em>), atau dievaluasi kelayakan operasionalnya.
+                </li>
+                
+                <li>
+                    <strong>Perkuat Validasi Input Berat/Jenis Paket:</strong> Kandidat <em>mislabel</em> sebaiknya dijadikan pemicu proses verifikasi ulang di titik input data (saat <em>pickup</em>), untuk mencegah kesalahan biaya dan potensi klaim di kemudian hari.
+                </li>
+                
+                <li>
+                    <strong>Rencanakan Kapasitas Armada Musiman:</strong> Dengan pola kenaikan volume di bulan tertentu, penambahan armada/mitra kurir sementara sebaiknya direncanakan jauh sebelum periode puncak, bukan reaktif.
+                </li>
+            </ul>
         </div>
 
         <!-- 10: CONCLUSION -->
         <div class="step-section">
             <span class="step-number">10</span>
             <h2 class="step-title">Conclusion</h2>
-            <p><em>[Bagian ini akan diisi dengan ringkasan kesuksesan proyek ini secara keseluruhan].</em></p>
+            <p><em>Proyek ini mengubah empat dataset mentah yang terfragmentasi menjadi satu dashboard Power BI enam halaman yang menjawab pertanyaan bisnis konkret di empat area: revenue & layanan, operasional & SLA, risiko & kualitas, serta efisiensi & musiman. Proses ini juga menyoroti bahwa tantangan terbesar dalam proyek data bukan hanya membuat visualisasi yang menarik, melainkan memastikan integritas data di baliknya — seperti yang terjadi saat kasus SLA 100% palsu berhasil ditelusuri hingga ke akar masalah di tahap data cleaning. Dengan model data yang relasional dan measure yang terstruktur rapi, dashboard ini tidak hanya menjawab kondisi “apa yang terjadi”, tetapi memberi manajemen dasar untuk bertindak — mengevaluasi rute, merancang kapasitas musiman, dan menjaga kualitas layanan secara proaktif alih-alih reaktif.</em></p>
         </div>
