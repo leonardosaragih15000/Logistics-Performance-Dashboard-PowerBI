@@ -10,8 +10,6 @@ Saya adalah seorang profesional yang berfokus pada penyelesaian masalah bisnis m
 
 [LinkedIn](https://www.linkedin.com/in/leonardo-saragih-4340212aa) | [GitHub](https://github.com/leonardosaragih15000) | [Email](mailto:leonardosaragih15000@gmail.com)
 
-<br clear="both"/> 
-<hr>
 
 ## ABOUT ME
 
