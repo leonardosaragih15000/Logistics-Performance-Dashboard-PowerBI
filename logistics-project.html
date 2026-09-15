@@ -331,13 +331,30 @@ status_history — 12.747 baris, 6 kolom (log setiap perubahan status pengiriman
         <div class="step-section">
             <span class="step-number">08</span>
             <h2 class="step-title">Key Insights</h2>
-            <p><em>[Bagian ini akan diisi dengan 3-4 temuan paling krusial dari dashboard].</em></p>
             
-            <!-- Tempat Foto -->
-            <figure style="margin: 25px 0 0 0; text-align: center;">
-                <img src="images/step8-insights.jpg" alt="Visualisasi Insight Kunci" style="width: 100%; height: auto; border-radius: 8px; border: 1px solid var(--border-color); background-color: #E5E7EB; min-height: 200px; object-fit: cover;">
-                <figcaption style="font-size: 0.85rem; color: var(--text-secondary); margin-top: 10px; font-style: italic;">Gambar 6: Sorotan pada rute dengan tingkat retur tertinggi (anomali yang terdeteksi).</figcaption>
-            </figure>
+            <p>Berdasarkan eksplorasi visual dari dashboard, berikut adalah temuan utama (<em>key insights</em>) yang berhasil ditarik dari data operasional:</p>
+
+            <ul>
+                <li>
+                    <strong>Konsentrasi Revenue per Layanan:</strong> Dari halaman <em>Revenue by Service & Customer</em>, layanan <code>[nama service_type]</code> menyumbang <code>[X]%</code> dari total <em>revenue</em>, jauh di atas layanan lain — ini mengindikasikan ketergantungan yang tinggi pada satu lini layanan saja.
+                </li>
+                
+                <li>
+                    <strong>Gap SLA yang Signifikan pada Rute Tertentu:</strong> Analisis <em>pivot table</em> di halaman <em>Operasional & SLA</em> menunjukkan rute <code>[origin ➔ destination]</code> memiliki <em>SLA Success Rate</em> hanya <code>[X]%</code>, berada di bawah rata-rata perusahaan sebesar <code>[Y]%</code>.
+                </li>
+                
+                <li>
+                    <strong>Rute dengan Efisiensi Rendah:</strong> Melalui kuadran <em>scatter chart</em> di halaman <em>Efisiensi Rute</em>, teridentifikasi <code>[jumlah]</code> rute dengan jarak tempuh panjang namun <em>revenue per km</em> rendah — rute-rute ini menjadi kandidat utama untuk evaluasi tarif atau konsolidasi muatan.
+                </li>
+                
+                <li>
+                    <strong>Indikasi Mislabel Paket:</strong> Analisis tabel di halaman <em>Risiko & Kualitas</em> menemukan <code>[jumlah]</code> pengiriman dengan berat aktual jauh melampaui batas wajar <code>package_type</code>-nya. Anomali ini berpotensi merugikan perusahaan karena memengaruhi akurasi biaya kirim.
+                </li>
+                
+                <li>
+                    <strong>Pola Musiman:</strong> Halaman <em>Musim & Kapasitas</em> menunjukkan lonjakan volume order pada bulan <code>[bulan]</code>, dengan pertumbuhan <em>revenue YoY (Year-over-Year)</em> sebesar <code>[X]%</code> — memberikan sinyal historis untuk persiapan penambahan armada musiman di masa depan.
+                </li>
+            </ul>
         </div>
 
         <!-- 09: BUSINESS RECOMMENDATIONS -->
