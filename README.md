@@ -1,7 +1,7 @@
 <!-- PROFILE / HERO SECTION -->
 <img src="images/foto-leo.png" width="150" align="right" alt="Leonardo Saragih">
 
-# LEO NARDO — DATA ANALYST PORTFOLIO
+# LEONARDO SARAGIH — DATA ANALYST PORTFOLIO
 
 **Leonardo Saragih**
 *Data Analyst | IT Solution Engineer*
