@@ -6,7 +6,7 @@
     <title>Leonardo Saragih | Data Analyst Portfolio</title>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <style>
-        /* CSS RESET & VARIABLES */
+        /* CSS RESET & TEMA TERANG (DEFAULT) */
         :root {
             --bg-color: #F8F9FA;
             --text-primary: #1F2937;
@@ -14,8 +14,26 @@
             --accent-color: #2563EB;
             --card-bg: #FFFFFF;
             --border-color: #E5E7EB;
+            --chip-bg: #E0E7FF;
+            --chip-text: #3730A3;
+            --btn-toggle-bg: #E5E7EB;
+            --btn-toggle-text: #1F2937;
         }
         
+        /* TEMA GELAP */
+        [data-theme="dark"] {
+            --bg-color: #111827;
+            --text-primary: #F9FAFB;
+            --text-secondary: #9CA3AF;
+            --accent-color: #3B82F6; /* Biru yang lebih terang untuk mode gelap */
+            --card-bg: #1F2937;
+            --border-color: #374151;
+            --chip-bg: #374151;
+            --chip-text: #BFDBFE;
+            --btn-toggle-bg: #374151;
+            --btn-toggle-text: #F9FAFB;
+        }
+
         body {
             font-family: 'Inter', sans-serif;
             background-color: var(--bg-color);
@@ -23,12 +41,38 @@
             line-height: 1.6;
             margin: 0;
             padding: 0;
+            transition: background-color 0.3s ease, color 0.3s ease;
         }
 
         .container {
             max-width: 900px;
             margin: 0 auto;
             padding: 40px 20px;
+            position: relative; /* Untuk posisi tombol dark mode */
+        }
+
+        /* TOMBOL DARK/LIGHT MODE */
+        .theme-toggle {
+            position: absolute;
+            top: 40px;
+            right: 20px;
+            background-color: var(--btn-toggle-bg);
+            color: var(--btn-toggle-text);
+            border: none;
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .theme-toggle:hover {
+            opacity: 0.8;
+            transform: translateY(-2px);
         }
 
         /* HERO SECTION */
@@ -37,12 +81,14 @@
             align-items: center;
             justify-content: space-between;
             gap: 40px;
+            margin-top: 20px;
             margin-bottom: 60px;
             background: var(--card-bg);
             padding: 40px;
             border-radius: 16px;
             box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
             border: 1px solid var(--border-color);
+            transition: all 0.3s ease;
         }
 
         .hero-content {
@@ -75,7 +121,7 @@
             height: 180px;
             object-fit: cover;
             border-radius: 50%;
-            border: 4px solid #EFF6FF;
+            border: 4px solid var(--chip-bg);
             box-shadow: 0 4px 10px rgba(0,0,0,0.1);
         }
 
@@ -100,7 +146,7 @@
         }
 
         .btn-primary:hover {
-            background-color: #1D4ED8;
+            opacity: 0.9;
             transform: translateY(-2px);
         }
 
@@ -111,7 +157,7 @@
         }
 
         .btn-outline:hover {
-            background-color: #F3F4F6;
+            background-color: var(--border-color);
             transform: translateY(-2px);
         }
 
@@ -137,11 +183,12 @@
             padding: 25px;
             margin-bottom: 20px;
             box-shadow: 0 1px 3px rgba(0,0,0,0.02);
-            transition: box-shadow 0.2s ease;
+            transition: all 0.3s ease;
         }
 
         .card:hover {
             box-shadow: 0 10px 15px -3px rgba(0,0,0,0.05);
+            border-color: var(--accent-color);
         }
 
         .card-header {
@@ -190,12 +237,13 @@
         }
 
         .skill-chip {
-            background-color: #E0E7FF;
-            color: #3730A3;
+            background-color: var(--chip-bg);
+            color: var(--chip-text);
             padding: 6px 14px;
             border-radius: 20px;
             font-size: 0.85rem;
             font-weight: 600;
+            transition: background-color 0.3s ease;
         }
 
         /* RESPONSIVE */
@@ -218,18 +266,28 @@
             .card-date {
                 margin-top: 5px;
             }
+            .theme-toggle {
+                top: 10px;
+                right: 10px;
+            }
         }
     </style>
 </head>
 <body>
 
     <div class="container">
+        
+        <!-- TOMBOL DARK MODE -->
+        <button class="theme-toggle" id="theme-btn" onclick="toggleTheme()">
+            🌙 Dark Mode
+        </button>
+
         <!-- HERO SECTION -->
         <header class="hero">
             <div class="hero-content">
                 <h1>LEONARDO SARAGIH</h1>
                 <h2>Data Analyst | IT Solution Engineer</h2>
-                <p>Profesional Sistem Informasi dengan pengalaman dalam analisis data operasional, monitoring proses bisnis, identifikasi anomali, dan quality control di industri logistik, kesehatan, dan konsultan IT. Memiliki pengalaman menganalisis proses pengiriman, tracking paket, integrasi API, serta hasil pengujian sistem untuk mengidentifikasi masalah dan memberikan rekomendasi perbaikan. Terampil menggunakan SQL, Microsoft Excel, Python, dan Power BI untuk pengolahan serta visualisasi data. Memahami monitoring SOP & SLA, root cause analysis, dan penyusunan laporan untuk mendukung efisiensi operasional dan pengambilan keputusan berbasis data. .</p>
+                <p>Profesional Sistem Informasi dengan rekam jejak di bidang analisis data operasional, pemantauan proses bisnis, identifikasi anomali, dan quality control lintas industri. Berpengalaman merancang visualisasi data interaktif dan laporan terstruktur untuk mendukung Root Cause Analysis (RCA), pemantauan SLA/SOP, serta pengambilan keputusan strategis berbasis data.</p>
                 <div class="btn-group">
                     <a href="https://www.linkedin.com/in/leonardo-saragih-4340212aa" target="_blank" class="btn btn-primary">LinkedIn</a>
                     <a href="https://github.com/leonardosaragih15000" target="_blank" class="btn btn-outline">GitHub</a>
@@ -262,27 +320,25 @@
             <!-- PROJECT 1: LOGISTICS DASHBOARD -->
             <div class="card" style="padding: 0; overflow: hidden;">
                 <!-- Gambar Cover Project -->
-                <!-- Pastikan Anda mengunggah screenshot dashboard Anda ke folder images dengan nama logistics-cover.jpg -->
                 <img src="images/logistics-cover.jpg" alt="Logistics Dashboard Preview" style="width: 100%; height: 240px; object-fit: cover; border-bottom: 1px solid var(--border-color); background-color: #E5E7EB;">
                 
                 <div style="padding: 25px;">
                     <h4 class="card-title" style="font-size: 1.25rem;">Logistics Performance & SLA Dashboard</h4>
                     
-                    <!-- Tech Stack dengan Logo Resmi -->
+                    <!-- Tech Stack dengan Logo Resmi (SUDAH DIPERBAIKI) -->
                     <div style="display: flex; gap: 18px; align-items: center; margin: 15px 0 20px 0; flex-wrap: wrap;">
                         <span style="display: flex; align-items: center; gap: 6px; font-size: 0.85rem; color: var(--text-secondary); font-weight: 600;">
-                            <img src="https://upload.wikimedia.org/wikipedia/commons/c/cf/New_Power_BI_Logo.svg" style="height: 18px;" alt="Power BI"> Power BI
+                            <img src="https://img.icons8.com/color/48/power-bi.png" style="height: 18px;" alt="Power BI"> Power BI
                         </span>
                         <span style="display: flex; align-items: center; gap: 6px; font-size: 0.85rem; color: var(--text-secondary); font-weight: 600;">
-                            <img src="https://upload.wikimedia.org/wikipedia/commons/3/34/Microsoft_Office_Excel_%282019%E2%80%93present%29.svg" style="height: 18px;" alt="Excel"> Excel
+                            <img src="https://img.icons8.com/color/48/microsoft-excel-2019--v1.png" style="height: 18px;" alt="Excel"> Excel
                         </span>
                         <span style="display: flex; align-items: center; gap: 6px; font-size: 0.85rem; color: var(--text-secondary); font-weight: 600;">
                             <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/mysql/mysql-original.svg" style="height: 18px;" alt="SQL"> SQL
                         </span>
                     </div>
 
-                    <!-- Tombol Menuju Halaman Detail -->
-                    <a href="logistics-project.html" style="display: inline-block; color: var(--accent-color); font-weight: 600; text-decoration: none; font-size: 0.95rem; transition: transform 0.2s ease;">View Project ➔</a>
+                    <a href="logistics-project.html" style="display: inline-block; color: var(--accent-color); font-weight: 600; text-decoration: none; font-size: 0.95rem;">View Project ➔</a>
                 </div>
             </div>
 
@@ -294,7 +350,6 @@
                 <div style="padding: 25px;">
                     <h4 class="card-title" style="font-size: 1.25rem;">Stunting Data Analysis (K-Medoids Clustering)</h4>
                     
-                    <!-- Tech Stack dengan Logo Resmi -->
                     <div style="display: flex; gap: 18px; align-items: center; margin: 15px 0 20px 0; flex-wrap: wrap;">
                         <span style="display: flex; align-items: center; gap: 6px; font-size: 0.85rem; color: var(--text-secondary); font-weight: 600;">
                             <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/python/python-original.svg" style="height: 18px;" alt="Python"> Python
@@ -307,11 +362,11 @@
                         </span>
                     </div>
 
-                    <!-- Tombol Menuju Halaman Detail (Opsional untuk nanti) -->
                     <a href="#" style="display: inline-block; color: var(--accent-color); font-weight: 600; text-decoration: none; font-size: 0.95rem;">View Project ➔</a>
                 </div>
             </div>
         </section>
+
         <!-- EXPERIENCE SECTION -->
         <section>
             <h3 class="section-title">Professional Experience</h3>
@@ -324,7 +379,7 @@
                 <h5 class="card-subtitle">PT Surya Fajar Indonesia (SF International)</h5>
                 <ul>
                     <li>Membangun Logistics Operational Performance Dashboard berbasis Power BI untuk mengaudit anomali dispatch harian dan menganalisis problem rate.</li>
-                    <li>Menganalisis data operasional pengiriman dari integrasi API multi-customer (Inditex, Maersk, J&T) guna memonitor proses create order dan tracking paket (±250 order/hari)[cite: 1].</li>
+                    <li>Menganalisis data operasional pengiriman dari integrasi API multi-customer (Inditex, Maersk, J&T) guna memonitor proses create order dan tracking paket (±250 order/hari).</li>
                     <li>Melakukan RCA pada kasus AWB return dan reroute akibat kesalahan kode pelanggan, menurunkan gangguan operasional sebesar 15%.</li>
                 </ul>
             </div>
@@ -361,13 +416,14 @@
 
             <div class="card">
                 <div class="card-header">
-                    <h4 class="card-title">S1 Sistem Informasi IPK: 3.80/4.00 </h4>
+                    <h4 class="card-title">S1 Sistem Informasi (IPK: 3.80/4.00 - Cumlaude)</h4>
                     <span class="card-date">Sep 2021 - Sep 2025</span>
                 </div>
                 <h5 class="card-subtitle">Universitas Prima Indonesia, Medan</h5>
                 <ul>
-    
-                
+                    <li>Peserta Terpilih, Maganghub - Kementerian Ketenagakerjaan RI (2026).</li>
+                    <li>Peserta Program Magang Studi Independen Bersertifikat (MSIB) (2024).</li>
+                </ul>
             </div>
 
             <div class="card">
@@ -376,17 +432,39 @@
                 </div>
                 <h5 class="card-subtitle">BNSP | Google | CertNexus</h5>
                 <ul>
-                    <li><strong>Sertifikasi:</strong> Data Analyst Certification (BNSP), 
-                        Google Analytics Certification,
-                        Customer Feedback Management (BNSP).
-                    </li>
-                    <li><strong>Pelatihan:</strong> Big Data Associate (CertNexus), 
-                        SQL for Data Analysis (MySkill), 
-                        Data Analytics (RevoU).</li>
+                    <li><strong>Sertifikasi:</strong> Data Analyst Certification (BNSP), Google Analytics Certification, Customer Feedback Management (BNSP).</li>
+                    <li><strong>Pelatihan:</strong> Big Data Associate (CertNexus), SQL for Data Analysis (MySkill), Data Analytics (RevoU).</li>
                 </ul>
             </div>
         </section>
 
     </div>
+
+    <!-- SCRIPT UNTUK FITUR DARK MODE -->
+    <script>
+        // Cek apakah sebelumnya pengunjung sudah memilih dark mode
+        const currentTheme = localStorage.getItem('theme');
+        const themeBtn = document.getElementById('theme-btn');
+        
+        if (currentTheme === 'dark') {
+            document.documentElement.setAttribute('data-theme', 'dark');
+            themeBtn.innerHTML = '☀️ Light Mode';
+        }
+
+        // Fungsi saat tombol ditekan
+        function toggleTheme() {
+            let theme = document.documentElement.getAttribute('data-theme');
+            
+            if (theme === 'dark') {
+                document.documentElement.removeAttribute('data-theme');
+                localStorage.setItem('theme', 'light');
+                themeBtn.innerHTML = '🌙 Dark Mode';
+            } else {
+                document.documentElement.setAttribute('data-theme', 'dark');
+                localStorage.setItem('theme', 'dark');
+                themeBtn.innerHTML = '☀️ Light Mode';
+            }
+        }
+    </script>
 </body>
 </html>
