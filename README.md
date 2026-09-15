@@ -8,7 +8,7 @@
 
 Saya adalah seorang profesional yang berfokus pada penyelesaian masalah bisnis melalui analisis data. Berbekal pengalaman praktis di bidang integrasi sistem dan operasional logistik, saya memiliki keahlian dalam memproses data mentah menjadi laporan analitik terstruktur untuk mendukung pengambilan keputusan strategis di tingkat manajemen eksekutif.
 
-[LinkedIn](leonardo-saragih-4340212aa) | [GitHub](https://github.com/leonardosaragih15000) | [Email](mailto:email.anda@gmail.com)
+[LinkedIn](www.linkedin.com/in/leonardo-saragih-4340212aa) | [GitHub](https://github.com/leonardosaragih15000) | [Email](mailto:email.anda@gmail.com)
 
 <br clear="both"/> 
 <hr>
