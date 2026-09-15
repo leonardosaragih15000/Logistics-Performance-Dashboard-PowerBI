@@ -201,12 +201,17 @@ status_history — 12.747 baris, 6 kolom (log setiap perubahan status pengiriman
         <div class="step-section">
             <span class="step-number">04</span>
             <h2 class="step-title">Data Formatting / Cleaning</h2>
-            <p><em>[Bagian ini akan diisi dengan proses pembersihan data. Contoh: Mengubah tipe data tanggal, menghapus duplikasi, dan menangani nilai kosong pada tanggal 'Delivered'].</em></p>
+            <p><em>Beberapa langkah pembersihan dan validasi data dilakukan sebelum data dianggap siap dianalisis:
+
+Mengonversi kolom tanggal (pickup_date, estimated_delivery, actual_delivery) ke tipe data date/datetime yang benar.
+Mengecek duplikasi tracking_number dan shipment_id — hasilnya bersih, tidak ditemukan duplikasi.
+Mengecek integritas relasi (foreign key) antar tabel — tidak ditemukan customer_id atau route_id yang orphan (tidak terhubung ke tabel induknya).
+Temuan krusial: ditemukan 50 baris berstatus delivered namun kolom actual_delivery-nya kosong. Setelah ditelusuri lebih dalam, ternyata masalahnya lebih besar dari itu — kolom actual_delivery (tanggal) ternyata tidak konsisten dengan actual_delivery_timestamp (waktu lengkap) pada 94,5% baris data, hampir selalu bergeser 1 hari atau lebih. Solusinya, seluruh perhitungan ketepatan waktu direkonstruksi ulang menggunakan actual_delivery_timestamp yang dibulatkan ke tanggal — sumber data yang lebih bisa dipercaya karena terisi lengkap untuk seluruh 3.200 pengiriman berstatus delivered..</em></p>
             
             <!-- Tempat Foto -->
             <figure style="margin: 25px 0 0 0; text-align: center;">
                 <img src="images/step4-cleaning.jpg" alt="Proses Data Cleaning" style="width: 100%; height: auto; border-radius: 8px; border: 1px solid var(--border-color); background-color: #E5E7EB; min-height: 200px; object-fit: cover;">
-                <figcaption style="font-size: 0.85rem; color: var(--text-secondary); margin-top: 10px; font-style: italic;">Gambar 2: Penanganan missing values dan penyesuaian tipe data di Power Query.</figcaption>
+                <figcaption style="font-size: 0.85rem; color: var(--text-secondary); margin-top: 10px; font-style: italic;"></figcaption>
             </figure>
         </div>
 
