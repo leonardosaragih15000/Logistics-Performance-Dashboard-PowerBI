@@ -27,22 +27,15 @@ Profesional Sistem Informasi dengan rekam jejak di bidang analisis data operasio
 
 **IT Solution Engineer (Data & Systems Analysis)** | *PT Surya Fajar Indonesia (SF International)*
 *Jakarta (Desember 2025 - Juni 2026)*
-* Membangun *Logistics Operational Performance & Dispatch Monitoring Dashboard* berbasis Power BI untuk mengaudit anomali *dispatch* harian dan menganalisis rasio masalah (*problem rate*) per rute.
-* Menganalisis data operasional pengiriman dari integrasi API multi-customer (Inditex, Maersk, J&T) guna memonitor proses *create order* dan *tracking* paket, mendukung otomatisasi ±250 order/hari.
-* Melakukan *anomaly identification* dan *Root Cause Analysis* (RCA) pada kasus AWB *return* dan *reroute* akibat kesalahan kode pelanggan, berkontribusi pada penurunan gangguan operasional sebesar 15%.
-* Menyusun dokumentasi teknis integrasi API (otentikasi, enkripsi, *endpoint*, *error handling*) sebagai acuan standardisasi pemantauan SOP.
+* Membangun *Logistics Operational Performance & Dispatch Monitoring Dashboard* berbasis Power BI untuk mengaudit anomali *dispatch* harian dan menganalisis rasio masalah (*problem rate*) per rute
 
 **System Support (Data Quality & Monitoring)** | *RS Columbia Asia*
 *Medan (Juli 2024 - Desember 2024)*
 * Melakukan validasi dan *quality control* terhadap >80 data rekam medis per hari untuk menjamin presisi dan konsistensi data pasien.
-* Memantau stabilitas sistem Care21 guna memastikan kelancaran alur data operasional rumah sakit.
-* Mengidentifikasi dan mengoreksi anomali/inkonsistensi data, menghasilkan penurunan tingkat *error* dan duplikasi data hingga 30%.
+
 
 **Business Intelligence Analyst** | *PT Millennia Solusi Informatika*
 *Bandung (Juni 2023 - Desember 2023)*
-* Memimpin tim beranggotakan 4 orang dalam eksekusi *delivery project* analisis data untuk klien sektor BUMN dan Perbankan.
-* Melakukan *end-to-end analysis* (*gap analysis*, *requirement gathering*, dokumentasi) pada 2 klien korporat.
-* Menyusun >10 dokumen strategis (BRD, SOP, FSD, *Capacity Plan*) untuk merumuskan arsitektur solusi berbasis data.
 * Mengembangkan *dashboard* Power BI guna mengubah data operasional mentah menjadi *actionable business insight*.
 
 <hr>
@@ -94,9 +87,7 @@ Profesional Sistem Informasi dengan rekam jejak di bidang analisis data operasio
 
 <hr>
 
-## CONTACT
-
-Saya selalu terbuka untuk mendiskusikan peluang profesional, implementasi analisis data, maupun strategi optimalisasi sistem operasional.
+## Let's Connect
 
 * **Phone / WhatsApp:** +62 823 7031 3228
 * **Email:** [leonardosaragih15000@gmail.com](mailto:leonardosaragih15000@gmail.com)
