@@ -62,9 +62,9 @@ Berdomisili di Medan, Sumatera Utara, perjalanan karir saya dibentuk oleh ketert
 
 <hr>
 
-## CONTACT
+## lets'connect
 
-Saya terbuka untuk mendiskusikan implementasi analisis data, optimalisasi sistem logistik, maupun peluang profesional.
+
 
 * **Email:** [email.anda@gmail.com](mailto:email.anda@gmail.com)
 * **LinkedIn:** [linkedin.com/in/tautan-linkedin-anda](https://linkedin.com/in/tautan-linkedin-anda)
