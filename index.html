@@ -129,7 +129,7 @@
             color: var(--text-primary);
         }
 
-        /* CARDS (For Experience & Projects) */
+        /* CARDS */
         .card {
             background: var(--card-bg);
             border: 1px solid var(--border-color);
@@ -168,6 +168,7 @@
             font-size: 0.85rem;
             color: var(--text-secondary);
             font-weight: 500;
+            white-space: nowrap;
         }
 
         ul {
@@ -228,7 +229,7 @@
             <div class="hero-content">
                 <h1>LEONARDO SARAGIH</h1>
                 <h2>Data Analyst | IT Solution Engineer</h2>
-                <p>Profesional Sistem Informasi dengan rekam jejak di bidang analisis data operasional, pemantauan proses bisnis, identifikasi anomali, dan quality control lintas industri. Terampil merancang visualisasi data interaktif dan laporan terstruktur untuk mendukung Root Cause Analysis (RCA), pemantauan SLA, serta pengambilan keputusan strategis berbasis data.</p>
+                <p>Profesional Sistem Informasi dengan rekam jejak di bidang analisis data operasional, pemantauan proses bisnis, identifikasi anomali, dan quality control lintas industri. Berpengalaman merancang visualisasi data interaktif dan laporan terstruktur untuk mendukung Root Cause Analysis (RCA), pemantauan SLA/SOP, serta pengambilan keputusan strategis berbasis data.</p>
                 <div class="btn-group">
                     <a href="https://www.linkedin.com/in/leonardo-saragih-4340212aa" target="_blank" class="btn btn-primary">LinkedIn</a>
                     <a href="https://github.com/leonardosaragih15000" target="_blank" class="btn btn-outline">GitHub</a>
@@ -242,15 +243,15 @@
         <section>
             <h3 class="section-title">Skills & Expertise</h3>
             <div class="skills-container">
-                <span class="skill-chip">Python</span>
                 <span class="skill-chip">SQL</span>
+                <span class="skill-chip">Python</span>
                 <span class="skill-chip">Power BI</span>
                 <span class="skill-chip">Tableau</span>
                 <span class="skill-chip">Microsoft Excel</span>
-                <span class="skill-chip">Data Modeling</span>
+                <span class="skill-chip">Operational Monitoring</span>
+                <span class="skill-chip">Anomaly Identification</span>
                 <span class="skill-chip">Root Cause Analysis</span>
                 <span class="skill-chip">SLA Monitoring</span>
-                <span class="skill-chip">API Integration</span>
             </div>
         </section>
 
@@ -266,7 +267,7 @@
                 <ul>
                     <li>Membangun dashboard analitik interaktif untuk mengevaluasi efisiensi waktu, operasional, dan kualitas pengiriman logistik harian.</li>
                     <li>Mengembangkan visualisasi <em>Average Lead Time</em> dan <em>Lost/Return Rate</em> guna mempercepat identifikasi bottleneck pada rantai pasok.</li>
-                    <li><a href="https://github.com/leonardosaragih15000/Logistics-Performance-Dashboard-PowerBI" target="_blank" style="color: var(--accent-color); font-weight: 600; text-decoration: none;">Lihat Repositori & Dokumentasi ➔</a></li>
+                    <li><a href="https://github.com/leonardosaragih15000/Logistics-Performance-Dashboard-PowerBI" target="_blank" style="color: var(--accent-color); font-weight: 600; text-decoration: none;">Lihat Repositori & Dokumentasi Teknis ➔</a></li>
                 </ul>
             </div>
 
@@ -277,7 +278,17 @@
                 <h5 class="card-subtitle">Python | Clustering | Data Visualization</h5>
                 <ul>
                     <li>Menganalisis lebih dari 250 data kasus stunting di Kabupaten Langkat[cite: 1].</li>
-                    <li>Mengimplementasikan algoritma K-Medoids untuk menghasilkan 3 segmentasi data spesifik serta mendesain dashboard pendukung evaluasi[cite: 1].</li>
+                    <li>Mengimplementasikan algoritma K-Medoids untuk menghasilkan 3 segmentasi data spesifik serta mendesain dashboard pendukung evaluasi berbasis data[cite: 1].</li>
+                </ul>
+            </div>
+
+            <div class="card">
+                <div class="card-header">
+                    <h4 class="card-title">Perancangan Sistem Klaim Logistik</h4>
+                </div>
+                <h5 class="card-subtitle">Node.js | Vue.js | Prisma ORM</h5>
+                <ul>
+                    <li>Merancang arsitektur sistem dengan Role-Based Access Control (RBAC) dan alur persetujuan bertingkat untuk mendigitalisasi manajemen data klaim[cite: 1].</li>
                 </ul>
             </div>
         </section>
@@ -293,9 +304,9 @@
                 </div>
                 <h5 class="card-subtitle">PT Surya Fajar Indonesia (SF International)</h5>
                 <ul>
-                    <li>Membangun Logistics Operational Performance Dashboard berbasis Power BI untuk mengaudit anomali dispatch harian[cite: 1].</li>
-                    <li>Menganalisis data operasional pengiriman dari integrasi API multi-customer guna memonitor proses tracking paket[cite: 1].</li>
-                    <li>Melakukan RCA pada kasus AWB return akibat kesalahan kode pelanggan, menurunkan gangguan operasional sebesar 15%[cite: 1].</li>
+                    <li>Membangun Logistics Operational Performance Dashboard berbasis Power BI untuk mengaudit anomali dispatch harian dan menganalisis problem rate[cite: 1].</li>
+                    <li>Menganalisis data operasional pengiriman dari integrasi API multi-customer (Inditex, Maersk, J&T) guna memonitor proses create order dan tracking paket (±250 order/hari)[cite: 1].</li>
+                    <li>Melakukan RCA pada kasus AWB return dan reroute akibat kesalahan kode pelanggan, menurunkan gangguan operasional sebesar 15%[cite: 1].</li>
                 </ul>
             </div>
 
@@ -306,8 +317,9 @@
                 </div>
                 <h5 class="card-subtitle">RS Columbia Asia Medan</h5>
                 <ul>
-                    <li>Melakukan validasi dan quality control terhadap >80 data rekam medis per hari untuk menjamin presisi data pasien[cite: 1].</li>
-                    <li>Mengidentifikasi dan mengoreksi anomali/inkonsistensi data, menghasilkan penurunan tingkat error hingga 30%[cite: 1].</li>
+                    <li>Melakukan validasi dan quality control terhadap >80 data rekam medis per hari untuk menjamin presisi dan konsistensi data pasien[cite: 1].</li>
+                    <li>Memantau dan menganalisis stabilitas sistem Care21 untuk mendukung kelancaran operasional data rumah sakit[cite: 1].</li>
+                    <li>Mengidentifikasi dan mengoreksi inkonsistensi data, berkontribusi pada penurunan error dan duplikasi data hingga 30%[cite: 1].</li>
                 </ul>
             </div>
             
@@ -319,7 +331,35 @@
                 <h5 class="card-subtitle">PT Millennia Solusi Informatika</h5>
                 <ul>
                     <li>Memimpin tim beranggotakan 4 orang dalam eksekusi delivery project analisis data untuk klien sektor BUMN dan Perbankan[cite: 1].</li>
-                    <li>Mengembangkan dashboard Power BI guna mengubah data operasional mentah menjadi actionable business insight[cite: 1].</li>
+                    <li>Menyusun dokumen strategis (BRD, SOP, FSD) dan mengembangkan dashboard Power BI guna mengubah data mentah menjadi actionable business insight[cite: 1].</li>
+                </ul>
+            </div>
+        </section>
+
+        <!-- EDUCATION & CERTIFICATION SECTION -->
+        <section>
+            <h3 class="section-title">Education & Certifications</h3>
+
+            <div class="card">
+                <div class="card-header">
+                    <h4 class="card-title">S1 Sistem Informasi (IPK: 3.80/4.00 - Cumlaude)</h4>
+                    <span class="card-date">Sep 2021 - Sep 2025</span>
+                </div>
+                <h5 class="card-subtitle">Universitas Prima Indonesia, Medan</h5>
+                <ul>
+                    <li>Peserta Terpilih, Maganghub - Kementerian Ketenagakerjaan RI (2026)[cite: 1].</li>
+                    <li>Peserta Program Magang Studi Independen Bersertifikat (MSIB) (2024)[cite: 1].</li>
+                </ul>
+            </div>
+
+            <div class="card">
+                <div class="card-header">
+                    <h4 class="card-title">Sertifikasi & Pelatihan Profesional</h4>
+                </div>
+                <h5 class="card-subtitle">BNSP | Google | CertNexus</h5>
+                <ul>
+                    <li><strong>Sertifikasi:</strong> Data Analyst Certification (BNSP), Google Analytics Certification, Customer Feedback Management (BNSP)[cite: 1].</li>
+                    <li><strong>Pelatihan:</strong> Big Data Associate (CertNexus), SQL for Data Analysis (MySkill), Data Analytics (RevoU)[cite: 1].</li>
                 </ul>
             </div>
         </section>
