@@ -202,11 +202,17 @@ status_history — 12.747 baris, 6 kolom (log setiap perubahan status pengiriman
             <span class="step-number">04</span>
             <h2 class="step-title">Data Formatting / Cleaning</h2>
             <p><em>Beberapa langkah pembersihan dan validasi data dilakukan sebelum data dianggap siap dianalisis:
+               <ul>
+    <li>Mengonversi kolom tanggal (<code>pickup_date</code>, <code>estimated_delivery</code>, <code>actual_delivery</code>) ke tipe data date/datetime yang benar.</li>
+    
+    <li>Mengecek duplikasi <code>tracking_number</code> dan <code>shipment_id</code> — hasilnya bersih, tidak ditemukan duplikasi.</li>
+    
+    <li>Mengecek integritas relasi (foreign key) antar tabel — tidak ditemukan <code>customer_id</code> atau <code>route_id</code> yang orphan (tidak terhubung ke tabel induknya).</li>
+    
+    <li><strong>Temuan krusial:</strong> ditemukan 50 baris berstatus <code>delivered</code> namun kolom <code>actual_delivery</code>-nya kosong. Setelah ditelusuri lebih dalam, ternyata masalahnya lebih besar dari itu — kolom <code>actual_delivery</code> (tanggal) ternyata <strong>tidak konsisten dengan</strong> <code>actual_delivery_timestamp</code> (waktu lengkap) pada 94,5% baris data, hampir selalu bergeser 1 hari atau lebih. Solusinya, seluruh perhitungan ketepatan waktu direkonstruksi ulang menggunakan <code>actual_delivery_timestamp</code> yang dibulatkan ke tanggal — sumber data yang lebih bisa dipercaya karena terisi lengkap untuk seluruh 3.200 pengiriman berstatus delivered.</li>
+</ul>
 
-Mengonversi kolom tanggal (pickup_date, estimated_delivery, actual_delivery) ke tipe data date/datetime yang benar.
-Mengecek duplikasi tracking_number dan shipment_id — hasilnya bersih, tidak ditemukan duplikasi.
-Mengecek integritas relasi (foreign key) antar tabel — tidak ditemukan customer_id atau route_id yang orphan (tidak terhubung ke tabel induknya).
-Temuan krusial: ditemukan 50 baris berstatus delivered namun kolom actual_delivery-nya kosong. Setelah ditelusuri lebih dalam, ternyata masalahnya lebih besar dari itu — kolom actual_delivery (tanggal) ternyata tidak konsisten dengan actual_delivery_timestamp (waktu lengkap) pada 94,5% baris data, hampir selalu bergeser 1 hari atau lebih. Solusinya, seluruh perhitungan ketepatan waktu direkonstruksi ulang menggunakan actual_delivery_timestamp yang dibulatkan ke tanggal — sumber data yang lebih bisa dipercaya karena terisi lengkap untuk seluruh 3.200 pengiriman berstatus delivered..</em></p>
+.</em></p>
             
             <!-- Tempat Foto -->
             <figure style="margin: 25px 0 0 0; text-align: center;">
@@ -219,7 +225,7 @@ Temuan krusial: ditemukan 50 baris berstatus delivered namun kolom actual_delive
         <div class="step-section">
             <span class="step-number">05</span>
             <h2 class="step-title">Create Relational Table</h2>
-            <p><em>[Bagian ini akan diisi dengan penjelasan pemodelan data (Data Modeling) di Power BI. Contoh: Menghubungkan tabel Fact_Sales dengan Dim_Customer dan Dim_Route menggunakan skema Star].</em></p>
+            <p><em>Model data dibangun dengan pendekatan mirip skema Star: tabel shipments berperan sebagai tabel fakta (fact table) yang menyimpan satu baris per transaksi pengiriman, dihubungkan ke tabel dimensi customers (melalui customer_id) dan routes (melalui route_id). Tabel status_history dihubungkan lewat shipment_id sebagai tabel log granular, digunakan khusus untuk merekonstruksi kronologi tiap paket (misalnya menelusuri waktu transit di hub) tanpa perlu menggabungkannya langsung ke tabel fakta utama..</em></p>
             
             <!-- Tempat Foto -->
             <figure style="margin: 25px 0 0 0; text-align: center;">
