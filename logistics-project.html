@@ -180,62 +180,97 @@
             </ul>
         </div>
 
-        <!-- 03: DATASET & DATA SOURCE (Placeholder) -->
+       <!-- 03: DATASET & DATA SOURCE -->
         <div class="step-section">
             <span class="step-number">03</span>
             <h2 class="step-title">Dataset & Data Source</h2>
-            <p><em>[Bagian ini akan diisi dengan penjelasan darimana data logistik ini berasal, format filenya (CSV/Excel), dan jumlah baris/kolomnya].</em></p>
+            <p><em>shipments — 4.000 baris, 18 kolom (data inti tiap pengiriman: ID, rute, pelanggan, jenis layanan, berat, biaya, status, dan tanggal-tanggal terkait)
+customers — 600 baris, 9 kolom (identitas & tipe pelanggan: business/individual)
+routes — 80 baris, 9 kolom (rute asal-tujuan, jarak, estimasi hari, tarif per kg)
+status_history — 12.747 baris, 6 kolom (log setiap perubahan status pengiriman lengkap dengan timestamp dan lokasi — sumber data untuk merekonstruksi timeline tiap paket).</em></p>
+            
+            <!-- Tempat Foto -->
+            <figure style="margin: 25px 0 0 0; text-align: center;">
+                <img src="images/step3-dataset.jpg" alt="Tampilan Dataset Mentah" style="width: 100%; height: auto; border-radius: 8px; border: 1px solid var(--border-color); background-color: #E5E7EB; min-height: 200px; object-fit: cover;">
+                <figcaption style="font-size: 0.85rem; color: var(--text-secondary); margin-top: 10px; font-style: italic;">Gambar 1: Tampilan sebagian raw data logistik pada format CSV.</figcaption>
+            </figure>
         </div>
 
-        <!-- 04: DATA FORMATTING & CLEANING (Placeholder) -->
+        <!-- 04: DATA FORMATTING & CLEANING -->
         <div class="step-section">
             <span class="step-number">04</span>
             <h2 class="step-title">Data Formatting / Cleaning</h2>
             <p><em>[Bagian ini akan diisi dengan proses pembersihan data. Contoh: Mengubah tipe data tanggal, menghapus duplikasi, dan menangani nilai kosong pada tanggal 'Delivered'].</em></p>
+            
+            <!-- Tempat Foto -->
+            <figure style="margin: 25px 0 0 0; text-align: center;">
+                <img src="images/step4-cleaning.jpg" alt="Proses Data Cleaning" style="width: 100%; height: auto; border-radius: 8px; border: 1px solid var(--border-color); background-color: #E5E7EB; min-height: 200px; object-fit: cover;">
+                <figcaption style="font-size: 0.85rem; color: var(--text-secondary); margin-top: 10px; font-style: italic;">Gambar 2: Penanganan missing values dan penyesuaian tipe data di Power Query.</figcaption>
+            </figure>
         </div>
 
-        <!-- 05: CREATE RELATIONAL TABLE (Placeholder) -->
+        <!-- 05: CREATE RELATIONAL TABLE -->
         <div class="step-section">
             <span class="step-number">05</span>
             <h2 class="step-title">Create Relational Table</h2>
             <p><em>[Bagian ini akan diisi dengan penjelasan pemodelan data (Data Modeling) di Power BI. Contoh: Menghubungkan tabel Fact_Sales dengan Dim_Customer dan Dim_Route menggunakan skema Star].</em></p>
+            
+            <!-- Tempat Foto -->
+            <figure style="margin: 25px 0 0 0; text-align: center;">
+                <img src="images/step5-model.jpg" alt="Skema Relasi Data" style="width: 100%; height: auto; border-radius: 8px; border: 1px solid var(--border-color); background-color: #E5E7EB; min-height: 200px; object-fit: cover;">
+                <figcaption style="font-size: 0.85rem; color: var(--text-secondary); margin-top: 10px; font-style: italic;">Gambar 3: Pemodelan data Star Schema menghubungkan tabel fakta dan dimensi.</figcaption>
+            </figure>
         </div>
 
-        <!-- 06: DATA ANALYSIS (Placeholder) -->
+        <!-- 06: DATA ANALYSIS -->
         <div class="step-section">
             <span class="step-number">06</span>
             <h2 class="step-title">Data Analysis</h2>
-            <p><em>[Bagian ini akan diisi dengan metode analisis atau DAX Measures yang digunakan untuk mencari Profit, SLA Rate, dll].</em></p>
+            <p><em>[Bagian ini akan diisi dengan metode analisis atau rumusan DAX Measures yang digunakan untuk mencari Profit, SLA Rate, dll].</em></p>
+            
+            <!-- Tempat Foto -->
+            <figure style="margin: 25px 0 0 0; text-align: center;">
+                <img src="images/step6-analysis.jpg" alt="DAX Measures" style="width: 100%; height: auto; border-radius: 8px; border: 1px solid var(--border-color); background-color: #E5E7EB; min-height: 200px; object-fit: cover;">
+                <figcaption style="font-size: 0.85rem; color: var(--text-secondary); margin-top: 10px; font-style: italic;">Gambar 4: Penulisan syntax DAX untuk menghitung Average Lead Time dan SLA Compliance.</figcaption>
+            </figure>
         </div>
 
-        <!-- 07: DASHBOARD DEVELOPMENT (Placeholder) -->
+        <!-- 07: DASHBOARD DEVELOPMENT -->
         <div class="step-section">
             <span class="step-number">07</span>
             <h2 class="step-title">Dashboard Development</h2>
             <p><em>[Bagian ini akan diisi dengan logika penempatan visualisasi (Chart, Slicer, KPI Cards) di Power BI].</em></p>
+            
+            <!-- Tempat Foto -->
+            <figure style="margin: 25px 0 0 0; text-align: center;">
+                <img src="images/step7-dashboard.jpg" alt="Proses Pembuatan Dashboard" style="width: 100%; height: auto; border-radius: 8px; border: 1px solid var(--border-color); background-color: #E5E7EB; min-height: 200px; object-fit: cover;">
+                <figcaption style="font-size: 0.85rem; color: var(--text-secondary); margin-top: 10px; font-style: italic;">Gambar 5: Penyusunan tata letak visual dan komponen interaktif pada kanvas Power BI.</figcaption>
+            </figure>
         </div>
 
-        <!-- 08: KEY INSIGHTS (Placeholder) -->
+        <!-- 08: KEY INSIGHTS -->
         <div class="step-section">
             <span class="step-number">08</span>
             <h2 class="step-title">Key Insights</h2>
             <p><em>[Bagian ini akan diisi dengan 3-4 temuan paling krusial dari dashboard].</em></p>
+            
+            <!-- Tempat Foto -->
+            <figure style="margin: 25px 0 0 0; text-align: center;">
+                <img src="images/step8-insights.jpg" alt="Visualisasi Insight Kunci" style="width: 100%; height: auto; border-radius: 8px; border: 1px solid var(--border-color); background-color: #E5E7EB; min-height: 200px; object-fit: cover;">
+                <figcaption style="font-size: 0.85rem; color: var(--text-secondary); margin-top: 10px; font-style: italic;">Gambar 6: Sorotan pada rute dengan tingkat retur tertinggi (anomali yang terdeteksi).</figcaption>
+            </figure>
         </div>
 
-        <!-- 09: BUSINESS RECOMMENDATIONS (Placeholder) -->
+        <!-- 09: BUSINESS RECOMMENDATIONS -->
         <div class="step-section">
             <span class="step-number">09</span>
             <h2 class="step-title">Business Recommendations</h2>
             <p><em>[Bagian ini akan diisi dengan saran tindakan untuk manajemen berdasarkan insight yang ditemukan].</em></p>
         </div>
 
-        <!-- 10: CONCLUSION (Placeholder) -->
+        <!-- 10: CONCLUSION -->
         <div class="step-section">
             <span class="step-number">10</span>
             <h2 class="step-title">Conclusion</h2>
             <p><em>[Bagian ini akan diisi dengan ringkasan kesuksesan proyek ini secara keseluruhan].</em></p>
         </div>
-
-    </div>
-</body>
-</html>
