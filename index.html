@@ -1,0 +1,329 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Leonardo Saragih | Data Analyst Portfolio</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        /* CSS RESET & VARIABLES */
+        :root {
+            --bg-color: #F8F9FA;
+            --text-primary: #1F2937;
+            --text-secondary: #4B5563;
+            --accent-color: #2563EB;
+            --card-bg: #FFFFFF;
+            --border-color: #E5E7EB;
+        }
+        
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-primary);
+            line-height: 1.6;
+            margin: 0;
+            padding: 0;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 40px 20px;
+        }
+
+        /* HERO SECTION */
+        .hero {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 40px;
+            margin-bottom: 60px;
+            background: var(--card-bg);
+            padding: 40px;
+            border-radius: 16px;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+            border: 1px solid var(--border-color);
+        }
+
+        .hero-content {
+            flex: 1;
+        }
+
+        .hero h1 {
+            font-size: 2.2rem;
+            font-weight: 700;
+            margin: 0 0 5px 0;
+            letter-spacing: -0.5px;
+        }
+
+        .hero h2 {
+            font-size: 1.1rem;
+            color: var(--accent-color);
+            font-weight: 500;
+            margin: 0 0 20px 0;
+        }
+
+        .hero p {
+            color: var(--text-secondary);
+            font-size: 0.95rem;
+            margin-bottom: 25px;
+            text-align: justify;
+        }
+
+        .hero img {
+            width: 180px;
+            height: 180px;
+            object-fit: cover;
+            border-radius: 50%;
+            border: 4px solid #EFF6FF;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+        }
+
+        /* BUTTONS */
+        .btn-group {
+            display: flex;
+            gap: 15px;
+        }
+
+        .btn {
+            text-decoration: none;
+            padding: 10px 20px;
+            border-radius: 8px;
+            font-size: 0.9rem;
+            font-weight: 600;
+            transition: all 0.2s ease;
+        }
+
+        .btn-primary {
+            background-color: var(--accent-color);
+            color: white;
+        }
+
+        .btn-primary:hover {
+            background-color: #1D4ED8;
+            transform: translateY(-2px);
+        }
+
+        .btn-outline {
+            background-color: transparent;
+            color: var(--text-primary);
+            border: 1px solid var(--border-color);
+        }
+
+        .btn-outline:hover {
+            background-color: #F3F4F6;
+            transform: translateY(-2px);
+        }
+
+        /* SECTIONS */
+        section {
+            margin-bottom: 50px;
+        }
+
+        .section-title {
+            font-size: 1.4rem;
+            font-weight: 700;
+            margin-bottom: 25px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid var(--border-color);
+            color: var(--text-primary);
+        }
+
+        /* CARDS (For Experience & Projects) */
+        .card {
+            background: var(--card-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            padding: 25px;
+            margin-bottom: 20px;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.02);
+            transition: box-shadow 0.2s ease;
+        }
+
+        .card:hover {
+            box-shadow: 0 10px 15px -3px rgba(0,0,0,0.05);
+        }
+
+        .card-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: baseline;
+            margin-bottom: 10px;
+        }
+
+        .card-title {
+            font-size: 1.1rem;
+            font-weight: 700;
+            margin: 0;
+        }
+
+        .card-subtitle {
+            font-size: 0.9rem;
+            color: var(--accent-color);
+            font-weight: 500;
+            margin: 5px 0 15px 0;
+        }
+
+        .card-date {
+            font-size: 0.85rem;
+            color: var(--text-secondary);
+            font-weight: 500;
+        }
+
+        ul {
+            margin: 0;
+            padding-left: 20px;
+            color: var(--text-secondary);
+            font-size: 0.95rem;
+        }
+
+        li {
+            margin-bottom: 8px;
+        }
+
+        /* SKILLS CHIPS */
+        .skills-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        .skill-chip {
+            background-color: #E0E7FF;
+            color: #3730A3;
+            padding: 6px 14px;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: 600;
+        }
+
+        /* RESPONSIVE */
+        @media (max-width: 768px) {
+            .hero {
+                flex-direction: column-reverse;
+                text-align: center;
+                padding: 30px 20px;
+            }
+            .hero p {
+                text-align: center;
+            }
+            .btn-group {
+                justify-content: center;
+                flex-wrap: wrap;
+            }
+            .card-header {
+                flex-direction: column;
+            }
+            .card-date {
+                margin-top: 5px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <!-- HERO SECTION -->
+        <header class="hero">
+            <div class="hero-content">
+                <h1>LEONARDO SARAGIH</h1>
+                <h2>Data Analyst | IT Solution Engineer</h2>
+                <p>Profesional Sistem Informasi dengan rekam jejak di bidang analisis data operasional, pemantauan proses bisnis, identifikasi anomali, dan quality control lintas industri. Terampil merancang visualisasi data interaktif dan laporan terstruktur untuk mendukung Root Cause Analysis (RCA), pemantauan SLA, serta pengambilan keputusan strategis berbasis data.</p>
+                <div class="btn-group">
+                    <a href="https://www.linkedin.com/in/leonardo-saragih-4340212aa" target="_blank" class="btn btn-primary">LinkedIn</a>
+                    <a href="https://github.com/leonardosaragih15000" target="_blank" class="btn btn-outline">GitHub</a>
+                    <a href="mailto:leonardosaragih15000@gmail.com" class="btn btn-outline">Email</a>
+                </div>
+            </div>
+            <img src="images/foto-leo.png" alt="Leonardo Saragih">
+        </header>
+
+        <!-- SKILLS SECTION -->
+        <section>
+            <h3 class="section-title">Skills & Expertise</h3>
+            <div class="skills-container">
+                <span class="skill-chip">Python</span>
+                <span class="skill-chip">SQL</span>
+                <span class="skill-chip">Power BI</span>
+                <span class="skill-chip">Tableau</span>
+                <span class="skill-chip">Microsoft Excel</span>
+                <span class="skill-chip">Data Modeling</span>
+                <span class="skill-chip">Root Cause Analysis</span>
+                <span class="skill-chip">SLA Monitoring</span>
+                <span class="skill-chip">API Integration</span>
+            </div>
+        </section>
+
+        <!-- FEATURED PROJECTS SECTION -->
+        <section>
+            <h3 class="section-title">Featured Projects</h3>
+            
+            <div class="card">
+                <div class="card-header">
+                    <h4 class="card-title">Logistics Performance & SLA Dashboard</h4>
+                </div>
+                <h5 class="card-subtitle">Power BI | DAX | Power Query</h5>
+                <ul>
+                    <li>Membangun dashboard analitik interaktif untuk mengevaluasi efisiensi waktu, operasional, dan kualitas pengiriman logistik harian.</li>
+                    <li>Mengembangkan visualisasi <em>Average Lead Time</em> dan <em>Lost/Return Rate</em> guna mempercepat identifikasi bottleneck pada rantai pasok.</li>
+                    <li><a href="https://github.com/leonardosaragih15000/Logistics-Performance-Dashboard-PowerBI" target="_blank" style="color: var(--accent-color); font-weight: 600; text-decoration: none;">Lihat Repositori & Dokumentasi ➔</a></li>
+                </ul>
+            </div>
+
+            <div class="card">
+                <div class="card-header">
+                    <h4 class="card-title">Analisis Data Kasus Stunting (K-Medoids Clustering)</h4>
+                </div>
+                <h5 class="card-subtitle">Python | Clustering | Data Visualization</h5>
+                <ul>
+                    <li>Menganalisis lebih dari 250 data kasus stunting di Kabupaten Langkat[cite: 1].</li>
+                    <li>Mengimplementasikan algoritma K-Medoids untuk menghasilkan 3 segmentasi data spesifik serta mendesain dashboard pendukung evaluasi[cite: 1].</li>
+                </ul>
+            </div>
+        </section>
+
+        <!-- EXPERIENCE SECTION -->
+        <section>
+            <h3 class="section-title">Professional Experience</h3>
+
+            <div class="card">
+                <div class="card-header">
+                    <h4 class="card-title">IT Solution Engineer (Data & Systems Analysis)</h4>
+                    <span class="card-date">Des 2025 - Jun 2026</span>
+                </div>
+                <h5 class="card-subtitle">PT Surya Fajar Indonesia (SF International)</h5>
+                <ul>
+                    <li>Membangun Logistics Operational Performance Dashboard berbasis Power BI untuk mengaudit anomali dispatch harian[cite: 1].</li>
+                    <li>Menganalisis data operasional pengiriman dari integrasi API multi-customer guna memonitor proses tracking paket[cite: 1].</li>
+                    <li>Melakukan RCA pada kasus AWB return akibat kesalahan kode pelanggan, menurunkan gangguan operasional sebesar 15%[cite: 1].</li>
+                </ul>
+            </div>
+
+            <div class="card">
+                <div class="card-header">
+                    <h4 class="card-title">System Support (Data Quality & Monitoring)</h4>
+                    <span class="card-date">Jul 2024 - Des 2024</span>
+                </div>
+                <h5 class="card-subtitle">RS Columbia Asia Medan</h5>
+                <ul>
+                    <li>Melakukan validasi dan quality control terhadap >80 data rekam medis per hari untuk menjamin presisi data pasien[cite: 1].</li>
+                    <li>Mengidentifikasi dan mengoreksi anomali/inkonsistensi data, menghasilkan penurunan tingkat error hingga 30%[cite: 1].</li>
+                </ul>
+            </div>
+            
+            <div class="card">
+                <div class="card-header">
+                    <h4 class="card-title">Business Intelligence Analyst</h4>
+                    <span class="card-date">Jun 2023 - Des 2023</span>
+                </div>
+                <h5 class="card-subtitle">PT Millennia Solusi Informatika</h5>
+                <ul>
+                    <li>Memimpin tim beranggotakan 4 orang dalam eksekusi delivery project analisis data untuk klien sektor BUMN dan Perbankan[cite: 1].</li>
+                    <li>Mengembangkan dashboard Power BI guna mengubah data operasional mentah menjadi actionable business insight[cite: 1].</li>
+                </ul>
+            </div>
+        </section>
+
+    </div>
+</body>
+</html>
