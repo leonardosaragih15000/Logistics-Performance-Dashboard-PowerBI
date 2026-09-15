@@ -267,18 +267,66 @@ status_history — 12.747 baris, 6 kolom (log setiap perubahan status pengiriman
         </div>
 
         <!-- 07: DASHBOARD DEVELOPMENT -->
-        <div class="step-section">
+       <div class="step-section">
             <span class="step-number">07</span>
             <h2 class="step-title">Dashboard Development</h2>
-            <p><em>[Bagian ini akan diisi dengan logika penempatan visualisasi (Chart, Slicer, KPI Cards) di Power BI].</em></p>
             
-            <!-- Tempat Foto -->
-            <figure style="margin: 25px 0 0 0; text-align: center;">
-                <img src="images/step7-dashboard.jpg" alt="Proses Pembuatan Dashboard" style="width: 100%; height: auto; border-radius: 8px; border: 1px solid var(--border-color); background-color: #E5E7EB; min-height: 200px; object-fit: cover;">
-                <figcaption style="font-size: 0.85rem; color: var(--text-secondary); margin-top: 10px; font-style: italic;">Gambar 5: Penyusunan tata letak visual dan komponen interaktif pada kanvas Power BI.</figcaption>
-            </figure>
-        </div>
+           <!-- HALAMAN 1 -->
+            <div style="margin-top: 35px; margin-bottom: 50px;">
+                <h3 style="font-size: 1.15rem; color: var(--accent-color); margin-bottom: 8px;">1. Overview Summary</h3>
+                <p style="margin-bottom: 15px;">Overview Summary: KPI card (total order, revenue, berat, jumlah pelanggan), tren revenue bulanan, top kota asal, distribusi order per layanan dan jenis paket.</p>
+                <figure style="margin: 0; text-align: center;">
+                    <!-- Pastikan nama file gambarnya sesuai, contoh: dash-1-overview.png -->
+                    <img src="images/Overview-Summary.png" alt="Overview Summary" style="width: 100%; height: auto; border-radius: 8px; border: 1px solid var(--border-color); box-shadow: 0 4px 12px rgba(0,0,0,0.08); background-color: #E5E7EB; min-height: 200px;">
+                </figure>
+            </div>
 
+            <!-- HALAMAN 2 -->
+            <div style="margin-bottom: 50px;">
+                <h3 style="font-size: 1.15rem; color: var(--accent-color); margin-bottom: 8px;">2. Revenue by Service & Customer</h3>
+                <p style="margin-bottom: 15px;">Revenue by Service & Customer :Analisis mendalam kontribusi tiap <em>service_type</em> dan <em>customer_type</em> terhadap revenue, termasuk rata-rata transaksi per layanan.</p>
+                <figure style="margin: 0; text-align: center;">
+                    <img src="images/Revenue-by-Service-and-Customer.png" alt="Revenue by Service" style="width: 100%; height: auto; border-radius: 8px; border: 1px solid var(--border-color); box-shadow: 0 4px 12px rgba(0,0,0,0.08); background-color: #E5E7EB; min-height: 200px;">
+                </figure>
+            </div>
+
+            <!-- HALAMAN 3 -->
+            <div style="margin-bottom: 50px;">
+                <h3 style="font-size: 1.15rem; color: var(--accent-color); margin-bottom: 8px;">3. Operasional & SLA</h3>
+                <p style="margin-bottom: 15px;"> Operasional dan SLA :Fokus pada tren SLA Success Rate, perbandingan SLA antar layanan/jenis paket, dan matriks rute asal-tujuan dengan tingkat keterlambatan/lost/return.</p>
+                <figure style="margin: 0; text-align: center;">
+                    <img src="images/dash-3-operasional.png" alt="Operasional dan SLA" style="width: 100%; height: auto; border-radius: 8px; border: 1px solid var(--border-color); box-shadow: 0 4px 12px rgba(0,0,0,0.08); background-color: #E5E7EB; min-height: 200px;">
+                </figure>
+            </div>
+
+            <!-- HALAMAN 4 -->
+            <div style="margin-bottom: 50px;">
+                <h3 style="font-size: 1.15rem; color: var(--accent-color); margin-bottom: 8px;">4. Efisiensi Rute</h3>
+                <p style="margin-bottom: 15px;">Efesiensi Rute :Analisis <em>revenue per km</em> per rute, dilengkapi <em>scatter chart</em> jarak vs revenue untuk memetakan rute ke dalam kuadran (misal: jarak jauh-revenue tinggi vs jarak jauh-revenue rendah) sebagai dasar <em>shortlist</em> rute yang perlu dievaluasi ulang.</p>
+                <figure style="margin: 0; text-align: center;">
+                    <img src="images/dash-4-efisiensi.png" alt="Efisiensi Rute" style="width: 100%; height: auto; border-radius: 8px; border: 1px solid var(--border-color); box-shadow: 0 4px 12px rgba(0,0,0,0.08); background-color: #E5E7EB; min-height: 200px;">
+                </figure>
+            </div>
+
+            <!-- HALAMAN 5 -->
+            <div style="margin-bottom: 50px;">
+                <h3 style="font-size: 1.15rem; color: var(--accent-color); margin-bottom: 8px;">5. Risiko & Kualitas</h3>
+                <p style="margin-bottom: 15px;"> Risiko & Kualitas :Pelacakan tingkat <em>lost/return</em>, deteksi kandidat <em>mislabel</em> paket berdasarkan penyimpangan berat, dan tabel detail level-<em>shipment</em> untuk investigasi lanjutan.</p>
+                <figure style="margin: 0; text-align: center;">
+                    <img src="images/dash-5-risiko.png" alt="Risiko dan Kualitas" style="width: 100%; height: auto; border-radius: 8px; border: 1px solid var(--border-color); box-shadow: 0 4px 12px rgba(0,0,0,0.08); background-color: #E5E7EB; min-height: 200px;">
+                </figure>
+            </div>
+
+            <!-- HALAMAN 6 -->
+            <div style="margin-bottom: 40px;">
+                <h3 style="font-size: 1.15rem; color: var(--accent-color); margin-bottom: 8px;">6. Musim & Kapasitas</h3>
+                <p style="margin-bottom: 15px;"> Musim dan Kapasitas :Pola musiman volume dan berat kiriman per bulan serta pertumbuhan revenue <em>year-over-year</em>, sebagai input perencanaan kapasitas armada.</p>
+                <figure style="margin: 0; text-align: center;">
+                    <img src="images/dash-6-musim.png" alt="Musim dan Kapasitas" style="width: 100%; height: auto; border-radius: 8px; border: 1px solid var(--border-color); box-shadow: 0 4px 12px rgba(0,0,0,0.08); background-color: #E5E7EB; min-height: 200px;">
+                </figure>
+            </div>
+
+           
         <!-- 08: KEY INSIGHTS -->
         <div class="step-section">
             <span class="step-number">08</span>
