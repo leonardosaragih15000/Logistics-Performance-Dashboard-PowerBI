@@ -238,7 +238,26 @@ status_history — 12.747 baris, 6 kolom (log setiap perubahan status pengiriman
         <div class="step-section">
             <span class="step-number">06</span>
             <h2 class="step-title">Data Analysis</h2>
-            <p><em>[Bagian ini akan diisi dengan metode analisis atau rumusan DAX Measures yang digunakan untuk mencari Profit, SLA Rate, dll].</em></p>
+            <p><em>Lapisan analisis dibangun lewat serangkaian DAX measure yang sengaja dibuat sederhana (mayoritas COUNT , dan SUM , AVERAGE , DIVIDE ) agar mudah diaudit dan dijelaskan ke pemangku kepentingan non-teknis. Measure-measure ini dikelompokkan menjadi empat tema besar
+                <p>Untuk mengukur performa operasional secara menyeluruh, analisis dibagi menjadi 4 pilar metrik (KPI) utama:</p>
+
+<ul>
+    <li>
+        <strong>Volume & Revenue:</strong> Meliputi metrik <code>Total order</code>, <code>Total revenue</code>, <code>Revenue last year</code>, dan persentase pertumbuhan <code>Growth revenue YoY %</code>.
+    </li>
+    
+    <li>
+        <strong>SLA & Ketepatan Waktu:</strong> Memuat <code>Total berat</code>, <code>Jumlah pelanggan</code>, <code>Rata-rata Transaksi</code>, dan <code>SLA Success Rate</code>. Perhitungan <code>Jumlah tepat waktu</code> dan <code>Jumlah telat</code> didapatkan dengan membandingkan <code>actual_delivery_timestamp</code> (dari status history delivered) terhadap estimasi/batas waktu SLA.
+    </li>
+    
+    <li>
+        <strong>Risiko & Kualitas:</strong> Memantau <code>Jumlah return</code>, <code>Lost rate</code>, <code>Return rate</code>, dan <code>% lost return rate</code>. Selain itu, fitur <code>Jumlah Kandidat Mislabel</code> serta <code>Berat min/max/avg</code> per <code>package_type</code> dirancang khusus untuk mendeteksi anomali berat yang mengindikasikan salah penentuan kategori paket.
+    </li>
+    
+    <li>
+        <strong>Efisiensi Rute & Musiman:</strong> Menganalisis <code>Revenue per KM</code> dan <code>Total distance</code> untuk rute, serta <code>Rata-rata berat per bulan</code> dan tren berdasarkan <code>Bulan Kalender</code> untuk mendeteksi lonjakan musiman.
+    </li>
+</ul>.</em></p>
             
             <!-- Tempat Foto -->
             <figure style="margin: 25px 0 0 0; text-align: center;">
