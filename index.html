@@ -229,11 +229,28 @@
             margin-bottom: 8px;
         }
 
-        /* SKILLS CHIPS */
+       /* SKILLS CHIPS & CATEGORIES */
+        .skill-category {
+            display: flex;
+            align-items: flex-start;
+            margin-bottom: 18px;
+            gap: 15px;
+        }
+
+        .skill-label {
+            font-weight: 700;
+            color: var(--text-primary);
+            width: 170px; /* Lebar tetap agar sejajar rapi ke bawah */
+            flex-shrink: 0;
+            padding-top: 4px;
+            font-size: 0.95rem;
+        }
+
         .skills-container {
             display: flex;
             flex-wrap: wrap;
             gap: 10px;
+            flex: 1;
         }
 
         .skill-chip {
@@ -244,6 +261,12 @@
             font-size: 0.85rem;
             font-weight: 600;
             transition: background-color 0.3s ease;
+        }
+
+        .skill-chip.soft-skill {
+            background-color: transparent;
+            border: 1px solid var(--border-color);
+            color: var(--text-secondary);
         }
 
         /* RESPONSIVE */
@@ -300,16 +323,51 @@
         <!-- SKILLS SECTION -->
         <section>
             <h3 class="section-title">Skills & Expertise</h3>
-            <div class="skills-container">
-                <span class="skill-chip">SQL</span>
-                <span class="skill-chip">Python</span>
-                <span class="skill-chip">Power BI</span>
-                <span class="skill-chip">Tableau</span>
-                <span class="skill-chip">Microsoft Excel</span>
-                <span class="skill-chip">Operational Monitoring</span>
-                <span class="skill-chip">Anomaly Identification</span>
-                <span class="skill-chip">Root Cause Analysis</span>
-                <span class="skill-chip">SLA Monitoring</span>
+            
+            <div class="skill-category">
+                <div class="skill-label">Data Analyst</div>
+                <div class="skills-container">
+                    <span class="skill-chip">SQL</span>
+                    <span class="skill-chip">Microsoft Excel</span>
+                    <span class="skill-chip">Python</span>
+                </div>
+            </div>
+
+            <div class="skill-category">
+                <div class="skill-label">Data Visualization</div>
+                <div class="skills-container">
+                    <span class="skill-chip">Power BI</span>
+                    <span class="skill-chip">Tableau</span>
+                    <span class="skill-chip">Looker Studio</span>
+                </div>
+            </div>
+
+            <div class="skill-category">
+                <div class="skill-label">Data Analytics</div>
+                <div class="skills-container">
+                    <span class="skill-chip">Data Cleaning & Validation</span>
+                    <span class="skill-chip">Exploratory Data Analysis</span>
+                    <span class="skill-chip">Anomaly Detection</span>
+                    <span class="skill-chip">Root Cause Analysis</span>
+                </div>
+            </div>
+
+            <div class="skill-category">
+                <div class="skill-label">Database</div>
+                <div class="skills-container">
+                    <span class="skill-chip">MySQL</span>
+                </div>
+            </div>
+
+            <div class="skill-category" style="margin-top: 30px;">
+                <div class="skill-label">Soft Skills</div>
+                <div class="skills-container">
+                    <span class="skill-chip soft-skill">Analytical & Problem Solving</span>
+                    <span class="skill-chip soft-skill">Detail-Oriented</span>
+                    <span class="skill-chip soft-skill">Communication</span>
+                    <span class="skill-chip soft-skill">Teamwork</span>
+                    <span class="skill-chip soft-skill">Business Process Understanding</span>
+                </div>
             </div>
         </section>
 
