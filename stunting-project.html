@@ -1,1 +1,393 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Logistics Performance Dashboard | Leonardo Saragih</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-color: #F8F9FA;
+            --text-primary: #1F2937;
+            --text-secondary: #4B5563;
+            --accent-color: #2563EB;
+            --card-bg: #FFFFFF;
+            --border-color: #E5E7EB;
+        }
+        
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-primary);
+            line-height: 1.7;
+            margin: 0;
+            padding: 0;
+        }
 
+        .container {
+            max-width: 800px; 
+            margin: 0 auto;
+            padding: 40px 20px;
+        }
+
+        /* Navigasi Kembali */
+        .back-link {
+            display: inline-flex;
+            align-items: center;
+            color: var(--text-secondary);
+            text-decoration: none;
+            font-weight: 500;
+            margin-bottom: 30px;
+            font-size: 0.95rem;
+            transition: color 0.2s ease;
+        }
+        
+        .back-link:hover {
+            color: var(--accent-color);
+        }
+
+        /* Header Proyek */
+        .project-header {
+            margin-bottom: 40px;
+        }
+
+        .project-title {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin: 0 0 15px 0;
+            letter-spacing: -0.5px;
+            line-height: 1.2;
+        }
+
+        .hero-image {
+            width: 100%;
+            height: auto;
+            border-radius: 12px;
+            border: 1px solid var(--border-color);
+            box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1);
+            margin-bottom: 40px;
+        }
+
+        /* Step Section */
+        .step-section {
+            background: var(--card-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            padding: 35px;
+            margin-bottom: 25px;
+        }
+
+        .step-number {
+            font-size: 0.9rem;
+            font-weight: 700;
+            color: var(--accent-color);
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            margin-bottom: 10px;
+            display: block;
+        }
+
+        .step-title {
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin: 0 0 20px 0;
+            padding-bottom: 15px;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        /* Typography & Content Formatting */
+        p {
+            color: var(--text-secondary);
+            margin-bottom: 15px;
+            text-align: justify;
+        }
+
+        .question-list {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .question-list li {
+            position: relative;
+            padding-left: 28px;
+            margin-bottom: 12px;
+            color: var(--text-secondary);
+        }
+
+        .question-list li::before {
+            content: "➔";
+            position: absolute;
+            left: 0;
+            color: var(--accent-color);
+            font-weight: bold;
+        }
+
+        .highlight-box {
+            background-color: #EFF6FF;
+            border-left: 4px solid var(--accent-color);
+            padding: 15px 20px;
+            border-radius: 0 8px 8px 0;
+            margin-bottom: 20px;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        
+        <!-- Link Kembali ke Halaman Utama -->
+        <a href="index.html" class="back-link">← Kembali ke Portofolio</a>
+
+        <!-- HEADER PROYEK -->
+        <div class="project-header">
+            <h1 class="project-title">Logistics Performance & SLA Dashboard</h1>
+            <p style="font-size: 1.1rem;">Analisis end-to-end efisiensi rantai pasok, profitabilitas rute, dan kepatuhan Service Level Agreement (SLA) menggunakan Power BI.</p>
+        </div>
+
+        <!-- GAMBAR DASHBOARD BESAR -->
+        <img src="images/logistics-cover.jpg" alt="Logistics Dashboard Main View" class="hero-image">
+
+        <!-- 01: BUSINESS PROBLEM -->
+        <div class="step-section">
+            <span class="step-number">01</span>
+            <h2 class="step-title">Business Problem</h2>
+            <div class="highlight-box">
+                <p style="margin: 0; color: #1E3A8A; font-weight: 500;">
+                    Manajemen operasional logistik menghadapi kendala visibilitas dalam melacak performa pengiriman harian dan profitabilitas rute.
+                </p>
+            </div>
+            <p>Perusahaan logistik membutuhkan alat ukur yang komprehensif untuk mengevaluasi efisiensi operasional. Tanpa pemantauan yang terpusat, Operations Manager kesulitan untuk mendeteksi anomali (seperti paket yang hilang atau tingkat pengembalian yang tinggi), mengukur kepatuhan ketepatan waktu (SLA) berdasarkan tipe layanan, serta mengidentifikasi rute pengiriman mana yang menghasilkan margin keuntungan (*profitabilitas*) atau justru membebani biaya perusahaan.</p>
+        </div>
+
+        <!-- 02: BUSINESS QUESTIONS -->
+        <div class="step-section">
+            <span class="step-number">02</span>
+            <h2 class="step-title">Business Questions</h2>
+            <p>Untuk menyelesaikan masalah bisnis di atas, proyek analisis data ini dirancang untuk menjawab 10 pertanyaan strategis berikut:</p>
+            <ul class="question-list">
+                <li><strong>Distribusi Layanan:</strong> Bagaimana proporsi penggunaan peta layanan pengiriman (Regular, Express, atau Same Day)?</li>
+                <li><strong>Tingkat Kegagalan:</strong> Berapa rasio volume paket yang berstatus hilang (*lost*) atau dikembalikan (*return*)?</li>
+                <li><strong>Kesesuaian Spesifikasi:</strong> Apakah terdapat korelasi atau kesesuaian antara berat aktual paket dengan kategori layanan yang dipilih oleh pelanggan?</li>
+                <li><strong>Profitabilitas Rute:</strong> Rute pengiriman mana yang menghasilkan margin keuntungan (*profit*) tertinggi dan terendah?</li>
+                <li><strong>Kepatuhan SLA:</strong> Bagaimana rasio ketepatan waktu (*On-Time*) versus keterlambatan (*Late*) untuk setiap layanan?</li>
+                <li><strong>Segmentasi Pelanggan:</strong> Antara segmen Bisnis (B2B) dan Individu (B2C), manakah yang memberikan nilai pendapatan tertinggi?</li>
+                <li><strong>Tren Volume:</strong> Bagaimana tren pengiriman bulanan, dan apakah terdapat lonjakan signifikan pada periode musim liburan (Lebaran) & Harbolnas?</li>
+                <li><strong>Audit Anomali Data:</strong> Bagaimana penanganan anomali terhadap 50 resi pengiriman berstatus "Delivered" yang kehilangan log tanggal penyelesaian?</li>
+                <li><strong>Efisiensi Rute:</strong> Rute mana yang beroperasi dalam kondisi rugi (Loss) dan memerlukan eskalasi (penyesuaian harga atau penutupan jalur)?</li>
+                <li><strong>Solusi Manajerial:</strong> Bagaimana merancang visualisasi <em>Delivery Performance Dashboard</em> yang optimal bagi Operations Manager?</li>
+            </ul>
+        </div>
+
+       <!-- 03: DATASET & DATA SOURCE -->
+        <div class="step-section">
+            <span class="step-number">03</span>
+            <h2 class="step-title">Dataset & Data Source</h2>
+            <p><em>Dataset ini merupakan data operasional shipment SF Express yang telah di modifikasi, dimuat ke Power BI melalui Power Query dalam mode Import. Terdiri dari 4 tabel utama:
+                shipments — 4.000 baris, 18 kolom (data inti tiap pengiriman: ID, rute, pelanggan, jenis layanan, berat, biaya, status, dan tanggal-tanggal terkait)
+customers — 600 baris, 9 kolom (identitas & tipe pelanggan: business/individual)
+routes — 80 baris, 9 kolom (rute asal-tujuan, jarak, estimasi hari, tarif per kg)
+status_history — 12.747 baris, 6 kolom (log setiap perubahan status pengiriman lengkap dengan timestamp dan lokasi — sumber data untuk merekonstruksi timeline tiap paket).</em></p>
+            
+            <!-- Tempat Foto -->
+            <figure style="margin: 25px 0 0 0; text-align: center;">
+                <img src="images/step3-dataset.jpg" alt="Tampilan Dataset Mentah" style="width: 100%; height: auto; border-radius: 8px; border: 1px solid var(--border-color); background-color: #E5E7EB; min-height: 200px; object-fit: cover;">
+                <figcaption style="font-size: 0.85rem; color: var(--text-secondary); margin-top: 10px; font-style: italic;">.</figcaption>
+            </figure>
+        </div>
+
+        <!-- 04: DATA FORMATTING & CLEANING -->
+        <div class="step-section">
+            <span class="step-number">04</span>
+            <h2 class="step-title">Data Formatting / Cleaning</h2>
+            <p><em>Beberapa langkah pembersihan dan validasi data dilakukan sebelum data dianggap siap dianalisis:
+               <ul>
+    <li>Mengonversi kolom tanggal (<code>pickup_date</code>, <code>estimated_delivery</code>, <code>actual_delivery</code>) ke tipe data date/datetime yang benar.</li>
+    
+    <li>Mengecek duplikasi <code>tracking_number</code> dan <code>shipment_id</code> — hasilnya bersih, tidak ditemukan duplikasi.</li>
+    
+    <li>Mengecek integritas relasi (foreign key) antar tabel — tidak ditemukan <code>customer_id</code> atau <code>route_id</code> yang orphan (tidak terhubung ke tabel induknya).</li>
+    
+    <li><strong>Temuan krusial:</strong> ditemukan 50 baris berstatus <code>delivered</code> namun kolom <code>actual_delivery</code>-nya kosong. Setelah ditelusuri lebih dalam, ternyata masalahnya lebih besar dari itu — kolom <code>actual_delivery</code> (tanggal) ternyata <strong>tidak konsisten dengan</strong> <code>actual_delivery_timestamp</code> (waktu lengkap) pada 94,5% baris data, hampir selalu bergeser 1 hari atau lebih. Solusinya, seluruh perhitungan ketepatan waktu direkonstruksi ulang menggunakan <code>actual_delivery_timestamp</code> yang dibulatkan ke tanggal — sumber data yang lebih bisa dipercaya karena terisi lengkap untuk seluruh 3.200 pengiriman berstatus delivered.</li>
+</ul>
+
+.</em></p>
+            
+            <!-- Tempat Foto -->
+            <figure style="margin: 25px 0 0 0; text-align: center;">
+                <img src="images/step4-cleaning.jpg" alt="Proses Data Cleaning" style="width: 100%; height: auto; border-radius: 8px; border: 1px solid var(--border-color); background-color: #E5E7EB; min-height: 200px; object-fit: cover;">
+                <figcaption style="font-size: 0.85rem; color: var(--text-secondary); margin-top: 10px; font-style: italic;"></figcaption>
+            </figure>
+        </div>
+
+        <!-- 05: CREATE RELATIONAL TABLE -->
+        <div class="step-section">
+            <span class="step-number">05</span>
+            <h2 class="step-title">Create Relational Table</h2>
+            <p><em>Model data dibangun dengan pendekatan mirip skema Star: tabel shipments berperan sebagai tabel fakta (fact table) yang menyimpan satu baris per transaksi pengiriman, dihubungkan ke tabel dimensi customers (melalui customer_id) dan routes (melalui route_id). Tabel status_history dihubungkan lewat shipment_id sebagai tabel log granular, digunakan khusus untuk merekonstruksi kronologi tiap paket (misalnya menelusuri waktu transit di hub) tanpa perlu menggabungkannya langsung ke tabel fakta utama..</em></p>
+            
+            <!-- Tempat Foto -->
+            <figure style="margin: 25px 0 0 0; text-align: center;">
+                <img src="images/step5-model.jpg" alt="Skema Relasi Data" style="width: 100%; height: auto; border-radius: 8px; border: 1px solid var(--border-color); background-color: #E5E7EB; min-height: 200px; object-fit: cover;">
+                <figcaption style="font-size: 0.85rem; color: var(--text-secondary); margin-top: 10px; font-style: italic;">Gambar 3: Pemodelan data Star Schema menghubungkan tabel fakta dan dimensi.</figcaption>
+            </figure>
+        </div>
+
+        <!-- 06: DATA ANALYSIS -->
+        <div class="step-section">
+            <span class="step-number">06</span>
+            <h2 class="step-title">Data Analysis</h2>
+            <p><em>Lapisan analisis dibangun lewat serangkaian DAX measure yang sengaja dibuat sederhana (mayoritas COUNT , dan SUM , AVERAGE , DIVIDE ) agar mudah diaudit dan dijelaskan ke pemangku kepentingan non-teknis. Measure-measure ini dikelompokkan menjadi empat tema besar
+                <p>Untuk mengukur performa operasional secara menyeluruh, analisis dibagi menjadi 4 pilar metrik (KPI) utama:</p>
+
+<ul>
+    <li>
+        <strong>Volume & Revenue:</strong> Meliputi metrik <code>Total order</code>, <code>Total revenue</code>, <code>Revenue last year</code>, dan persentase pertumbuhan <code>Growth revenue YoY %</code>.
+    </li>
+    
+    <li>
+        <strong>SLA & Ketepatan Waktu:</strong> Memuat <code>Total berat</code>, <code>Jumlah pelanggan</code>, <code>Rata-rata Transaksi</code>, dan <code>SLA Success Rate</code>. Perhitungan <code>Jumlah tepat waktu</code> dan <code>Jumlah telat</code> didapatkan dengan membandingkan <code>actual_delivery_timestamp</code> (dari status history delivered) terhadap estimasi/batas waktu SLA.
+    </li>
+    
+    <li>
+        <strong>Risiko & Kualitas:</strong> Memantau <code>Jumlah return</code>, <code>Lost rate</code>, <code>Return rate</code>, dan <code>% lost return rate</code>. Selain itu, fitur <code>Jumlah Kandidat Mislabel</code> serta <code>Berat min/max/avg</code> per <code>package_type</code> dirancang khusus untuk mendeteksi anomali berat yang mengindikasikan salah penentuan kategori paket.
+    </li>
+    
+    <li>
+        <strong>Efisiensi Rute & Musiman:</strong> Menganalisis <code>Revenue per KM</code> dan <code>Total distance</code> untuk rute, serta <code>Rata-rata berat per bulan</code> dan tren berdasarkan <code>Bulan Kalender</code> untuk mendeteksi lonjakan musiman.
+    </li>
+</ul>.</em></p>
+            
+            <!-- Tempat Foto -->
+            <figure style="margin: 25px 0 0 0; text-align: center;">
+                <img src="images/step6-analysis.jpg" alt="DAX Measures" style="width: 100%; height: auto; border-radius: 8px; border: 1px solid var(--border-color); background-color: #E5E7EB; min-height: 200px; object-fit: cover;">
+                <figcaption style="font-size: 0.85rem; color: var(--text-secondary); margin-top: 10px; font-style: italic;">Gambar 4: Penulisan syntax DAX untuk menghitung Average Lead Time dan SLA Compliance.</figcaption>
+            </figure>
+        </div>
+
+        <!-- 07: DASHBOARD DEVELOPMENT -->
+       <div class="step-section">
+            <span class="step-number">07</span>
+            <h2 class="step-title">Dashboard Development</h2>
+            
+           <!-- HALAMAN 1 -->
+            <div style="margin-top: 35px; margin-bottom: 50px;">
+                <h3 style="font-size: 1.15rem; color: var(--accent-color); margin-bottom: 8px;">1. Overview Summary</h3>
+                <p style="margin-bottom: 15px;">Overview Summary: KPI card (total order, revenue, berat, jumlah pelanggan), tren revenue bulanan, top kota asal, distribusi order per layanan dan jenis paket.</p>
+                <figure style="margin: 0; text-align: center;">
+                    <!-- Pastikan nama file gambarnya sesuai, contoh: dash-1-overview.png -->
+                    <img src="images/Overview-Summary.png" alt="Overview Summary" style="width: 100%; height: auto; border-radius: 8px; border: 1px solid var(--border-color); box-shadow: 0 4px 12px rgba(0,0,0,0.08); background-color: #E5E7EB; min-height: 200px;">
+                </figure>
+            </div>
+
+            <!-- HALAMAN 2 -->
+            <div style="margin-bottom: 50px;">
+                <h3 style="font-size: 1.15rem; color: var(--accent-color); margin-bottom: 8px;">2. Revenue by Service & Customer</h3>
+                <p style="margin-bottom: 15px;">Revenue by Service & Customer :Analisis mendalam kontribusi tiap <em>service_type</em> dan <em>customer_type</em> terhadap revenue, termasuk rata-rata transaksi per layanan.</p>
+                <figure style="margin: 0; text-align: center;">
+                    <img src="images/Revenue-by-Service-and-Customer.png" alt="Revenue by Service" style="width: 100%; height: auto; border-radius: 8px; border: 1px solid var(--border-color); box-shadow: 0 4px 12px rgba(0,0,0,0.08); background-color: #E5E7EB; min-height: 200px;">
+                </figure>
+            </div>
+
+            <!-- HALAMAN 3 -->
+            <div style="margin-bottom: 50px;">
+                <h3 style="font-size: 1.15rem; color: var(--accent-color); margin-bottom: 8px;">3. Operasional & SLA</h3>
+                <p style="margin-bottom: 15px;"> Operasional dan SLA :Fokus pada tren SLA Success Rate, perbandingan SLA antar layanan/jenis paket, dan matriks rute asal-tujuan dengan tingkat keterlambatan/lost/return.</p>
+                <figure style="margin: 0; text-align: center;">
+                    <img src="images/dash-3-operasional.png" alt="Operasional dan SLA" style="width: 100%; height: auto; border-radius: 8px; border: 1px solid var(--border-color); box-shadow: 0 4px 12px rgba(0,0,0,0.08); background-color: #E5E7EB; min-height: 200px;">
+                </figure>
+            </div>
+
+            <!-- HALAMAN 4 -->
+            <div style="margin-bottom: 50px;">
+                <h3 style="font-size: 1.15rem; color: var(--accent-color); margin-bottom: 8px;">4. Efisiensi Rute</h3>
+                <p style="margin-bottom: 15px;">Efesiensi Rute :Analisis <em>revenue per km</em> per rute, dilengkapi <em>scatter chart</em> jarak vs revenue untuk memetakan rute ke dalam kuadran (misal: jarak jauh-revenue tinggi vs jarak jauh-revenue rendah) sebagai dasar <em>shortlist</em> rute yang perlu dievaluasi ulang.</p>
+                <figure style="margin: 0; text-align: center;">
+                    <img src="images/dash-4-efisiensi.png" alt="Efisiensi Rute" style="width: 100%; height: auto; border-radius: 8px; border: 1px solid var(--border-color); box-shadow: 0 4px 12px rgba(0,0,0,0.08); background-color: #E5E7EB; min-height: 200px;">
+                </figure>
+            </div>
+
+            <!-- HALAMAN 5 -->
+            <div style="margin-bottom: 50px;">
+                <h3 style="font-size: 1.15rem; color: var(--accent-color); margin-bottom: 8px;">5. Risiko & Kualitas</h3>
+                <p style="margin-bottom: 15px;"> Risiko & Kualitas :Pelacakan tingkat <em>lost/return</em>, deteksi kandidat <em>mislabel</em> paket berdasarkan penyimpangan berat, dan tabel detail level-<em>shipment</em> untuk investigasi lanjutan.</p>
+                <figure style="margin: 0; text-align: center;">
+                    <img src="images/dash-5-risiko.png" alt="Risiko dan Kualitas" style="width: 100%; height: auto; border-radius: 8px; border: 1px solid var(--border-color); box-shadow: 0 4px 12px rgba(0,0,0,0.08); background-color: #E5E7EB; min-height: 200px;">
+                </figure>
+            </div>
+
+            <!-- HALAMAN 6 -->
+            <div style="margin-bottom: 40px;">
+                <h3 style="font-size: 1.15rem; color: var(--accent-color); margin-bottom: 8px;">6. Musim & Kapasitas</h3>
+                <p style="margin-bottom: 15px;"> Musim dan Kapasitas :Pola musiman volume dan berat kiriman per bulan serta pertumbuhan revenue <em>year-over-year</em>, sebagai input perencanaan kapasitas armada.</p>
+                <figure style="margin: 0; text-align: center;">
+                    <img src="images/dash-6-musim.png" alt="Musim dan Kapasitas" style="width: 100%; height: auto; border-radius: 8px; border: 1px solid var(--border-color); box-shadow: 0 4px 12px rgba(0,0,0,0.08); background-color: #E5E7EB; min-height: 200px;">
+                </figure>
+            </div>
+
+           
+        <!-- 08: KEY INSIGHTS -->
+        <div class="step-section">
+            <span class="step-number">08</span>
+            <h2 class="step-title">Key Insights</h2>
+            
+            <p>Berdasarkan eksplorasi visual dari dashboard, berikut adalah temuan utama (<em>key insights</em>) yang berhasil ditarik dari data operasional:</p>
+
+            <ul>
+                <li>
+                    <strong>Konsentrasi Revenue per Layanan:</strong> Dari halaman <em>Revenue by Service & Customer</em>, layanan <code>Express</code> dengan total order 1183 <code> lebih tinggi total revenuenya yakni sebesar 709,666,050</code>.
+                </li>
+                
+                <li>
+                    <strong>Gap SLA yang Signifikan pada Rute Tertentu:</strong> Analisis <em>pivot table</em> di halaman <em>Operasional & SLA</em> menunjukkan rute <code>[Palembang ➔ Jakarta]</code> memiliki <em>SLA Success Rate</em> hanya <code>29.17%</code>, berada di bawah rata-rata perusahaan sebesar <code>57.52%</code>.
+                </li>
+                
+                <li>
+                    <strong>Rute dengan Efisiensi Rendah:</strong> Melalui kuadran <em>scatter chart</em> di halaman <em>Efisiensi Rute</em>, teridentifikasi <code>[jumlah]</code> rute dengan jarak tempuh panjang namun <em>revenue per km</em> rendah — rute-rute ini menjadi kandidat utama untuk evaluasi tarif atau konsolidasi muatan.
+                </li>
+                
+                <li>
+                    <strong>Indikasi Mislabel Paket:</strong> Analisis tabel di halaman <em>Risiko & Kualitas</em> menemukan <code>1350</code> pengiriman dengan berat aktual jauh melampaui batas wajar <code>package_type</code>-nya. Anomali ini berpotensi merugikan perusahaan karena memengaruhi akurasi biaya kirim.
+                </li>
+                
+                <li>
+                    <strong>Pola Musiman:</strong> Halaman <em>Musim & Kapasitas</em> menunjukkan lonjakan volume order pada bulan <code>Januari</code>, dengan pertumbuhan <em>revenue YoY (Year-over-Year)</em> sebesar <code>11.48%</code> — memberikan sinyal historis untuk persiapan penambahan armada musiman di masa depan.
+                </li>
+            </ul>
+        </div>
+
+       <!-- 09: BUSINESS RECOMMENDATIONS -->
+        <div class="step-section">
+            <span class="step-number">09</span>
+            <h2 class="step-title">Business Recommendations</h2>
+            <p>Rekomendasi berikut disusun agar setiap <em>insight</em> punya tindak lanjut yang jelas (<em>actionable</em>) untuk manajemen:</p>
+
+            <ul>
+                <li>
+                    <strong>Diversifikasi Layanan:</strong> Karena <em>revenue</em> terkonsentrasi pada satu <code>service_type</code>, evaluasi strategi <em>pricing</em> atau promosi untuk mendorong pertumbuhan layanan lain agar risiko ketergantungan berkurang.
+                </li>
+                
+                <li>
+                    <strong>Audit Rute dengan SLA Rendah:</strong> Rute-rute dengan <em>SLA Success Rate</em> di bawah rata-rata perlu ditelusuri akar masalahnya — apakah karena jarak, kepadatan lalu lintas, atau kapasitas armada yang tidak memadai di rute tersebut — sebelum keluhan pelanggan meningkat.
+                </li>
+                
+                <li>
+                    <strong>Renegosiasi atau Konsolidasi Rute Tidak Efisien:</strong> Rute pada kuadran "jarak jauh, revenue rendah" bisa dipertimbangkan untuk penyesuaian tarif, digabung dengan rute lain (<em>multi-drop</em>), atau dievaluasi kelayakan operasionalnya.
+                </li>
+                
+                <li>
+                    <strong>Perkuat Validasi Input Berat/Jenis Paket:</strong> Kandidat <em>mislabel</em> sebaiknya dijadikan pemicu proses verifikasi ulang di titik input data (saat <em>pickup</em>), untuk mencegah kesalahan biaya dan potensi klaim di kemudian hari.
+                </li>
+                
+                <li>
+                    <strong>Rencanakan Kapasitas Armada Musiman:</strong> Dengan pola kenaikan volume di bulan tertentu, penambahan armada/mitra kurir sementara sebaiknya direncanakan jauh sebelum periode puncak, bukan reaktif.
+                </li>
+            </ul>
+        </div>
+
+        <!-- 10: CONCLUSION -->
+        <div class="step-section">
+            <span class="step-number">10</span>
+            <h2 class="step-title">Conclusion</h2>
+            <p><em>Proyek ini mengubah empat dataset mentah yang terfragmentasi menjadi satu dashboard Power BI enam halaman yang menjawab pertanyaan bisnis konkret di empat area: revenue & layanan, operasional & SLA, risiko & kualitas, serta efisiensi & musiman. Proses ini juga menyoroti bahwa tantangan terbesar dalam proyek data bukan hanya membuat visualisasi yang menarik, melainkan memastikan integritas data di baliknya — seperti yang terjadi saat kasus SLA 100% palsu berhasil ditelusuri hingga ke akar masalah di tahap data cleaning. Dengan model data yang relasional dan measure yang terstruktur rapi, dashboard ini tidak hanya menjawab kondisi “apa yang terjadi”, tetapi memberi manajemen dasar untuk bertindak — mengevaluasi rute, merancang kapasitas musiman, dan menjaga kualitas layanan secara proaktif alih-alih reaktif.</em></p>
+        </div>
