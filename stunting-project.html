@@ -3,9 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Logistics Performance Dashboard | Leonardo Saragih</title>
+    <title>Stunting Risk Clustering | Leonardo Saragih</title>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <style>
+        /* CSS RESET & TEMA TERANG (DEFAULT) */
         :root {
             --bg-color: #F8F9FA;
             --text-primary: #1F2937;
@@ -13,381 +14,414 @@
             --accent-color: #2563EB;
             --card-bg: #FFFFFF;
             --border-color: #E5E7EB;
+            --chip-bg: #E0E7FF;
+            --chip-text: #3730A3;
+            --btn-toggle-bg: #E5E7EB;
+            --btn-toggle-text: #1F2937;
+            --table-header-bg: #F3F4F6;
+            --table-row-border: #E5E7EB;
         }
         
+        /* TEMA GELAP */
+        [data-theme="dark"] {
+            --bg-color: #111827;
+            --text-primary: #F9FAFB;
+            --text-secondary: #9CA3AF;
+            --accent-color: #3B82F6;
+            --card-bg: #1F2937;
+            --border-color: #374151;
+            --chip-bg: #374151;
+            --chip-text: #BFDBFE;
+            --btn-toggle-bg: #374151;
+            --btn-toggle-text: #F9FAFB;
+            --table-header-bg: #374151;
+            --table-row-border: #4B5563;
+        }
+
         body {
             font-family: 'Inter', sans-serif;
             background-color: var(--bg-color);
             color: var(--text-primary);
-            line-height: 1.7;
+            line-height: 1.6;
             margin: 0;
             padding: 0;
+            transition: background-color 0.3s ease, color 0.3s ease;
         }
 
         .container {
-            max-width: 800px; 
+            max-width: 900px;
             margin: 0 auto;
             padding: 40px 20px;
+            position: relative;
         }
 
-        /* Navigasi Kembali */
-        .back-link {
-            display: inline-flex;
+        /* TOMBOL DARK/LIGHT MODE & BACK */
+        .nav-header {
+            display: flex;
+            justify-content: space-between;
             align-items: center;
-            color: var(--text-secondary);
-            text-decoration: none;
-            font-weight: 500;
-            margin-bottom: 30px;
-            font-size: 0.95rem;
-            transition: color 0.2s ease;
-        }
-        
-        .back-link:hover {
-            color: var(--accent-color);
-        }
-
-        /* Header Proyek */
-        .project-header {
             margin-bottom: 40px;
         }
 
-        .project-title {
-            font-size: 2.5rem;
+        .btn-back {
+            text-decoration: none;
+            color: var(--accent-color);
+            font-weight: 600;
+            font-size: 0.95rem;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        .theme-toggle {
+            background-color: var(--btn-toggle-bg);
+            color: var(--btn-toggle-text);
+            border: none;
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        /* HEADER PROJECT */
+        .project-header {
+            margin-bottom: 40px;
+            border-bottom: 2px solid var(--border-color);
+            padding-bottom: 30px;
+        }
+
+        .project-header h1 {
+            font-size: 2.2rem;
             font-weight: 700;
-            margin: 0 0 15px 0;
-            letter-spacing: -0.5px;
+            margin: 0 0 10px 0;
             line-height: 1.2;
         }
 
-        .hero-image {
-            width: 100%;
-            height: auto;
-            border-radius: 12px;
-            border: 1px solid var(--border-color);
-            box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1);
-            margin-bottom: 40px;
-        }
-
-        /* Step Section */
-        .step-section {
-            background: var(--card-bg);
-            border: 1px solid var(--border-color);
-            border-radius: 12px;
-            padding: 35px;
-            margin-bottom: 25px;
-        }
-
-        .step-number {
-            font-size: 0.9rem;
-            font-weight: 700;
-            color: var(--accent-color);
-            letter-spacing: 1px;
-            text-transform: uppercase;
-            margin-bottom: 10px;
-            display: block;
-        }
-
-        .step-title {
-            font-size: 1.5rem;
-            font-weight: 700;
+        .project-header h2 {
+            font-size: 1.2rem;
+            color: var(--text-secondary);
+            font-weight: 400;
             margin: 0 0 20px 0;
-            padding-bottom: 15px;
-            border-bottom: 1px solid var(--border-color);
         }
 
-        /* Typography & Content Formatting */
-        p {
-            color: var(--text-secondary);
+        /* TYPOGRAPHY & SECTIONS */
+        h3 {
+            font-size: 1.4rem;
+            color: var(--text-primary);
+            margin-top: 40px;
             margin-bottom: 15px;
-            text-align: justify;
-        }
-
-        .question-list {
-            list-style: none;
-            padding: 0;
-            margin: 0;
-        }
-
-        .question-list li {
-            position: relative;
-            padding-left: 28px;
-            margin-bottom: 12px;
-            color: var(--text-secondary);
-        }
-
-        .question-list li::before {
-            content: "➔";
-            position: absolute;
-            left: 0;
-            color: var(--accent-color);
-            font-weight: bold;
-        }
-
-        .highlight-box {
-            background-color: #EFF6FF;
             border-left: 4px solid var(--accent-color);
-            padding: 15px 20px;
-            border-radius: 0 8px 8px 0;
+            padding-left: 10px;
+        }
+
+        h4 {
+            font-size: 1.1rem;
+            color: var(--text-primary);
+            margin-top: 25px;
+            margin-bottom: 10px;
+        }
+
+        p, li {
+            color: var(--text-secondary);
+            font-size: 1rem;
+            margin-bottom: 12px;
+        }
+
+        ul {
+            padding-left: 20px;
+        }
+
+        /* TABLES */
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+            background-color: var(--card-bg);
+            box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+            border-radius: 8px;
+            overflow: hidden;
+        }
+
+        th, td {
+            padding: 12px 15px;
+            text-align: left;
+            border-bottom: 1px solid var(--table-row-border);
+        }
+
+        th {
+            background-color: var(--table-header-bg);
+            font-weight: 600;
+            color: var(--text-primary);
+        }
+
+        /* SKILL CHIPS */
+        .skills-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
             margin-bottom: 20px;
         }
+
+        .skill-chip {
+            background-color: var(--chip-bg);
+            color: var(--chip-text);
+            padding: 6px 14px;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: 600;
+        }
+
+        /* CARD UNTUK INSIGHTS */
+        .insight-card {
+            background: var(--card-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            padding: 20px;
+            margin-bottom: 15px;
+        }
+
     </style>
 </head>
 <body>
 
     <div class="container">
         
-        <!-- Link Kembali ke Halaman Utama -->
-        <a href="index.html" class="back-link">← Kembali ke Portofolio</a>
+        <!-- NAVIGASI -->
+        <div class="nav-header">
+            <a href="index.html" class="btn-back">⬅ Back to Portfolio</a>
+            <button class="theme-toggle" id="theme-btn" onclick="toggleTheme()">🌙 Dark Mode</button>
+        </div>
 
-        <!-- HEADER PROYEK -->
+        <!-- 1. PROJECT OVERVIEW -->
         <div class="project-header">
-            <h1 class="project-title">Logistics Performance & SLA Dashboard</h1>
-            <p style="font-size: 1.1rem;">Analisis end-to-end efisiensi rantai pasok, profitabilitas rute, dan kepatuhan Service Level Agreement (SLA) menggunakan Power BI.</p>
-        </div>
-
-        <!-- GAMBAR DASHBOARD BESAR -->
-        <img src="images/logistics-cover.jpg" alt="Logistics Dashboard Main View" class="hero-image">
-
-        <!-- 01: BUSINESS PROBLEM -->
-        <div class="step-section">
-            <span class="step-number">01</span>
-            <h2 class="step-title">Business Problem</h2>
-            <div class="highlight-box">
-                <p style="margin: 0; color: #1E3A8A; font-weight: 500;">
-                    Manajemen operasional logistik menghadapi kendala visibilitas dalam melacak performa pengiriman harian dan profitabilitas rute.
-                </p>
-            </div>
-            <p>Perusahaan logistik membutuhkan alat ukur yang komprehensif untuk mengevaluasi efisiensi operasional. Tanpa pemantauan yang terpusat, Operations Manager kesulitan untuk mendeteksi anomali (seperti paket yang hilang atau tingkat pengembalian yang tinggi), mengukur kepatuhan ketepatan waktu (SLA) berdasarkan tipe layanan, serta mengidentifikasi rute pengiriman mana yang menghasilkan margin keuntungan (*profitabilitas*) atau justru membebani biaya perusahaan.</p>
-        </div>
-
-        <!-- 02: BUSINESS QUESTIONS -->
-        <div class="step-section">
-            <span class="step-number">02</span>
-            <h2 class="step-title">Business Questions</h2>
-            <p>Untuk menyelesaikan masalah bisnis di atas, proyek analisis data ini dirancang untuk menjawab 10 pertanyaan strategis berikut:</p>
-            <ul class="question-list">
-                <li><strong>Distribusi Layanan:</strong> Bagaimana proporsi penggunaan peta layanan pengiriman (Regular, Express, atau Same Day)?</li>
-                <li><strong>Tingkat Kegagalan:</strong> Berapa rasio volume paket yang berstatus hilang (*lost*) atau dikembalikan (*return*)?</li>
-                <li><strong>Kesesuaian Spesifikasi:</strong> Apakah terdapat korelasi atau kesesuaian antara berat aktual paket dengan kategori layanan yang dipilih oleh pelanggan?</li>
-                <li><strong>Profitabilitas Rute:</strong> Rute pengiriman mana yang menghasilkan margin keuntungan (*profit*) tertinggi dan terendah?</li>
-                <li><strong>Kepatuhan SLA:</strong> Bagaimana rasio ketepatan waktu (*On-Time*) versus keterlambatan (*Late*) untuk setiap layanan?</li>
-                <li><strong>Segmentasi Pelanggan:</strong> Antara segmen Bisnis (B2B) dan Individu (B2C), manakah yang memberikan nilai pendapatan tertinggi?</li>
-                <li><strong>Tren Volume:</strong> Bagaimana tren pengiriman bulanan, dan apakah terdapat lonjakan signifikan pada periode musim liburan (Lebaran) & Harbolnas?</li>
-                <li><strong>Audit Anomali Data:</strong> Bagaimana penanganan anomali terhadap 50 resi pengiriman berstatus "Delivered" yang kehilangan log tanggal penyelesaian?</li>
-                <li><strong>Efisiensi Rute:</strong> Rute mana yang beroperasi dalam kondisi rugi (Loss) dan memerlukan eskalasi (penyesuaian harga atau penutupan jalur)?</li>
-                <li><strong>Solusi Manajerial:</strong> Bagaimana merancang visualisasi <em>Delivery Performance Dashboard</em> yang optimal bagi Operations Manager?</li>
-            </ul>
-        </div>
-
-       <!-- 03: DATASET & DATA SOURCE -->
-        <div class="step-section">
-            <span class="step-number">03</span>
-            <h2 class="step-title">Dataset & Data Source</h2>
-            <p><em>Dataset ini merupakan data operasional shipment SF Express yang telah di modifikasi, dimuat ke Power BI melalui Power Query dalam mode Import. Terdiri dari 4 tabel utama:
-                shipments — 4.000 baris, 18 kolom (data inti tiap pengiriman: ID, rute, pelanggan, jenis layanan, berat, biaya, status, dan tanggal-tanggal terkait)
-customers — 600 baris, 9 kolom (identitas & tipe pelanggan: business/individual)
-routes — 80 baris, 9 kolom (rute asal-tujuan, jarak, estimasi hari, tarif per kg)
-status_history — 12.747 baris, 6 kolom (log setiap perubahan status pengiriman lengkap dengan timestamp dan lokasi — sumber data untuk merekonstruksi timeline tiap paket).</em></p>
+            <h1>Stunting Risk Clustering in Langkat Regency Using K-Medoids</h1>
+            <h2>Identifying village-level patterns based on stunting prevalence and under-five population.</h2>
+            <p><strong>Ringkasan:</strong> Analisis clustering menggunakan Python dan K-Medoids untuk mengelompokkan desa di Kabupaten Langkat berdasarkan prevalensi stunting dan jumlah balita.</p>
             
-            <!-- Tempat Foto -->
-            <figure style="margin: 25px 0 0 0; text-align: center;">
-                <img src="images/step3-dataset.jpg" alt="Tampilan Dataset Mentah" style="width: 100%; height: auto; border-radius: 8px; border: 1px solid var(--border-color); background-color: #E5E7EB; min-height: 200px; object-fit: cover;">
-                <figcaption style="font-size: 0.85rem; color: var(--text-secondary); margin-top: 10px; font-style: italic;">.</figcaption>
-            </figure>
+            <table>
+                <tr>
+                    <th>Metric</th>
+                    <th>Value</th>
+                </tr>
+                <tr>
+                    <td>Villages analyzed</td>
+                    <td>277</td>
+                </tr>
+                <tr>
+                    <td>Clustering method</td>
+                    <td>K-Medoids</td>
+                </tr>
+                <tr>
+                    <td>Final clusters</td>
+                    <td>3</td>
+                </tr>
+                <tr>
+                    <td>Silhouette score</td>
+                    <td>0.410</td>
+                </tr>
+            </table>
         </div>
 
-        <!-- 04: DATA FORMATTING & CLEANING -->
-        <div class="step-section">
-            <span class="step-number">04</span>
-            <h2 class="step-title">Data Formatting / Cleaning</h2>
-            <p><em>Beberapa langkah pembersihan dan validasi data dilakukan sebelum data dianggap siap dianalisis:
-               <ul>
-    <li>Mengonversi kolom tanggal (<code>pickup_date</code>, <code>estimated_delivery</code>, <code>actual_delivery</code>) ke tipe data date/datetime yang benar.</li>
-    
-    <li>Mengecek duplikasi <code>tracking_number</code> dan <code>shipment_id</code> — hasilnya bersih, tidak ditemukan duplikasi.</li>
-    
-    <li>Mengecek integritas relasi (foreign key) antar tabel — tidak ditemukan <code>customer_id</code> atau <code>route_id</code> yang orphan (tidak terhubung ke tabel induknya).</li>
-    
-    <li><strong>Temuan krusial:</strong> ditemukan 50 baris berstatus <code>delivered</code> namun kolom <code>actual_delivery</code>-nya kosong. Setelah ditelusuri lebih dalam, ternyata masalahnya lebih besar dari itu — kolom <code>actual_delivery</code> (tanggal) ternyata <strong>tidak konsisten dengan</strong> <code>actual_delivery_timestamp</code> (waktu lengkap) pada 94,5% baris data, hampir selalu bergeser 1 hari atau lebih. Solusinya, seluruh perhitungan ketepatan waktu direkonstruksi ulang menggunakan <code>actual_delivery_timestamp</code> yang dibulatkan ke tanggal — sumber data yang lebih bisa dipercaya karena terisi lengkap untuk seluruh 3.200 pengiriman berstatus delivered.</li>
-</ul>
+        <!-- 2. PROBLEM & ANALYTICAL QUESTIONS -->
+        <h3>2. Problem & Analytical Questions</h3>
+        <p>Analisis ini bertujuan untuk menjelaskan variasi prevalensi stunting antar desa dan kebutuhan untuk menemukan kelompok desa dengan karakteristik serupa.</p>
+        <ul>
+            <li>Bagaimana distribusi prevalensi stunting antar desa?</li>
+            <li>Apakah desa dapat dikelompokkan berdasarkan karakteristik yang serupa?</li>
+            <li>Berapa jumlah cluster yang sesuai untuk dataset?</li>
+            <li>Bagaimana karakteristik masing-masing cluster?</li>
+            <li>Apakah jumlah balita berkaitan secara konsisten dengan prevalensi stunting?</li>
+        </ul>
 
-.</em></p>
+        <!-- 3. DATASET & DATA UNDERSTANDING -->
+        <h3>3. Dataset & Data Understanding</h3>
+        <ul>
+            <li><strong>Source:</strong> e-Monev Konvergensi Stunting, Kementerian Dalam Negeri</li>
+            <li><strong>Year:</strong> 2023</li>
+            <li><strong>Scope:</strong> Kabupaten Langkat</li>
+            <li><strong>Unit:</strong> Desa</li>
+            <li><strong>Records:</strong> 277</li>
+        </ul>
+        
+        <h4>Data Dictionary</h4>
+        <table>
+            <tr>
+                <th>Column</th>
+                <th>Description</th>
+                <th>Role</th>
+            </tr>
+            <tr><td>No</td><td>Nomor record</td><td>Identifier</td></tr>
+            <tr><td>ID BPS</td><td>Identifier desa BPS</td><td>Identifier</td></tr>
+            <tr><td>ID Dagri</td><td>Identifier desa Kemendagri</td><td>Identifier</td></tr>
+            <tr><td>Nama Desa</td><td>Nama desa</td><td>Identifier</td></tr>
+            <tr><td>Jumlah Balita</td><td>Jumlah anak balita</td><td>Clustering feature</td></tr>
+            <tr><td>Stunting Pendek</td><td>Jumlah stunting pendek</td><td>Supporting variable</td></tr>
+            <tr><td>Stunting Sangat Pendek</td><td>Jumlah stunting sangat pendek</td><td>Supporting variable</td></tr>
+            <tr><td>Prevalensi (%)</td><td>Prevalensi stunting</td><td>Clustering feature</td></tr>
+        </table>
+
+        <!-- 4. DATA QUALITY CHECK -->
+        <h3>4. Data Quality Check</h3>
+        <ul>
+            <li>Tampilkan <code>data.info()</code> untuk struktur dataset dan tipe data.</li>
+            <li>Tampilkan <code>data.isnull().sum()</code> untuk validasi missing values.</li>
+            <li>Tampilkan <code>data.duplicated().sum()</code> untuk mengecek duplikasi.</li>
+            <li>Tampilkan <code>data.describe()</code> untuk statistik deskriptif.</li>
+        </ul>
+        <div class="insight-card">
+            <strong>Data Quality Status:</strong> Didukung dokumentasi: 277 baris, 8 kolom, seluruh kolom memiliki 277 non-null. Jumlah duplikasi belum dapat dipastikan dari dokumentasi yang diperiksa dan harus divalidasi pada notebook.
+        </div>
+
+        <!-- 5. EXPLORATORY DATA ANALYSIS -->
+        <h3>5. Exploratory Data Analysis (EDA)</h3>
+        <h4>5.1 Distribution of Stunting Prevalence</h4>
+        <p>Histogram untuk melihat distribusi prevalensi.</p>
+        <h4>5.2 Top 10 Villages by Prevalence</h4>
+        <p>Bar chart untuk desa dengan prevalensi tertinggi.</p>
+        <h4>5.3 Distribution of Under-Five Population</h4>
+        <p>Histogram jumlah balita dan nilai ekstrem.</p>
+        <h4>5.4 Population vs Prevalence</h4>
+        <p>Scatterplot untuk melihat pola dua fitur utama.</p>
+
+        <!-- 6. DATA PREPARATION -->
+        <h3>6. Data Preparation</h3>
+        <p><strong>Feature selection:</strong> Menggunakan Prevalensi (%) dan Jumlah Balita sebagai fitur clustering. Identifier seperti No, ID BPS, ID Dagri, dan Nama Desa tidak dimasukkan ke model.</p>
+        <h4>6.1 Min-Max Scaling</h4>
+        <p>Normalisasi mengubah kedua fitur ke skala 0-1 sehingga perbedaan satuan/magnitude tidak mendominasi perhitungan jarak.</p>
+
+        <!-- 7. CLUSTERING METHODOLOGY -->
+        <h3>7. Clustering Methodology</h3>
+        <h4>7.1 Euclidean Distance</h4>
+        <p>Mengukur jarak antar desa berdasarkan fitur yang telah dinormalisasi.</p>
+        <h4>7.2 K-Medoids</h4>
+        <p>Mengelompokkan observasi berdasarkan medoid yang merupakan observasi aktual dalam dataset.</p>
+        <h4>7.3 Model Configuration</h4>
+        <p>Model final menggunakan K-Medoids dengan <code>k=3</code> dan <code>random_state=42</code>.</p>
+
+        <!-- 8. CHOOSING NUMBER OF CLUSTERS -->
+        <h3>8. Choosing the Number of Clusters</h3>
+        <p>Gunakan Elbow Method untuk melihat perubahan inertia pada k=2 sampai k=9. Dokumentasi menunjukkan elbow sekitar k=3-4, sehingga pemilihan k=3 perlu dijelaskan lebih transparan.</p>
+        <p><strong>Improvement:</strong> Menghitung Silhouette Score untuk beberapa nilai k, bukan hanya k=3, lalu menampilkan perbandingan k vs Silhouette Score.</p>
+
+        <!-- 9. CLUSTERING RESULTS -->
+        <h3>9. Clustering Results</h3>
+        <table>
+            <tr>
+                <th>Cluster</th>
+                <th>Villages</th>
+                <th>Avg. Prevalence</th>
+                <th>Avg. Under-five</th>
+                <th>Profile</th>
+            </tr>
+            <tr>
+                <td>0</td>
+                <td>130</td>
+                <td>1.64%</td>
+                <td>216</td>
+                <td>Low prevalence / moderate population</td>
+            </tr>
+            <tr>
+                <td>1</td>
+                <td>59</td>
+                <td>10.76%</td>
+                <td>252</td>
+                <td>High prevalence / moderate population</td>
+            </tr>
+            <tr>
+                <td>2</td>
+                <td>88</td>
+                <td>2.13%</td>
+                <td>507</td>
+                <td>Moderate prevalence / high population</td>
+            </tr>
+        </table>
+
+        <!-- 10. VISUALIZATIONS REQUIRED -->
+        <h3>10. Visualizations Required</h3>
+        <table>
+            <tr>
+                <th>Visual</th>
+                <th>Purpose</th>
+            </tr>
+            <tr><td>Prevalence Distribution</td><td>Memahami distribusi prevalensi</td></tr>
+            <tr><td>Top 10 Villages</td><td>Menunjukkan desa dengan prevalensi tertinggi</td></tr>
+            <tr><td>Population vs Prevalence</td><td>Melihat pola dua fitur utama</td></tr>
+            <tr><td>Elbow Curve</td><td>Mendukung pemilihan jumlah cluster</td></tr>
+            <tr><td>Silhouette Score vs K</td><td>Membandingkan kualitas cluster antar k</td></tr>
+            <tr><td>K-Medoids Cluster Map</td><td>Menampilkan cluster dan posisi medoid</td></tr>
+            <tr><td>Cluster Profile</td><td>Membandingkan karakteristik tiap cluster</td></tr>
+        </table>
+
+        <!-- 11. KEY INSIGHTS -->
+        <h3>11. Key Insights</h3>
+        <ul>
+            <li>Prevalensi stunting bervariasi antar desa.</li>
+            <li>Cluster 1 memiliki rata-rata prevalensi tertinggi, sekitar 10.76%.</li>
+            <li>Cluster 2 memiliki rata-rata jumlah balita sekitar 507, tetapi rata-rata prevalensinya sekitar 2.13%.</li>
+            <li>Jumlah balita tidak menunjukkan pola yang konsisten sebagai penjelas langsung tingkat prevalensi pada hasil clustering.</li>
+        </ul>
+
+        <!-- 12. CLUSTER PROFILING -->
+        <h3>12. Cluster Profiling</h3>
+        <p>Membuat tabel ringkasan per cluster, kemudian membandingkan mean/median, jumlah anggota, dan contoh desa. Fokus pada karakteristik cluster, bukan klaim sebab-akibat.</p>
+
+        <!-- 13. LIMITATIONS -->
+        <h3>13. Limitations</h3>
+        <ul>
+            <li>Model utama hanya menggunakan dua fitur: prevalensi stunting dan jumlah balita. Clustering tidak membuktikan hubungan kausal atau faktor penyebab stunting.</li>
+            <li>Variabel sosial-ekonomi, akses layanan kesehatan, geografis, dan indikator gizi belum tersedia dalam model.</li>
+            <li>Pemilihan k=3 perlu diperkuat dengan perbandingan Silhouette Score untuk beberapa nilai k.</li>
+            <li>Dokumentasi mencampurkan konteks 277 desa dengan pernyataan fokus pada 100 balita Puskesmas Sawit Seberang; portfolio perlu konsisten menggunakan unit analisis yang benar-benar digunakan notebook (277 desa).</li>
+        </ul>
+
+        <!-- 14. RECOMMENDATIONS -->
+        <h3>14. Recommendations / Next Steps</h3>
+        <ul>
+            <li>Tambahkan variabel sosial-ekonomi, akses kesehatan, geografis, dan indikator gizi jika tersedia.</li>
+            <li>Bandingkan K-Medoids dengan metode clustering lain untuk menguji kestabilan pola.</li>
+            <li>Evaluasi kualitas cluster dengan beberapa metrik dan beberapa nilai k.</li>
+            <li>Gunakan hasil cluster sebagai dasar eksplorasi lebih lanjut, bukan sebagai bukti faktor penyebab mutlak.</li>
+        </ul>
+
+        <!-- 15. TECHNICAL STACK -->
+        <h3>15. Technical Stack</h3>
+        <div class="skills-container">
+            <span class="skill-chip">Python</span>
+            <span class="skill-chip">Pandas</span>
+            <span class="skill-chip">NumPy</span>
+            <span class="skill-chip">Matplotlib</span>
+            <span class="skill-chip">Seaborn</span>
+            <span class="skill-chip">Scikit-learn</span>
+            <span class="skill-chip">Scikit-learn-extra (K-Medoids)</span>
+        </div>
+
+    </div>
+
+    <!-- SCRIPT UNTUK FITUR DARK MODE -->
+    <script>
+        const currentTheme = localStorage.getItem('theme');
+        const themeBtn = document.getElementById('theme-btn');
+        
+        if (currentTheme === 'dark') {
+            document.documentElement.setAttribute('data-theme', 'dark');
+            themeBtn.innerHTML = '☀️ Light Mode';
+        }
+
+        function toggleTheme() {
+            let theme = document.documentElement.getAttribute('data-theme');
             
-            <!-- Tempat Foto -->
-            <figure style="margin: 25px 0 0 0; text-align: center;">
-                <img src="images/step4-cleaning.jpg" alt="Proses Data Cleaning" style="width: 100%; height: auto; border-radius: 8px; border: 1px solid var(--border-color); background-color: #E5E7EB; min-height: 200px; object-fit: cover;">
-                <figcaption style="font-size: 0.85rem; color: var(--text-secondary); margin-top: 10px; font-style: italic;"></figcaption>
-            </figure>
-        </div>
-
-        <!-- 05: CREATE RELATIONAL TABLE -->
-        <div class="step-section">
-            <span class="step-number">05</span>
-            <h2 class="step-title">Create Relational Table</h2>
-            <p><em>Model data dibangun dengan pendekatan mirip skema Star: tabel shipments berperan sebagai tabel fakta (fact table) yang menyimpan satu baris per transaksi pengiriman, dihubungkan ke tabel dimensi customers (melalui customer_id) dan routes (melalui route_id). Tabel status_history dihubungkan lewat shipment_id sebagai tabel log granular, digunakan khusus untuk merekonstruksi kronologi tiap paket (misalnya menelusuri waktu transit di hub) tanpa perlu menggabungkannya langsung ke tabel fakta utama..</em></p>
-            
-            <!-- Tempat Foto -->
-            <figure style="margin: 25px 0 0 0; text-align: center;">
-                <img src="images/step5-model.jpg" alt="Skema Relasi Data" style="width: 100%; height: auto; border-radius: 8px; border: 1px solid var(--border-color); background-color: #E5E7EB; min-height: 200px; object-fit: cover;">
-                <figcaption style="font-size: 0.85rem; color: var(--text-secondary); margin-top: 10px; font-style: italic;">Gambar 3: Pemodelan data Star Schema menghubungkan tabel fakta dan dimensi.</figcaption>
-            </figure>
-        </div>
-
-        <!-- 06: DATA ANALYSIS -->
-        <div class="step-section">
-            <span class="step-number">06</span>
-            <h2 class="step-title">Data Analysis</h2>
-            <p><em>Lapisan analisis dibangun lewat serangkaian DAX measure yang sengaja dibuat sederhana (mayoritas COUNT , dan SUM , AVERAGE , DIVIDE ) agar mudah diaudit dan dijelaskan ke pemangku kepentingan non-teknis. Measure-measure ini dikelompokkan menjadi empat tema besar
-                <p>Untuk mengukur performa operasional secara menyeluruh, analisis dibagi menjadi 4 pilar metrik (KPI) utama:</p>
-
-<ul>
-    <li>
-        <strong>Volume & Revenue:</strong> Meliputi metrik <code>Total order</code>, <code>Total revenue</code>, <code>Revenue last year</code>, dan persentase pertumbuhan <code>Growth revenue YoY %</code>.
-    </li>
-    
-    <li>
-        <strong>SLA & Ketepatan Waktu:</strong> Memuat <code>Total berat</code>, <code>Jumlah pelanggan</code>, <code>Rata-rata Transaksi</code>, dan <code>SLA Success Rate</code>. Perhitungan <code>Jumlah tepat waktu</code> dan <code>Jumlah telat</code> didapatkan dengan membandingkan <code>actual_delivery_timestamp</code> (dari status history delivered) terhadap estimasi/batas waktu SLA.
-    </li>
-    
-    <li>
-        <strong>Risiko & Kualitas:</strong> Memantau <code>Jumlah return</code>, <code>Lost rate</code>, <code>Return rate</code>, dan <code>% lost return rate</code>. Selain itu, fitur <code>Jumlah Kandidat Mislabel</code> serta <code>Berat min/max/avg</code> per <code>package_type</code> dirancang khusus untuk mendeteksi anomali berat yang mengindikasikan salah penentuan kategori paket.
-    </li>
-    
-    <li>
-        <strong>Efisiensi Rute & Musiman:</strong> Menganalisis <code>Revenue per KM</code> dan <code>Total distance</code> untuk rute, serta <code>Rata-rata berat per bulan</code> dan tren berdasarkan <code>Bulan Kalender</code> untuk mendeteksi lonjakan musiman.
-    </li>
-</ul>.</em></p>
-            
-            <!-- Tempat Foto -->
-            <figure style="margin: 25px 0 0 0; text-align: center;">
-                <img src="images/step6-analysis.jpg" alt="DAX Measures" style="width: 100%; height: auto; border-radius: 8px; border: 1px solid var(--border-color); background-color: #E5E7EB; min-height: 200px; object-fit: cover;">
-                <figcaption style="font-size: 0.85rem; color: var(--text-secondary); margin-top: 10px; font-style: italic;">Gambar 4: Penulisan syntax DAX untuk menghitung Average Lead Time dan SLA Compliance.</figcaption>
-            </figure>
-        </div>
-
-        <!-- 07: DASHBOARD DEVELOPMENT -->
-       <div class="step-section">
-            <span class="step-number">07</span>
-            <h2 class="step-title">Dashboard Development</h2>
-            
-           <!-- HALAMAN 1 -->
-            <div style="margin-top: 35px; margin-bottom: 50px;">
-                <h3 style="font-size: 1.15rem; color: var(--accent-color); margin-bottom: 8px;">1. Overview Summary</h3>
-                <p style="margin-bottom: 15px;">Overview Summary: KPI card (total order, revenue, berat, jumlah pelanggan), tren revenue bulanan, top kota asal, distribusi order per layanan dan jenis paket.</p>
-                <figure style="margin: 0; text-align: center;">
-                    <!-- Pastikan nama file gambarnya sesuai, contoh: dash-1-overview.png -->
-                    <img src="images/Overview-Summary.png" alt="Overview Summary" style="width: 100%; height: auto; border-radius: 8px; border: 1px solid var(--border-color); box-shadow: 0 4px 12px rgba(0,0,0,0.08); background-color: #E5E7EB; min-height: 200px;">
-                </figure>
-            </div>
-
-            <!-- HALAMAN 2 -->
-            <div style="margin-bottom: 50px;">
-                <h3 style="font-size: 1.15rem; color: var(--accent-color); margin-bottom: 8px;">2. Revenue by Service & Customer</h3>
-                <p style="margin-bottom: 15px;">Revenue by Service & Customer :Analisis mendalam kontribusi tiap <em>service_type</em> dan <em>customer_type</em> terhadap revenue, termasuk rata-rata transaksi per layanan.</p>
-                <figure style="margin: 0; text-align: center;">
-                    <img src="images/Revenue-by-Service-and-Customer.png" alt="Revenue by Service" style="width: 100%; height: auto; border-radius: 8px; border: 1px solid var(--border-color); box-shadow: 0 4px 12px rgba(0,0,0,0.08); background-color: #E5E7EB; min-height: 200px;">
-                </figure>
-            </div>
-
-            <!-- HALAMAN 3 -->
-            <div style="margin-bottom: 50px;">
-                <h3 style="font-size: 1.15rem; color: var(--accent-color); margin-bottom: 8px;">3. Operasional & SLA</h3>
-                <p style="margin-bottom: 15px;"> Operasional dan SLA :Fokus pada tren SLA Success Rate, perbandingan SLA antar layanan/jenis paket, dan matriks rute asal-tujuan dengan tingkat keterlambatan/lost/return.</p>
-                <figure style="margin: 0; text-align: center;">
-                    <img src="images/dash-3-operasional.png" alt="Operasional dan SLA" style="width: 100%; height: auto; border-radius: 8px; border: 1px solid var(--border-color); box-shadow: 0 4px 12px rgba(0,0,0,0.08); background-color: #E5E7EB; min-height: 200px;">
-                </figure>
-            </div>
-
-            <!-- HALAMAN 4 -->
-            <div style="margin-bottom: 50px;">
-                <h3 style="font-size: 1.15rem; color: var(--accent-color); margin-bottom: 8px;">4. Efisiensi Rute</h3>
-                <p style="margin-bottom: 15px;">Efesiensi Rute :Analisis <em>revenue per km</em> per rute, dilengkapi <em>scatter chart</em> jarak vs revenue untuk memetakan rute ke dalam kuadran (misal: jarak jauh-revenue tinggi vs jarak jauh-revenue rendah) sebagai dasar <em>shortlist</em> rute yang perlu dievaluasi ulang.</p>
-                <figure style="margin: 0; text-align: center;">
-                    <img src="images/dash-4-efisiensi.png" alt="Efisiensi Rute" style="width: 100%; height: auto; border-radius: 8px; border: 1px solid var(--border-color); box-shadow: 0 4px 12px rgba(0,0,0,0.08); background-color: #E5E7EB; min-height: 200px;">
-                </figure>
-            </div>
-
-            <!-- HALAMAN 5 -->
-            <div style="margin-bottom: 50px;">
-                <h3 style="font-size: 1.15rem; color: var(--accent-color); margin-bottom: 8px;">5. Risiko & Kualitas</h3>
-                <p style="margin-bottom: 15px;"> Risiko & Kualitas :Pelacakan tingkat <em>lost/return</em>, deteksi kandidat <em>mislabel</em> paket berdasarkan penyimpangan berat, dan tabel detail level-<em>shipment</em> untuk investigasi lanjutan.</p>
-                <figure style="margin: 0; text-align: center;">
-                    <img src="images/dash-5-risiko.png" alt="Risiko dan Kualitas" style="width: 100%; height: auto; border-radius: 8px; border: 1px solid var(--border-color); box-shadow: 0 4px 12px rgba(0,0,0,0.08); background-color: #E5E7EB; min-height: 200px;">
-                </figure>
-            </div>
-
-            <!-- HALAMAN 6 -->
-            <div style="margin-bottom: 40px;">
-                <h3 style="font-size: 1.15rem; color: var(--accent-color); margin-bottom: 8px;">6. Musim & Kapasitas</h3>
-                <p style="margin-bottom: 15px;"> Musim dan Kapasitas :Pola musiman volume dan berat kiriman per bulan serta pertumbuhan revenue <em>year-over-year</em>, sebagai input perencanaan kapasitas armada.</p>
-                <figure style="margin: 0; text-align: center;">
-                    <img src="images/dash-6-musim.png" alt="Musim dan Kapasitas" style="width: 100%; height: auto; border-radius: 8px; border: 1px solid var(--border-color); box-shadow: 0 4px 12px rgba(0,0,0,0.08); background-color: #E5E7EB; min-height: 200px;">
-                </figure>
-            </div>
-
-           
-        <!-- 08: KEY INSIGHTS -->
-        <div class="step-section">
-            <span class="step-number">08</span>
-            <h2 class="step-title">Key Insights</h2>
-            
-            <p>Berdasarkan eksplorasi visual dari dashboard, berikut adalah temuan utama (<em>key insights</em>) yang berhasil ditarik dari data operasional:</p>
-
-            <ul>
-                <li>
-                    <strong>Konsentrasi Revenue per Layanan:</strong> Dari halaman <em>Revenue by Service & Customer</em>, layanan <code>Express</code> dengan total order 1183 <code> lebih tinggi total revenuenya yakni sebesar 709,666,050</code>.
-                </li>
-                
-                <li>
-                    <strong>Gap SLA yang Signifikan pada Rute Tertentu:</strong> Analisis <em>pivot table</em> di halaman <em>Operasional & SLA</em> menunjukkan rute <code>[Palembang ➔ Jakarta]</code> memiliki <em>SLA Success Rate</em> hanya <code>29.17%</code>, berada di bawah rata-rata perusahaan sebesar <code>57.52%</code>.
-                </li>
-                
-                <li>
-                    <strong>Rute dengan Efisiensi Rendah:</strong> Melalui kuadran <em>scatter chart</em> di halaman <em>Efisiensi Rute</em>, teridentifikasi <code>[jumlah]</code> rute dengan jarak tempuh panjang namun <em>revenue per km</em> rendah — rute-rute ini menjadi kandidat utama untuk evaluasi tarif atau konsolidasi muatan.
-                </li>
-                
-                <li>
-                    <strong>Indikasi Mislabel Paket:</strong> Analisis tabel di halaman <em>Risiko & Kualitas</em> menemukan <code>1350</code> pengiriman dengan berat aktual jauh melampaui batas wajar <code>package_type</code>-nya. Anomali ini berpotensi merugikan perusahaan karena memengaruhi akurasi biaya kirim.
-                </li>
-                
-                <li>
-                    <strong>Pola Musiman:</strong> Halaman <em>Musim & Kapasitas</em> menunjukkan lonjakan volume order pada bulan <code>Januari</code>, dengan pertumbuhan <em>revenue YoY (Year-over-Year)</em> sebesar <code>11.48%</code> — memberikan sinyal historis untuk persiapan penambahan armada musiman di masa depan.
-                </li>
-            </ul>
-        </div>
-
-       <!-- 09: BUSINESS RECOMMENDATIONS -->
-        <div class="step-section">
-            <span class="step-number">09</span>
-            <h2 class="step-title">Business Recommendations</h2>
-            <p>Rekomendasi berikut disusun agar setiap <em>insight</em> punya tindak lanjut yang jelas (<em>actionable</em>) untuk manajemen:</p>
-
-            <ul>
-                <li>
-                    <strong>Diversifikasi Layanan:</strong> Karena <em>revenue</em> terkonsentrasi pada satu <code>service_type</code>, evaluasi strategi <em>pricing</em> atau promosi untuk mendorong pertumbuhan layanan lain agar risiko ketergantungan berkurang.
-                </li>
-                
-                <li>
-                    <strong>Audit Rute dengan SLA Rendah:</strong> Rute-rute dengan <em>SLA Success Rate</em> di bawah rata-rata perlu ditelusuri akar masalahnya — apakah karena jarak, kepadatan lalu lintas, atau kapasitas armada yang tidak memadai di rute tersebut — sebelum keluhan pelanggan meningkat.
-                </li>
-                
-                <li>
-                    <strong>Renegosiasi atau Konsolidasi Rute Tidak Efisien:</strong> Rute pada kuadran "jarak jauh, revenue rendah" bisa dipertimbangkan untuk penyesuaian tarif, digabung dengan rute lain (<em>multi-drop</em>), atau dievaluasi kelayakan operasionalnya.
-                </li>
-                
-                <li>
-                    <strong>Perkuat Validasi Input Berat/Jenis Paket:</strong> Kandidat <em>mislabel</em> sebaiknya dijadikan pemicu proses verifikasi ulang di titik input data (saat <em>pickup</em>), untuk mencegah kesalahan biaya dan potensi klaim di kemudian hari.
-                </li>
-                
-                <li>
-                    <strong>Rencanakan Kapasitas Armada Musiman:</strong> Dengan pola kenaikan volume di bulan tertentu, penambahan armada/mitra kurir sementara sebaiknya direncanakan jauh sebelum periode puncak, bukan reaktif.
-                </li>
-            </ul>
-        </div>
-
-        <!-- 10: CONCLUSION -->
-        <div class="step-section">
-            <span class="step-number">10</span>
-            <h2 class="step-title">Conclusion</h2>
-            <p><em>Proyek ini mengubah empat dataset mentah yang terfragmentasi menjadi satu dashboard Power BI enam halaman yang menjawab pertanyaan bisnis konkret di empat area: revenue & layanan, operasional & SLA, risiko & kualitas, serta efisiensi & musiman. Proses ini juga menyoroti bahwa tantangan terbesar dalam proyek data bukan hanya membuat visualisasi yang menarik, melainkan memastikan integritas data di baliknya — seperti yang terjadi saat kasus SLA 100% palsu berhasil ditelusuri hingga ke akar masalah di tahap data cleaning. Dengan model data yang relasional dan measure yang terstruktur rapi, dashboard ini tidak hanya menjawab kondisi “apa yang terjadi”, tetapi memberi manajemen dasar untuk bertindak — mengevaluasi rute, merancang kapasitas musiman, dan menjaga kualitas layanan secara proaktif alih-alih reaktif.</em></p>
-        </div>
+            if (theme === 'dark') {
+                document.documentElement.removeAttribute('data-theme');
+                localStorage.setItem('theme', 'light');
+                themeBtn.innerHTML = '🌙 Dark Mode';
+            } else {
+                document.documentElement.setAttribute('data-theme', 'dark');
+                localStorage.setItem('theme', 'dark');
+                themeBtn.innerHTML = '☀️ Light Mode';
+            }
+        }
+    </script>
+</body>
+</html>
