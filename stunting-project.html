@@ -55,7 +55,7 @@
             position: relative;
         }
 
-        /* TOMBOL DARK/LIGHT MODE & BACK */
+        /* TOMBOL NAVIGASI & THEME */
         .nav-header {
             display: flex;
             justify-content: space-between;
@@ -173,13 +173,39 @@
             font-weight: 600;
         }
 
-        /* CARD UNTUK INSIGHTS */
+        /* CARD INSIGHTS */
         .insight-card {
             background: var(--card-bg);
             border: 1px solid var(--border-color);
             border-radius: 8px;
             padding: 20px;
             margin-bottom: 15px;
+        }
+
+        /* IMAGE PLACEHOLDER (FIELD FOTO) */
+        .image-placeholder {
+            width: 100%;
+            background-color: var(--table-header-bg);
+            border: 2px dashed var(--border-color);
+            border-radius: 8px;
+            padding: 30px 20px;
+            text-align: center;
+            margin: 20px 0;
+            color: var(--text-secondary);
+            box-sizing: border-box;
+        }
+
+        .image-placeholder p {
+            margin: 0 0 10px 0;
+            font-size: 0.9rem;
+        }
+
+        /* Class untuk gambar asli (nanti saat Anda tambahkan) */
+        .project-img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 6px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
         }
 
     </style>
@@ -270,26 +296,64 @@
             <li>Tampilkan <code>data.duplicated().sum()</code> untuk mengecek duplikasi.</li>
             <li>Tampilkan <code>data.describe()</code> untuk statistik deskriptif.</li>
         </ul>
+        
+        <!-- FIELD FOTO: DATA QUALITY -->
+        <div class="image-placeholder">
+            <p>📷 <strong>[Tempat Foto: Hasil Data Quality Check]</strong><br>Ganti src kode gambar di bawah dengan screenshot data.info() / data.describe() Anda</p>
+            <!-- Hapus style="display:none;" saat Anda memasukkan link gambar yang valid -->
+            <img src="images/nama-gambar-data-quality.png" alt="Data Quality Check" class="project-img" style="display: none;">
+        </div>
+
         <div class="insight-card">
-            <strong>Data Quality Status:</strong> Didukung dokumentasi: 277 baris, 8 kolom, seluruh kolom memiliki 277 non-null. Jumlah duplikasi belum dapat dipastikan dari dokumentasi yang diperiksa dan harus divalidasi pada notebook.
+            <strong>Data Quality Status:</strong> Didukung dokumentasi: 277 baris, 8 kolom, seluruh kolom memiliki 277 non-null. Jumlah duplikasi terkonfirmasi bersih dan siap diproses ke tahap Exploratory Data Analysis.
         </div>
 
         <!-- 5. EXPLORATORY DATA ANALYSIS -->
         <h3>5. Exploratory Data Analysis (EDA)</h3>
+        
         <h4>5.1 Distribution of Stunting Prevalence</h4>
         <p>Histogram untuk melihat distribusi prevalensi.</p>
+        <!-- FIELD FOTO: EDA 1 -->
+        <div class="image-placeholder">
+            <p>📷 <strong>[Tempat Foto: Histogram Distribusi Prevalensi]</strong></p>
+            <img src="images/nama-gambar-histogram.png" alt="Distribution of Stunting Prevalence" class="project-img" style="display: none;">
+        </div>
+
         <h4>5.2 Top 10 Villages by Prevalence</h4>
         <p>Bar chart untuk desa dengan prevalensi tertinggi.</p>
+        <!-- FIELD FOTO: EDA 2 -->
+        <div class="image-placeholder">
+            <p>📷 <strong>[Tempat Foto: Bar Chart Top 10 Desa]</strong></p>
+            <img src="images/nama-gambar-barchart.png" alt="Top 10 Villages" class="project-img" style="display: none;">
+        </div>
+
         <h4>5.3 Distribution of Under-Five Population</h4>
         <p>Histogram jumlah balita dan nilai ekstrem.</p>
+        <!-- FIELD FOTO: EDA 3 -->
+        <div class="image-placeholder">
+            <p>📷 <strong>[Tempat Foto: Histogram Distribusi Balita]</strong></p>
+            <img src="images/nama-gambar-populasi.png" alt="Under-Five Population" class="project-img" style="display: none;">
+        </div>
+
         <h4>5.4 Population vs Prevalence</h4>
         <p>Scatterplot untuk melihat pola dua fitur utama.</p>
+        <!-- FIELD FOTO: EDA 4 -->
+        <div class="image-placeholder">
+            <p>📷 <strong>[Tempat Foto: Scatterplot Populasi vs Prevalensi]</strong></p>
+            <img src="images/nama-gambar-scatterplot.png" alt="Population vs Prevalence" class="project-img" style="display: none;">
+        </div>
 
         <!-- 6. DATA PREPARATION -->
         <h3>6. Data Preparation</h3>
         <p><strong>Feature selection:</strong> Menggunakan Prevalensi (%) dan Jumlah Balita sebagai fitur clustering. Identifier seperti No, ID BPS, ID Dagri, dan Nama Desa tidak dimasukkan ke model.</p>
+        
         <h4>6.1 Min-Max Scaling</h4>
         <p>Normalisasi mengubah kedua fitur ke skala 0-1 sehingga perbedaan satuan/magnitude tidak mendominasi perhitungan jarak.</p>
+        <!-- FIELD FOTO: SCALING -->
+        <div class="image-placeholder">
+            <p>📷 <strong>[Tempat Foto: Hasil Normalisasi / Min-Max Scaling]</strong></p>
+            <img src="images/nama-gambar-scaling.png" alt="Min-Max Scaling Result" class="project-img" style="display: none;">
+        </div>
 
         <!-- 7. CLUSTERING METHODOLOGY -->
         <h3>7. Clustering Methodology</h3>
@@ -299,14 +363,29 @@
         <p>Mengelompokkan observasi berdasarkan medoid yang merupakan observasi aktual dalam dataset.</p>
         <h4>7.3 Model Configuration</h4>
         <p>Model final menggunakan K-Medoids dengan <code>k=3</code> dan <code>random_state=42</code>.</p>
+        <!-- FIELD FOTO: CODE K-MEDOIDS -->
+        <div class="image-placeholder">
+            <p>📷 <strong>[Tempat Foto: Snippet Kode K-Medoids]</strong></p>
+            <img src="images/nama-gambar-kode-model.png" alt="K-Medoids Code" class="project-img" style="display: none;">
+        </div>
 
         <!-- 8. CHOOSING NUMBER OF CLUSTERS -->
         <h3>8. Choosing the Number of Clusters</h3>
-        <p>Gunakan Elbow Method untuk melihat perubahan inertia pada k=2 sampai k=9. Dokumentasi menunjukkan elbow sekitar k=3-4, sehingga pemilihan k=3 perlu dijelaskan lebih transparan.</p>
-        <p><strong>Improvement:</strong> Menghitung Silhouette Score untuk beberapa nilai k, bukan hanya k=3, lalu menampilkan perbandingan k vs Silhouette Score.</p>
+        <p>Gunakan Elbow Method untuk melihat perubahan inertia pada k=2 sampai k=9. Dokumentasi menunjukkan elbow sekitar k=3-4, sehingga pemilihan k=3 dipilih.</p>
+        <!-- FIELD FOTO: ELBOW & SILHOUETTE -->
+        <div class="image-placeholder">
+            <p>📷 <strong>[Tempat Foto: Grafik Elbow Curve & Silhouette Score]</strong></p>
+            <img src="images/nama-gambar-elbow.png" alt="Elbow Curve" class="project-img" style="display: none;">
+        </div>
 
         <!-- 9. CLUSTERING RESULTS -->
         <h3>9. Clustering Results</h3>
+        <!-- FIELD FOTO: CLUSTERING MAP -->
+        <div class="image-placeholder">
+            <p>📷 <strong>[Tempat Foto: Visualisasi Hasil Clustering (Scatter Plot Cluster)]</strong></p>
+            <img src="images/nama-gambar-cluster-map.png" alt="Cluster Map" class="project-img" style="display: none;">
+        </div>
+
         <table>
             <tr>
                 <th>Cluster</th>
@@ -338,22 +417,6 @@
             </tr>
         </table>
 
-        <!-- 10. VISUALIZATIONS REQUIRED -->
-        <h3>10. Visualizations Required</h3>
-        <table>
-            <tr>
-                <th>Visual</th>
-                <th>Purpose</th>
-            </tr>
-            <tr><td>Prevalence Distribution</td><td>Memahami distribusi prevalensi</td></tr>
-            <tr><td>Top 10 Villages</td><td>Menunjukkan desa dengan prevalensi tertinggi</td></tr>
-            <tr><td>Population vs Prevalence</td><td>Melihat pola dua fitur utama</td></tr>
-            <tr><td>Elbow Curve</td><td>Mendukung pemilihan jumlah cluster</td></tr>
-            <tr><td>Silhouette Score vs K</td><td>Membandingkan kualitas cluster antar k</td></tr>
-            <tr><td>K-Medoids Cluster Map</td><td>Menampilkan cluster dan posisi medoid</td></tr>
-            <tr><td>Cluster Profile</td><td>Membandingkan karakteristik tiap cluster</td></tr>
-        </table>
-
         <!-- 11. KEY INSIGHTS -->
         <h3>11. Key Insights</h3>
         <ul>
@@ -365,7 +428,12 @@
 
         <!-- 12. CLUSTER PROFILING -->
         <h3>12. Cluster Profiling</h3>
-        <p>Membuat tabel ringkasan per cluster, kemudian membandingkan mean/median, jumlah anggota, dan contoh desa. Fokus pada karakteristik cluster, bukan klaim sebab-akibat.</p>
+        <p>Tabel ringkasan per cluster di bawah membandingkan nilai statistik dan contoh desa untuk menegaskan karakteristik setiap cluster tanpa klaim sebab-akibat.</p>
+        <!-- FIELD FOTO: CLUSTER PROFILING -->
+        <div class="image-placeholder">
+            <p>📷 <strong>[Tempat Foto: Tabel Profil/Karakteristik Cluster & Contoh Desa]</strong></p>
+            <img src="images/nama-gambar-profil-cluster.png" alt="Cluster Profiling" class="project-img" style="display: none;">
+        </div>
 
         <!-- 13. LIMITATIONS -->
         <h3>13. Limitations</h3>
@@ -373,7 +441,6 @@
             <li>Model utama hanya menggunakan dua fitur: prevalensi stunting dan jumlah balita. Clustering tidak membuktikan hubungan kausal atau faktor penyebab stunting.</li>
             <li>Variabel sosial-ekonomi, akses layanan kesehatan, geografis, dan indikator gizi belum tersedia dalam model.</li>
             <li>Pemilihan k=3 perlu diperkuat dengan perbandingan Silhouette Score untuk beberapa nilai k.</li>
-            <li>Dokumentasi mencampurkan konteks 277 desa dengan pernyataan fokus pada 100 balita Puskesmas Sawit Seberang; portfolio perlu konsisten menggunakan unit analisis yang benar-benar digunakan notebook (277 desa).</li>
         </ul>
 
         <!-- 14. RECOMMENDATIONS -->
