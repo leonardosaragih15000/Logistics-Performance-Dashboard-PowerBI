@@ -1,620 +1,526 @@
 <!DOCTYPE html>
 <html lang="id">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Stunting Risk Clustering | Leonardo Saragih</title>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    <style>
-        :root {
-            --bg-color: #F8F9FA;
-            --text-primary: #1F2937;
-            --text-secondary: #4B5563;
-            --accent-color: #2563EB;
-            --card-bg: #FFFFFF;
-            --border-color: #E5E7EB;
-            --chip-bg: #E0E7FF;
-            --chip-text: #3730A3;
-            --btn-toggle-bg: #E5E7EB;
-            --btn-toggle-text: #1F2937;
-            --table-header-bg: #F3F4F6;
-            --table-row-border: #E5E7EB;
-        }
-        
-        /* TEMA GELAP */
-        [data-theme="dark"] {
-            --bg-color: #111827;
-            --text-primary: #F9FAFB;
-            --text-secondary: #9CA3AF;
-            --accent-color: #3B82F6;
-            --card-bg: #1F2937;
-            --border-color: #374151;
-            --chip-bg: #374151;
-            --chip-text: #BFDBFE;
-            --btn-toggle-bg: #374151;
-            --btn-toggle-text: #F9FAFB;
-            --table-header-bg: #374151;
-            --table-row-border: #4B5563;
-        }
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Stunting Risk Clustering | Leonardo Saragih</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+       
+            --bg-color: #F8F9FA;
+            --text-primary: #1F2937;
+            --text-secondary: #4B5563;
+            --accent-color: #2563EB;
+            --card-bg: #FFFFFF;
+            --border-color: #E5E7EB;
+            --chip-bg: #E0E7FF;
+            --chip-text: #3730A3;
+            --btn-toggle-bg: #E5E7EB;
+            --btn-toggle-text: #1F2937;
+            --table-header-bg: #F3F4F6;
+            --table-row-border: #E5E7EB;
+        }
+        
+        /* TEMA GELAP */
+        [data-theme="dark"] {
+            --bg-color: #111827;
+            --text-primary: #F9FAFB;
+            --text-secondary: #9CA3AF;
+            --accent-color: #3B82F6;
+            --card-bg: #1F2937;
+            --border-color: #374151;
+            --chip-bg: #374151;
+            --chip-text: #BFDBFE;
+            --btn-toggle-bg: #374151;
+            --btn-toggle-text: #F9FAFB;
+            --table-header-bg: #374151;
+            --table-row-border: #4B5563;
+        }
 
-        body {
-            font-family: 'Inter', sans-serif;
-            background-color: var(--bg-color);
-            color: var(--text-primary);
-            line-height: 1.6;
-            margin: 0;
-            padding: 0;
-            transition: background-color 0.3s ease, color 0.3s ease;
-        }
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-primary);
+            line-height: 1.6;
+            margin: 0;
+            padding: 0;
+            transition: background-color 0.3s ease, color 0.3s ease;
+        }
 
-        /* ================= NEW: STICKY NAVBAR & CTA ================= */
-        .sticky-navbar {
-            position: sticky;
-            top: 0;
-            background: rgba(248, 249, 250, 0.85);
-            backdrop-filter: blur(12px);
-            -webkit-backdrop-filter: blur(12px);
-            z-index: 1000;
-            padding: 15px 5%;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            border-bottom: 1px solid var(--border-color);
-            transition: background 0.3s ease;
-        }
-        
-        [data-theme="dark"] .sticky-navbar {
-            background: rgba(17, 24, 39, 0.85);
-        }
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 40px 20px;
+            position: relative;
+        }
 
-        .nav-links {
-            display: flex;
-            gap: 25px;
-        }
+     
+        .nav-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 40px;
+        }
 
-        .nav-links a {
-            text-decoration: none;
-            color: var(--text-primary);
-            font-weight: 500;
-            font-size: 0.95rem;
-            transition: color 0.2s ease;
-        }
+        .btn-back {
+            text-decoration: none;
+            color: var(--accent-color);
+            font-weight: 600;
+            font-size: 0.95rem;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
 
-        .nav-links a:hover {
-            color: var(--accent-color);
-        }
+        .theme-toggle {
+            background-color: var(--btn-toggle-bg);
+            color: var(--btn-toggle-text);
+            border: none;
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
 
-        .btn-primary {
-            background-color: var(--accent-color);
-            color: #ffffff !important;
-            padding: 10px 20px;
-            border-radius: 8px;
-            text-decoration: none;
-            font-weight: 600;
-            display: inline-flex;
-            align-items: center;
-            gap: 8px;
-            transition: opacity 0.2s, transform 0.2s;
-            border: none;
-            cursor: pointer;
-        }
+        /* HEADER PROJECT */
+        .project-header {
+            margin-bottom: 40px;
+            border-bottom: 2px solid var(--border-color);
+            padding-bottom: 30px;
+        }
 
-        .btn-primary:hover {
-            opacity: 0.9;
-            transform: translateY(-2px);
-        }
+        .project-header h1 {
+            font-size: 2.2rem;
+            font-weight: 700;
+            margin: 0 0 10px 0;
+            line-height: 1.2;
+        }
 
-        .cta-section {
-            text-align: center;
-            padding: 60px 20px;
-            margin: 60px 0 20px 0;
-            background-color: var(--card-bg);
-            border-radius: 16px;
-            border: 1px solid var(--border-color);
-            box-shadow: 0 10px 30px rgba(0,0,0,0.05);
-        }
+        .project-header h2 {
+            font-size: 1.2rem;
+            color: var(--text-secondary);
+            font-weight: 400;
+            margin: 0 0 20px 0;
+        }
 
-        .cta-section h2 {
-            font-size: 2.2rem;
-            margin-bottom: 15px;
-            color: var(--text-primary);
-        }
+        /* TYPOGRAPHY & SECTIONS */
+        h3 {
+            font-size: 1.4rem;
+            color: var(--text-primary);
+            margin-top: 40px;
+            margin-bottom: 15px;
+            border-left: 4px solid var(--accent-color);
+            padding-left: 10px;
+        }
 
-        .cta-section p {
-            font-size: 1.1rem;
-            color: var(--text-secondary);
-            margin-bottom: 30px;
-            max-width: 600px;
-            margin-left: auto;
-            margin-right: auto;
-        }
+        h4 {
+            font-size: 1.1rem;
+            color: var(--text-primary);
+            margin-top: 25px;
+            margin-bottom: 10px;
+        }
 
-        .theme-toggle {
-            background-color: var(--btn-toggle-bg);
-            color: var(--btn-toggle-text);
-            border: none;
-            padding: 8px 16px;
-            border-radius: 20px;
-            font-size: 0.85rem;
-            font-weight: 600;
-            cursor: pointer;
-            transition: all 0.2s ease;
-        }
+        p, li {
+            color: var(--text-secondary);
+            font-size: 1rem;
+            margin-bottom: 12px;
+        }
 
-        .container {
-            max-width: 900px;
-            margin: 0 auto;
-            padding: 40px 20px;
-            position: relative;
-        }
+        ul {
+            padding-left: 20px;
+        }
 
-        /* HEADER PROJECT */
-        .project-header {
-            margin-bottom: 40px;
-            border-bottom: 2px solid var(--border-color);
-            padding-bottom: 30px;
-        }
+        /* TABLES */
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+            background-color: var(--card-bg);
+            box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+            border-radius: 8px;
+            overflow: hidden;
+        }
 
-        .project-header h1 {
-            font-size: 2.2rem;
-            font-weight: 700;
-            margin: 0 0 10px 0;
-            line-height: 1.2;
-        }
+        th, td {
+            padding: 12px 15px;
+            text-align: left;
+            border-bottom: 1px solid var(--table-row-border);
+        }
 
-        .project-header h2 {
-            font-size: 1.2rem;
-            color: var(--text-secondary);
-            font-weight: 400;
-            margin: 0 0 20px 0;
-        }
+        th {
+            background-color: var(--table-header-bg);
+            font-weight: 600;
+            color: var(--text-primary);
+        }
 
-        /* TYPOGRAPHY & SECTIONS */
-        h3 {
-            font-size: 1.4rem;
-            color: var(--text-primary);
-            margin-top: 40px;
-            margin-bottom: 15px;
-            border-left: 4px solid var(--accent-color);
-            padding-left: 10px;
-        }
+        /* SKILL CHIPS */
+        .skills-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-bottom: 20px;
+        }
 
-        h4 {
-            font-size: 1.1rem;
-            color: var(--text-primary);
-            margin-top: 25px;
-            margin-bottom: 10px;
-        }
+        .skill-chip {
+            background-color: var(--chip-bg);
+            color: var(--chip-text);
+            padding: 6px 14px;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: 600;
+        }
 
-        p, li {
-            color: var(--text-secondary);
-            font-size: 1rem;
-            margin-bottom: 12px;
-        }
+        /* CARD INSIGHTS */
+        .insight-card {
+            background: var(--card-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            padding: 20px;
+            margin-bottom: 15px;
+        }
 
-        ul {
-            padding-left: 20px;
-        }
+        /* IMAGE PLACEHOLDER (FIELD FOTO) */
+        .image-placeholder {
+            width: 100%;
+            background-color: var(--table-header-bg);
+            border: 2px dashed var(--border-color);
+            border-radius: 8px;
+            padding: 30px 20px;
+            text-align: center;
+            margin: 20px 0;
+            color: var(--text-secondary);
+            box-sizing: border-box;
+        }
 
-        /* TABLES */
-        table {
-            width: 100%;
-            border-collapse: collapse;
-            margin: 20px 0;
-            background-color: var(--card-bg);
-            box-shadow: 0 1px 3px rgba(0,0,0,0.05);
-            border-radius: 8px;
-            overflow: hidden;
-        }
+        .image-placeholder p {
+            margin: 0 0 10px 0;
+            font-size: 0.9rem;
+        }
 
-        th, td {
-            padding: 12px 15px;
-            text-align: left;
-            border-bottom: 1px solid var(--table-row-border);
-        }
+        .project-img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 6px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
 
-        th {
-            background-color: var(--table-header-bg);
-            font-weight: 600;
-            color: var(--text-primary);
-        }
-
-        /* SKILL CHIPS */
-        .skills-container {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 10px;
-            margin-bottom: 20px;
-        }
-
-        .skill-chip {
-            background-color: var(--chip-bg);
-            color: var(--chip-text);
-            padding: 6px 14px;
-            border-radius: 20px;
-            font-size: 0.85rem;
-            font-weight: 600;
-        }
-
-        /* CARD INSIGHTS */
-        .insight-card {
-            background: var(--card-bg);
-            border: 1px solid var(--border-color);
-            border-radius: 8px;
-            padding: 20px;
-            margin-bottom: 15px;
-        }
-
-        /* IMAGE PLACEHOLDER (FIELD FOTO) */
-        .image-placeholder {
-            width: 100%;
-            background-color: var(--table-header-bg);
-            border: 2px dashed var(--border-color);
-            border-radius: 8px;
-            padding: 30px 20px;
-            text-align: center;
-            margin: 20px 0;
-            color: var(--text-secondary);
-            box-sizing: border-box;
-        }
-
-        .image-placeholder p {
-            margin: 0 0 10px 0;
-            font-size: 0.9rem;
-        }
-
-        .project-img {
-            max-width: 100%;
-            height: auto;
-            border-radius: 6px;
-            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
-        }
-
-        @media (max-width: 768px) {
-            .nav-links {
-                display: none; /* Menyembunyikan link di mobile agar tidak penuh */
-            }
-        }
-    </style>
+    </style>
 </head>
 <body>
 
-    <!-- STICKY NAVBAR -->
-    <nav class="sticky-navbar">
-        <a href="index.html" class="nav-brand" style="text-decoration: none; font-weight: 800; font-size: 1.4rem; color: var(--accent-color);">
-            LS.
-        </a>
-        <div class="nav-links">
-            <a href="index.html#about">About</a>
-            <a href="index.html#skills">Skills</a>
-            <a href="index.html#projects">Projects</a>
-            <a href="index.html#experience">Experience</a>
-            <a href="index.html#education">Education</a>
-        </div>
-        <div class="nav-actions" style="display: flex; gap: 15px; align-items: center;">
-            <button class="theme-toggle" id="theme-btn" onclick="toggleTheme()" style="margin: 0;">🌙</button>
-            <a href="CV_Leonardo_Saragih.pdf" download class="btn-primary">📄 Download CV</a>
-        </div>
-    </nav>
+    <div class="container">
+        
+      
+        <div class="nav-header">
+            <a href="index.html" class="btn-back">⬅ Back to Portfolio</a>
+            <button class="theme-toggle" id="theme-btn" onclick="toggleTheme()">🌙 Dark Mode</button>
+        </div>
 
-    <div class="container">
-        
-        <div class="project-header" style="margin-bottom: 40px; margin-top: 20px;">
-            <h1 style="font-size: 2.5rem; margin-bottom: 10px;">Stunting Risk Clustering in Langkat Regency Using K-Medoids</h1>
-            <p style="font-size: 1.1rem; color: var(--text-secondary); margin-bottom: 25px;">Identifying village-level patterns based on stunting prevalence and under-five population.</p>
+      
+        <div class="project-header" style="margin-bottom: 40px;">
+            
+           
+            <h1 style="font-size: 2.5rem; margin-bottom: 10px;">Stunting Risk Clustering in Langkat Regency Using K-Medoids</h1>
+            <p style="font-size: 1.1rem; color: var(--text-secondary); margin-bottom: 25px;">Identifying village-level patterns based on stunting prevalence and under-five population.</p>
 
-            <div class="project-cover" style="margin-bottom: 30px; text-align: center;">
-                <img src="images/stunting-cover.jpg" alt="Stunting Project Banner" style="width: 100%; max-width: 1000px; border-radius: 16px; box-shadow: 0 8px 24px rgba(0,0,0,0.12); object-fit: cover;">
-            </div>
+           
+            <div class="project-cover" style="margin-bottom: 30px; text-align: center;">
+                <img src="images/stunting-cover.jpg" alt="Stunting Project Banner" style="width: 100%; max-width: 1000px; border-radius: 16px; box-shadow: 0 8px 24px rgba(0,0,0,0.12); object-fit: cover;">
+            </div>
 
-            <!-- 2. TECHNICAL STACK -->
-            <div class="tech-stack-container" style="margin-bottom: 30px;">
-                <h4 style="font-size: 1.1rem; margin-bottom: 12px; color: var(--text-primary); font-weight: 600;">Technical Stack</h4>
-                <div class="tech-badges" style="display: flex; flex-wrap: wrap; gap: 10px;">
-                    <!-- Core & Data Prep -->
-                    <span style="padding: 6px 14px; background-color: #e8f0fe; color: #1a73e8; border-radius: 20px; font-weight: 600; font-size: 0.85rem; border: 1px solid #d2e3fc;">Python</span>
-                    <span style="padding: 6px 14px; background-color: #e8f0fe; color: #1a73e8; border-radius: 20px; font-weight: 600; font-size: 0.85rem; border: 1px solid #d2e3fc;">Pandas</span>
-                    <span style="padding: 6px 14px; background-color: #e8f0fe; color: #1a73e8; border-radius: 20px; font-weight: 600; font-size: 0.85rem; border: 1px solid #d2e3fc;">NumPy</span>
-                    <!-- Visualization -->
-                    <span style="padding: 6px 14px; background-color: #e3f2fd; color: #0277bd; border-radius: 20px; font-weight: 600; font-size: 0.85rem; border: 1px solid #b3e5fc;">Matplotlib</span>
-                    <span style="padding: 6px 14px; background-color: #e3f2fd; color: #0277bd; border-radius: 20px; font-weight: 600; font-size: 0.85rem; border: 1px solid #b3e5fc;">Seaborn</span>
-                    <!-- Machine Learning -->
-                    <span style="padding: 6px 14px; background-color: #fce4ec; color: #c2185b; border-radius: 20px; font-weight: 600; font-size: 0.85rem; border: 1px solid #f8bbd0;">Scikit-learn</span>
-                    <span style="padding: 6px 14px; background-color: #fce4ec; color: #c2185b; border-radius: 20px; font-weight: 600; font-size: 0.85rem; border: 1px solid #f8bbd0;">Scikit-learn-extra (K-Medoids)</span>
-                </div>
-            </div>
+            <!-- 2. TECHNICAL STACK -->
+            <div class="tech-stack-container" style="margin-bottom: 30px;">
+                <h4 style="font-size: 1.1rem; margin-bottom: 12px; color: var(--text-primary); font-weight: 600;">Technical Stack</h4>
+                <div class="tech-badges" style="display: flex; flex-wrap: wrap; gap: 10px;">
+                    <!-- Core & Data Prep -->
+                    <span style="padding: 6px 14px; background-color: #e8f0fe; color: #1a73e8; border-radius: 20px; font-weight: 600; font-size: 0.85rem; border: 1px solid #d2e3fc;">Python</span>
+                    <span style="padding: 6px 14px; background-color: #e8f0fe; color: #1a73e8; border-radius: 20px; font-weight: 600; font-size: 0.85rem; border: 1px solid #d2e3fc;">Pandas</span>
+                    <span style="padding: 6px 14px; background-color: #e8f0fe; color: #1a73e8; border-radius: 20px; font-weight: 600; font-size: 0.85rem; border: 1px solid #d2e3fc;">NumPy</span>
+                    <!-- Visualization -->
+                    <span style="padding: 6px 14px; background-color: #e3f2fd; color: #0277bd; border-radius: 20px; font-weight: 600; font-size: 0.85rem; border: 1px solid #b3e5fc;">Matplotlib</span>
+                    <span style="padding: 6px 14px; background-color: #e3f2fd; color: #0277bd; border-radius: 20px; font-weight: 600; font-size: 0.85rem; border: 1px solid #b3e5fc;">Seaborn</span>
+                    <!-- Machine Learning -->
+                    <span style="padding: 6px 14px; background-color: #fce4ec; color: #c2185b; border-radius: 20px; font-weight: 600; font-size: 0.85rem; border: 1px solid #f8bbd0;">Scikit-learn</span>
+                    <span style="padding: 6px 14px; background-color: #fce4ec; color: #c2185b; border-radius: 20px; font-weight: 600; font-size: 0.85rem; border: 1px solid #f8bbd0;">Scikit-learn-extra (K-Medoids)</span>
+                </div>
+            </div>
 
-            <!-- 3. TABEL RINGKASAN PROFESIONAL -->
-            <p style="margin-bottom: 15px; line-height: 1.6; color: var(--text-secondary);"><strong>Ringkasan:</strong> Analisis clustering menggunakan Python dan K-Medoids untuk mengelompokkan desa di Kabupaten Langkat berdasarkan prevalensi stunting dan jumlah balita.</p>
-            
-            <div style="overflow-x: auto;">
-                <table class="summary-table" style="width: 100%; min-width: 500px; border-collapse: collapse; background-color: var(--card-bg); box-shadow: 0 4px 12px rgba(0,0,0,0.06); border-radius: 10px; overflow: hidden; margin-top: 0;">
-                    <thead>
-                        <tr style="background-color: var(--table-header-bg); border-bottom: 2px solid var(--border-color);">
-                            <th style="padding: 16px 24px; text-align: left; font-weight: 600; color: var(--text-primary); font-size: 0.95rem;">Metric</th>
-                            <th style="padding: 16px 24px; text-align: left; font-weight: 600; color: var(--text-primary); font-size: 0.95rem;">Value</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr style="border-bottom: 1px solid var(--table-row-border);">
-                            <td style="padding: 16px 24px; color: var(--text-secondary); font-size: 0.95rem;">Villages analyzed</td>
-                            <td style="padding: 16px 24px; font-weight: 700; color: var(--accent-color); font-size: 1rem;">277</td>
-                        </tr>
-                        <tr style="border-bottom: 1px solid var(--table-row-border); background-color: rgba(0,0,0,0.02);">
-                            <td style="padding: 16px 24px; color: var(--text-secondary); font-size: 0.95rem;">Clustering method</td>
-                            <td style="padding: 16px 24px; font-weight: 700; color: var(--accent-color); font-size: 1rem;">K-Medoids</td>
-                        </tr>
-                        <tr style="border-bottom: 1px solid var(--table-row-border);">
-                            <td style="padding: 16px 24px; color: var(--text-secondary); font-size: 0.95rem;">Final clusters</td>
-                            <td style="padding: 16px 24px; font-weight: 700; color: var(--accent-color); font-size: 1rem;">3</td>
-                        </tr>
-                        <tr>
-                            <td style="padding: 16px 24px; color: var(--text-secondary); font-size: 0.95rem;">Silhouette score</td>
-                            <td style="padding: 16px 24px; font-weight: 700; color: var(--accent-color); font-size: 1rem;">0.410</td>
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
-        </div>
+            <!-- 3. TABEL RINGKASAN PROFESIONAL -->
+            <p style="margin-bottom: 15px; line-height: 1.6; color: var(--text-secondary);"><strong>Ringkasan:</strong> Analisis clustering menggunakan Python dan K-Medoids untuk mengelompokkan desa di Kabupaten Langkat berdasarkan prevalensi stunting dan jumlah balita.</p>
+            
+            <div style="overflow-x: auto;">
+                <table class="summary-table" style="width: 100%; min-width: 500px; border-collapse: collapse; background-color: var(--card-bg); box-shadow: 0 4px 12px rgba(0,0,0,0.06); border-radius: 10px; overflow: hidden; margin-top: 0;">
+                    <thead>
+                        <tr style="background-color: var(--table-header-bg); border-bottom: 2px solid var(--border-color);">
+                            <th style="padding: 16px 24px; text-align: left; font-weight: 600; color: var(--text-primary); font-size: 0.95rem;">Metric</th>
+                            <th style="padding: 16px 24px; text-align: left; font-weight: 600; color: var(--text-primary); font-size: 0.95rem;">Value</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr style="border-bottom: 1px solid var(--table-row-border);">
+                            <td style="padding: 16px 24px; color: var(--text-secondary); font-size: 0.95rem;">Villages analyzed</td>
+                            <td style="padding: 16px 24px; font-weight: 700; color: var(--accent-color); font-size: 1rem;">277</td>
+                        </tr>
+                        <tr style="border-bottom: 1px solid var(--table-row-border); background-color: rgba(0,0,0,0.02);">
+                            <td style="padding: 16px 24px; color: var(--text-secondary); font-size: 0.95rem;">Clustering method</td>
+                            <td style="padding: 16px 24px; font-weight: 700; color: var(--accent-color); font-size: 1rem;">K-Medoids</td>
+                        </tr>
+                        <tr style="border-bottom: 1px solid var(--table-row-border);">
+                            <td style="padding: 16px 24px; color: var(--text-secondary); font-size: 0.95rem;">Final clusters</td>
+                            <td style="padding: 16px 24px; font-weight: 700; color: var(--accent-color); font-size: 1rem;">3</td>
+                        </tr>
+                        <tr>
+                            <td style="padding: 16px 24px; color: var(--text-secondary); font-size: 0.95rem;">Silhouette score</td>
+                            <td style="padding: 16px 24px; font-weight: 700; color: var(--accent-color); font-size: 1rem;">0.410</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+ 
 
-        <!-- 2. PROBLEM & ANALYTICAL QUESTIONS -->
-        <h3>2. Problem & Analytical Questions</h3>
-        <p>Analisis ini bertujuan untuk menjelaskan variasi prevalensi stunting antar desa dan kebutuhan untuk menemukan kelompok desa dengan karakteristik serupa.</p>
-        <ul>
-            <li>Bagaimana distribusi prevalensi stunting antar desa?</li>
-            <li>Apakah desa dapat dikelompokkan berdasarkan karakteristik yang serupa?</li>
-            <li>Berapa jumlah cluster yang sesuai untuk dataset?</li>
-            <li>Bagaimana karakteristik masing-masing cluster?</li>
-            <li>Apakah jumlah balita berkaitan secara konsisten dengan prevalensi stunting?</li>
-        </ul>
+        <!-- 2. PROBLEM & ANALYTICAL QUESTIONS -->
+        <h3>2. Problem & Analytical Questions</h3>
+        <p>Analisis ini bertujuan untuk menjelaskan variasi prevalensi stunting antar desa dan kebutuhan untuk menemukan kelompok desa dengan karakteristik serupa.</p>
+        <ul>
+            <li>Bagaimana distribusi prevalensi stunting antar desa?</li>
+            <li>Apakah desa dapat dikelompokkan berdasarkan karakteristik yang serupa?</li>
+            <li>Berapa jumlah cluster yang sesuai untuk dataset?</li>
+            <li>Bagaimana karakteristik masing-masing cluster?</li>
+            <li>Apakah jumlah balita berkaitan secara konsisten dengan prevalensi stunting?</li>
+        </ul>
 
-        <!-- 3. DATASET & DATA UNDERSTANDING -->
-        <h3>3. Dataset & Data Understanding</h3>
-        <ul>
-            <li><strong>Source:</strong> e-Monev Konvergensi Stunting, Kementerian Dalam Negeri</li>
-            <li><strong>Year:</strong> 2023</li>
-            <li><strong>Scope:</strong> Kabupaten Langkat</li>
-            <li><strong>Unit:</strong> Desa</li>
-            <li><strong>Records:</strong> 277</li>
-        </ul>
-        
-        <h4>Data Dictionary</h4>
-        <table>
-            <tr>
-                <th>Column</th>
-                <th>Description</th>
-                <th>Role</th>
-            </tr>
-            <tr><td>No</td><td>Nomor record</td><td>Identifier</td></tr>
-            <tr><td>ID BPS</td><td>Identifier desa BPS</td><td>Identifier</td></tr>
-            <tr><td>ID Dagri</td><td>Identifier desa Kemendagri</td><td>Identifier</td></tr>
-            <tr><td>Nama Desa</td><td>Nama desa</td><td>Identifier</td></tr>
-            <tr><td>Jumlah Balita</td><td>Jumlah anak balita</td><td>Clustering feature</td></tr>
-            <tr><td>Stunting Pendek</td><td>Jumlah stunting pendek</td><td>Supporting variable</td></tr>
-            <tr><td>Stunting Sangat Pendek</td><td>Jumlah stunting sangat pendek</td><td>Supporting variable</td></tr>
-            <tr><td>Prevalensi (%)</td><td>Prevalensi stunting</td><td>Clustering feature</td></tr>
-        </table>
+        <!-- 3. DATASET & DATA UNDERSTANDING -->
+        <h3>3. Dataset & Data Understanding</h3>
+        <ul>
+            <li><strong>Source:</strong> e-Monev Konvergensi Stunting, Kementerian Dalam Negeri</li>
+            <li><strong>Year:</strong> 2023</li>
+            <li><strong>Scope:</strong> Kabupaten Langkat</li>
+            <li><strong>Unit:</strong> Desa</li>
+            <li><strong>Records:</strong> 277</li>
+        </ul>
+        
+        <h4>Data Dictionary</h4>
+        <table>
+            <tr>
+                <th>Column</th>
+                <th>Description</th>
+                <th>Role</th>
+            </tr>
+            <tr><td>No</td><td>Nomor record</td><td>Identifier</td></tr>
+            <tr><td>ID BPS</td><td>Identifier desa BPS</td><td>Identifier</td></tr>
+            <tr><td>ID Dagri</td><td>Identifier desa Kemendagri</td><td>Identifier</td></tr>
+            <tr><td>Nama Desa</td><td>Nama desa</td><td>Identifier</td></tr>
+            <tr><td>Jumlah Balita</td><td>Jumlah anak balita</td><td>Clustering feature</td></tr>
+            <tr><td>Stunting Pendek</td><td>Jumlah stunting pendek</td><td>Supporting variable</td></tr>
+            <tr><td>Stunting Sangat Pendek</td><td>Jumlah stunting sangat pendek</td><td>Supporting variable</td></tr>
+            <tr><td>Prevalensi (%)</td><td>Prevalensi stunting</td><td>Clustering feature</td></tr>
+        </table>
 
-        <!-- 4. DATA QUALITY CHECK -->
-        <h3>4. Data Quality Check</h3>
-        
-        <!-- FIELD FOTO: DATA QUALITY -->
-        <div class="image-placeholder" style="background-color: transparent; border: none; padding: 0;">
-            <img src="images/nama-gambar-data-quality.png" alt="Data Info" class="project-img" style="margin-bottom: 20px;">
-            <img src="images/nama-gambar-data-desc.png" alt="Data Describe" class="project-img">
-        </div>
+        <!-- 4. DATA QUALITY CHECK -->
+        <h3>4. Data Quality Check</h3>
+        
+        <!-- FIELD FOTO: DATA QUALITY -->
+        <div class="image-placeholder" style="background-color: transparent; border: none; padding: 0;">
+            <!-- Gambar Pertama: Data Info -->
+            <img src="images/nama-gambar-data-quality.png" alt="Data Info" class="project-img" style="margin-bottom: 20px;">
+            
+            <!-- Gambar Kedua: Data Describe -->
+            <img src="images/nama-gambar-data-desc.png" alt="Data Describe" class="project-img">
+        </div>
 
-        <div class="insight-card">
-            <strong>Data Quality Status:</strong> Didukung dokumentasi: 277 baris, 8 kolom, seluruh kolom memiliki 277 non-null. Jumlah duplikasi terkonfirmasi bersih dan siap diproses ke tahap Exploratory Data Analysis.
-        </div>
+        <div class="insight-card">
+            <strong>Data Quality Status:</strong> Didukung dokumentasi: 277 baris, 8 kolom, seluruh kolom memiliki 277 non-null. Jumlah duplikasi terkonfirmasi bersih dan siap diproses ke tahap Exploratory Data Analysis.
+        </div>
 
-        <!-- 5. EXPLORATORY DATA ANALYSIS -->
-        <h3>5. Exploratory Data Analysis (EDA)</h3>
-        
-        <h4>5.1 Distribution of Stunting Prevalence</h4>
-        <p>Distribusi prevalensi stunting di Kabupaten Langkat memperlihatkan pola right-skewed atau condong ke kanan secara signifikan. Mayoritas desa berkerumun pada tingkat prevalensi yang sangat rendah, yakni di bawah 5%, dengan puncak kepadatan tertinggi berada di rentang 0% hingga 2%. Meskipun secara umum angka stunting tampak terkendali di sebagian besar wilayah, kurva ekor panjang (long tail) yang menjuntai ke sebelah kanan mengungkapkan adanya sejumlah kecil desa dengan tingkat stunting yang ekstrem. Terdapat beberapa desa yang mencatatkan prevalensi jauh melampaui rata-rata, membentang dari 10% hingga mendekati angka 25%.</p>
-    
-        <!-- FIELD FOTO: EDA 1 -->
-        <div class="image-placeholder" style="background-color: transparent; border: none; padding: 0;">
-            <img src="images/nama-gambar-histogram.png" alt="Distribution of Stunting Prevalence" class="project-img">
-        </div>
+        <!-- 5. EXPLORATORY DATA ANALYSIS -->
+        <h3>5. Exploratory Data Analysis (EDA)</h3>
+        
+        <h4>5.1 Distribution of Stunting Prevalence</h4>
+        <p>Distribusi prevalensi stunting di Kabupaten Langkat memperlihatkan pola right-skewed atau condong ke kanan secara signifikan. Mayoritas desa berkerumun pada tingkat prevalensi yang sangat rendah, yakni di bawah 5%, dengan puncak kepadatan tertinggi berada di rentang 0% hingga 2%. Meskipun secara umum angka stunting tampak terkendali di sebagian besar wilayah, kurva ekor panjang (long tail) yang menjuntai ke sebelah kanan mengungkapkan adanya sejumlah kecil desa dengan tingkat stunting yang ekstrem. Terdapat beberapa desa yang mencatatkan prevalensi jauh melampaui rata-rata, membentang dari 10% hingga mendekati angka 25%.</p>
+    
+          <!-- FIELD FOTO: EDA 1 -->
+        <div class="image-placeholder" style="background-color: transparent; border: none; padding: 0;">
+            <img src="images/nama-gambar-histogram.png" alt="Distribution of Stunting Prevalence" class="project-img">
+        </div>
 
-        <h4>5.2 Top 10 Villages by Prevalence</h4>
-        <p>Visualisasi bar chart tersebut secara spesifik menyoroti 10 desa dengan tingkat prevalensi stunting tertinggi di Kabupaten Langkat. Desa Jaring Halus menempati urutan pertama sebagai wilayah paling kritis dengan angka prevalensi yang melampaui batas 25%. Posisi ini diikuti erat oleh desa Timbang Jaya, Perlis, Kebun Kelapa, dan Alur Gadung yang seluruhnya mencatatkan angka prevalensi di atas 20%. Bahkan, desa yang berada di urutan kesepuluh (Tebing Tanjung Selamat) masih menunjukkan tingkat stunting di kisaran 14,5%. Daftar 10 besar ini dengan jelas memetakan titik-titik lokasi darurat (hotspots) yang mutlak membutuhkan prioritas utama dan intervensi gizi segera dari pemerintah daerah. Selain itu, grafik ini mengonfirmasi keberadaan desa-desa outlier yang sebelumnya terlihat pada bagian ekor panjang (long tail) di histogram distribusi.</p>
-        
-        <!-- FIELD FOTO: EDA 2 -->
-        <div class="image-placeholder" style="background-color: transparent; border: none; padding: 0;">
-            <img src="images/nama-gambar-barchart.png" alt="Distribution of Stunting Prevalence" class="project-img">
-        </div>
+        <h4>5.2 Top 10 Villages by Prevalence</h4>
+        <p>Visualisasi bar chart tersebut secara spesifik menyoroti 10 desa dengan tingkat prevalensi stunting tertinggi di Kabupaten Langkat. Desa Jaring Halus menempati urutan pertama sebagai wilayah paling kritis dengan angka prevalensi yang melampaui batas 25%. Posisi ini diikuti erat oleh desa Timbang Jaya, Perlis, Kebun Kelapa, dan Alur Gadung yang seluruhnya mencatatkan angka prevalensi di atas 20%. Bahkan, desa yang berada di urutan kesepuluh (Tebing Tanjung Selamat) masih menunjukkan tingkat stunting di kisaran 14,5%. Daftar 10 besar ini dengan jelas memetakan titik-titik lokasi darurat (hotspots) yang mutlak membutuhkan prioritas utama dan intervensi gizi segera dari pemerintah daerah. Selain itu, grafik ini mengonfirmasi keberadaan desa-desa outlier yang sebelumnya terlihat pada bagian ekor panjang (long tail) di histogram distribusi.</p>
+        <!-- FIELD FOTO: EDA 2 -->
+        <div class="image-placeholder" style="background-color: transparent; border: none; padding: 0;">
+            <img src="images/nama-gambar-barchart.png" alt="Distribution of Stunting Prevalence" class="project-img">
+        </div>
 
-        <h4>5.3 Distribution of Under-Five Population</h4> 
-        <p>Visualisasi histogram distribusi jumlah balita kembali memperlihatkan pola right-skewed atau condong ke kanan. Mayoritas desa di Kabupaten Langkat memiliki populasi balita pada rentang yang moderat, yakni terpusat di kisaran 100 hingga 400 jiwa per desa. Meskipun sebagian besar desa memiliki populasi yang wajar, grafik ini dengan jelas menyoroti adanya ekor panjang (long tail) di sisi kanan. Hal ini mengindikasikan keberadaan segelintir desa "padat penduduk" yang memiliki jumlah balita di atas 600 hingga 800 jiwa. Bahkan, terlihat sangat jelas adanya nilai ekstrem (outlier) di mana sebuah desa mencatatkan populasi balita yang sangat masif, yaitu mendekati angka 1.400 jiwa. Distribusi yang tidak merata dan kehadiran desa-desa berpopulasi padat ini menjadi variabel penting. Dalam konteks kebijakan kesehatan, desa dengan populasi balita yang sangat besar memerlukan kapasitas fasilitas kesehatan (seperti Posyandu) yang jauh lebih masif untuk mencegah terjadinya ledakan kasus gizi buruk.</p>
-        
-        <!-- FIELD FOTO: EDA 3 -->
-        <div class="image-placeholder" style="background-color: transparent; border: none; padding: 0;">
-            <img src="images/nama-gambar-populasi.png" alt="Distribution of Stunting Prevalence" class="project-img">
-        </div>
 
-        <h4>5.4 Population vs Prevalence</h4>
-        <p>Visualisasi scatterplot antara Jumlah Balita dan Prevalensi Stunting mengungkapkan ketiadaan korelasi linear yang positif antara kedua variabel tersebut. Desa-desa yang mencatatkan tingkat prevalensi stunting terekstrem (berada di kisaran 15% hingga melampaui 25%) justru didominasi oleh wilayah dengan jumlah populasi balita yang relatif kecil hingga menengah, yakni di bawah 400 jiwa. Sebaliknya, desa-desa padat penduduk dengan populasi balita di atas 600 hingga mendekati 1.400 jiwa secara konsisten mencatatkan angka prevalensi yang sangat rendah, rata-rata di bawah 5%.</p>
-        
-        <!-- FIELD FOTO: EDA 4 -->
-        <div class="image-placeholder" style="background-color: transparent; border: none; padding: 0;">
-            <img src="images/nama-gambar-scatterplot.png" alt="Distribution of Stunting Prevalence" class="project-img">
-        </div>
+        <h4>5.3 Distribution of Under-Five Population</h4> 
+        <p>Visualisasi histogram distribusi jumlah balita kembali memperlihatkan pola right-skewed atau condong ke kanan. Mayoritas desa di Kabupaten Langkat memiliki populasi balita pada rentang yang moderat, yakni terpusat di kisaran 100 hingga 400 jiwa per desa. Meskipun sebagian besar desa memiliki populasi yang wajar, grafik ini dengan jelas menyoroti adanya ekor panjang (long tail) di sisi kanan. Hal ini mengindikasikan keberadaan segelintir desa "padat penduduk" yang memiliki jumlah balita di atas 600 hingga 800 jiwa. Bahkan, terlihat sangat jelas adanya nilai ekstrem (outlier) di mana sebuah desa mencatatkan populasi balita yang sangat masif, yaitu mendekati angka 1.400 jiwa. Distribusi yang tidak merata dan kehadiran desa-desa berpopulasi padat ini menjadi variabel penting. Dalam konteks kebijakan kesehatan, desa dengan populasi balita yang sangat besar memerlukan kapasitas fasilitas kesehatan (seperti Posyandu) yang jauh lebih masif untuk mencegah terjadinya ledakan kasus gizi buruk.</p>
+        <!-- FIELD FOTO: EDA 3 -->
+             <div class="image-placeholder" style="background-color: transparent; border: none; padding: 0;">
+            <img src="images/nama-gambar-populasi.png" alt="Distribution of Stunting Prevalence" class="project-img">
+        </div>
+      
 
-        <!-- 6. DATA PREPARATION -->
-        <h3>6. Data Preparation</h3>
-        <p><strong>Feature selection:</strong> Menggunakan Prevalensi (%) dan Jumlah Balita sebagai fitur clustering. Identifier seperti No, ID BPS, ID Dagri, dan Nama Desa tidak dimasukkan ke model.</p>
-        
-        <h4>6.1 Min-Max Scaling</h4>
-        <p>Terdapat perbedaan rentang nilai (magnitude) yang sangat timpang antara kedua fitur utama. Prevalensi berada dalam skala persentase kecil (0 hingga 25,7%), sedangkan jumlah balita berada dalam skala ratusan hingga ribuan (75 hingga 1.409 jiwa). Jika data mentah ini langsung diproses, perhitungan jarak Euclidean akan sangat bias dan sepenuhnya didominasi oleh variabel populasi. Oleh karena itu, transformasi menggunakan Min-Max Scaler diterapkan untuk mengonversi kedua variabel ke dalam rentang rasio standar (0 hingga 1) tanpa mengubah pola sebaran/distribusi aslinya.</p>
-        
-        <!-- FIELD FOTO: SCALING -->
-        <div class="image-placeholder" style="background-color: transparent; border: none; padding: 0;">
-            <img src="images/nama-gambar-scaling.png" alt="Distribution of Stunting Prevalence" class="project-img">
-        </div>
-            
-        <h4>7.1 Euclidean Distance</h4>
-        <p>Setelah kedua variabel utama diseragamkan rentang nilainya melalui Min-Max Scaling, langkah selanjutnya adalah menghitung tingkat kemiripan karakteristik antar desa. Analisis ini menggunakan metrik <strong>Euclidean Distance</strong>, yang secara matematis mengukur jarak garis lurus terpendek antara titik-titik observasi berdasarkan ruang dua dimensi: <code>Prevalensi Norm</code> dan <code>Jumlah Balita Norm</code>.</p>
-        <p>Untuk memvalidasi cara kerja algoritma di balik layar, fungsi kalkulasi jarak Euclidean secara manual (<code>hitung_jarak_euclidean</code>) telah dibangun dan diuji pada data sampel. Sebagai contoh perhitungan, pengujian jarak antara desa <strong>Timbang Lawan</strong> dan <strong>Batu Jong Jong</strong> menggunakan metrik ini menghasilkan jarak sebesar <strong>0.254</strong>. Semakin kecil jarak skor ini, semakin mirip profil stunting kedua desa tersebut, yang pada akhirnya akan menjadi dasar pembentukan klaster.</p>
+        <h4>5.4 Population vs Prevalence</h4>
+        <p>Visualisasi scatterplot antara Jumlah Balita dan Prevalensi Stunting mengungkapkan ketiadaan korelasi linear yang positif antara kedua variabel tersebut. Desa-desa yang mencatatkan tingkat prevalensi stunting terekstrem (berada di kisaran 15% hingga melampaui 25%) justru didominasi oleh wilayah dengan jumlah populasi balita yang relatif kecil hingga menengah, yakni di bawah 400 jiwa. Sebaliknya, desa-desa padat penduduk dengan populasi balita di atas 600 hingga mendekati 1.400 jiwa secara konsisten mencatatkan angka prevalensi yang sangat rendah, rata-rata di bawah 5%.</p>
+        <!-- FIELD FOTO: EDA 4 -->
+        <div class="image-placeholder" style="background-color: transparent; border: none; padding: 0;">
+            <img src="images/nama-gambar-scatterplot.png" alt="Distribution of Stunting Prevalence" class="project-img">
+        </div>
 
-        <!-- FIELD FOTO: EUCLIDEAN DISTANCE -->
-        <div class="image-placeholder" style="background-color: transparent; border: none; padding: 0;">
-            <img src="images/nama-gambar-euclidean.png" alt="Manual Euclidean Distance Calculation" class="project-img">
-        </div>
+        <!-- 6. DATA PREPARATION -->
+        <h3>6. Data Preparation</h3>
+        <p><strong>Feature selection:</strong> Menggunakan Prevalensi (%) dan Jumlah Balita sebagai fitur clustering. Identifier seperti No, ID BPS, ID Dagri, dan Nama Desa tidak dimasukkan ke model.</p>
+        
+        <h4>6.1 Min-Max Scaling</h4>
+        <p>Terdapat perbedaan rentang nilai (magnitude) yang sangat timpang antara kedua fitur utama. Prevalensi berada dalam skala persentase kecil (0 hingga 25,7%), sedangkan jumlah balita berada dalam skala ratusan hingga ribuan (75 hingga 1.409 jiwa). Jika data mentah ini langsung diproses, perhitungan jarak Euclidean akan sangat bias dan sepenuhnya didominasi oleh variabel populasi. Oleh karena itu, transformasi menggunakan Min-Max Scaler diterapkan untuk mengonversi kedua variabel ke dalam rentang rasio standar (0 hingga 1) tanpa mengubah pola sebaran/distribusi aslinya.</p>
+        <!-- FIELD FOTO: SCALING -->
+          <div class="image-placeholder" style="background-color: transparent; border: none; padding: 0;">
+            <img src="images/nama-gambar-scaling.png" alt="Distribution of Stunting Prevalence" class="project-img">
+        </div>
+            
+        <h4>7.1 Euclidean Distance</h4>
+        <p>Setelah kedua variabel utama diseragamkan rentang nilainya melalui Min-Max Scaling, langkah selanjutnya adalah menghitung tingkat kemiripan karakteristik antar desa. Analisis ini menggunakan metrik <strong>Euclidean Distance</strong>, yang secara matematis mengukur jarak garis lurus terpendek antara titik-titik observasi berdasarkan ruang dua dimensi: <code>Prevalensi Norm</code> dan <code>Jumlah Balita Norm</code>.</p>
+        
+        <p>Untuk memvalidasi cara kerja algoritma di balik layar, fungsi kalkulasi jarak Euclidean secara manual (<code>hitung_jarak_euclidean</code>) telah dibangun dan diuji pada data sampel. Sebagai contoh perhitungan, pengujian jarak antara desa <strong>Timbang Lawan</strong> dan <strong>Batu Jong Jong</strong> menggunakan metrik ini menghasilkan jarak sebesar <strong>0.254</strong>. Semakin kecil jarak skor ini, semakin mirip profil stunting kedua desa tersebut, yang pada akhirnya akan menjadi dasar pembentukan klaster.</p>
 
-        <!-- 8. CHOOSING NUMBER OF CLUSTERS -->
-        <h3>8. Choosing the Number of Clusters</h3>
-        <p>Penentuan jumlah klaster yang optimal dilakukan secara analitik menggunakan Metode Elbow dengan menguji nilai k (jumlah klaster) mulai dari 2 hingga 9. Grafik Elbow Curve memvisualisasikan besaran inersia, yakni total jarak metrik dari setiap titik data ke pusat klasternya masing-masing (medoid). Semakin kecil inersia, semakin rapat dan padat kelompok data tersebut. Berdasarkan hasil pengujian, terlihat adanya penurunan nilai inersia yang sangat curam dan signifikan dari titik $k=2$ menuju $k=3$. Namun, setelah melewati titik $k=3$, laju penurunan inersia mulai melandai secara drastis, sehingga pergerakan kurvanya membentuk sudut patahan yang menyerupai siku (elbow). Mengacu pada prinsip analitik titik siku tersebut, penambahan klaster lebih dari 3 tidak lagi memberikan pengurangan inersia yang substansial. Oleh karena itu, k=3 ditetapkan sebagai jumlah klaster yang paling ideal dan efisien secara komputasi. Dari perspektif bisnis dan operasional, pembagian menjadi 3 klaster ini juga sangat rasional dan strategis. Klasifikasi ini akan memudahkan pemerintah daerah Kabupaten Langkat dalam memetakan tingkat kerawanan desa ke dalam tiga status prioritas intervensi gizi yang terukur (misalnya: Prioritas Rendah, Prioritas Menengah, dan Darurat).</p>
-        
-        <!-- FIELD FOTO: ELBOW & SILHOUETTE -->
-        <div class="image-placeholder" style="background-color: transparent; border: none; padding: 0;">
-            <img src="images/nama-gambar-elbow.png" alt="Manual Euclidean Distance Calculation" class="project-img">
-        </div>
-       
-       <!-- 9. CLUSTERING RESULTS -->
-        <h3>9. Clustering Results</h3>
-        <p>Penerapan algoritma <strong>K-Medoids (k=3)</strong> pada 277 desa di Kabupaten Langkat menghasilkan pemisahan kelompok dengan kualitas pemisahan yang dikonfirmasi oleh <strong>Silhouette Score sebesar 0,410</strong>. Visualisasi <i>scatter plot</i> di bawah ini memetakan sebaran hasil klasterisasi, di mana tanda <strong>X merah</strong> menandakan posisi <em>medoid</em> (observasi data aktual yang paling merepresentasikan titik pusat karakteristik dari masing-masing klaster).</p>
+        <!-- FIELD FOTO: EUCLIDEAN DISTANCE -->
+        <div class="image-placeholder" style="background-color: transparent; border: none; padding: 0;">
+            <img src="images/nama-gambar-euclidean.png" alt="Manual Euclidean Distance Calculation" class="project-img">
+        </div>
 
-        <!-- FIELD FOTO: CLUSTERING MAP -->
-        <div class="image-placeholder" style="background-color: transparent; border: none; padding: 0;">
-            <img src="images/nama-gambar-cluster-map.png" alt="Cluster Map K-Medoids" class="project-img">
-        </div>
+        <!-- 8. CHOOSING NUMBER OF CLUSTERS -->
+        <h3>8. Choosing the Number of Clusters</h3>
+        <p>Penentuan jumlah klaster yang optimal dilakukan secara analitik menggunakan Metode Elbow dengan menguji nilai k (jumlah klaster) mulai dari 2 hingga 9. Grafik Elbow Curve memvisualisasikan besaran inersia, yakni total jarak metrik dari setiap titik data ke pusat klasternya masing-masing (medoid). Semakin kecil inersia, semakin rapat dan padat kelompok data tersebut. Berdasarkan hasil pengujian, terlihat adanya penurunan nilai inersia yang sangat curam dan signifikan dari titik $k=2$ menuju $k=3$. Namun, setelah melewati titik $k=3$, laju penurunan inersia mulai melandai secara drastis, sehingga pergerakan kurvanya membentuk sudut patahan yang menyerupai siku (elbow). Mengacu pada prinsip analitik titik siku tersebut, penambahan klaster lebih dari 3 tidak lagi memberikan pengurangan inersia yang substansial. Oleh karena itu, k=3 ditetapkan sebagai jumlah klaster yang paling ideal dan efisien secara komputasi. Dari perspektif bisnis dan operasional, pembagian menjadi 3 klaster ini juga sangat rasional dan strategis. Klasifikasi ini akan memudahkan pemerintah daerah Kabupaten Langkat dalam memetakan tingkat kerawanan desa ke dalam tiga status prioritas intervensi gizi yang terukur (misalnya: Prioritas Rendah, Prioritas Menengah, dan Darurat).</p>
+        <!-- FIELD FOTO: ELBOW & SILHOUETTE -->
+              <div class="image-placeholder" style="background-color: transparent; border: none; padding: 0;">
+            <img src="images/nama-gambar-elbow.png" alt="Manual Euclidean Distance Calculation" class="project-img">
+        </div>
+       
+       <!-- 9. CLUSTERING RESULTS -->
+        <h3>9. Clustering Results</h3>
+        <p>Penerapan algoritma <strong>K-Medoids (k=3)</strong> pada 277 desa di Kabupaten Langkat menghasilkan pemisahan kelompok dengan kualitas pemisahan yang dikonfirmasi oleh <strong>Silhouette Score sebesar 0,410</strong>. Visualisasi <i>scatter plot</i> di bawah ini memetakan sebaran hasil klasterisasi, di mana tanda <strong>X merah</strong> menandakan posisi <em>medoid</em> (observasi data aktual yang paling merepresentasikan titik pusat karakteristik dari masing-masing klaster).</p>
 
-        <p>Algoritma membagi wilayah observasi ke dalam tiga profil desa dengan karakteristik operasional yang sangat berbeda:</p>
+        <!-- FIELD FOTO: CLUSTERING MAP -->
+        <div class="image-placeholder" style="background-color: transparent; border: none; padding: 0;">
+            
+            <img src="images/nama-gambar-cluster-map.png" alt="Cluster Map K-Medoids" class="project-img">
+        </div>
 
-        <table>
-            <thead>
-                <tr>
-                    <th>Cluster</th>
-                    <th>Jumlah Desa</th>
-                    <th>Avg. Prevalensi</th>
-                    <th>Avg. Balita</th>
-                    <th>Karakteristik Utama</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <td><strong>0</strong></td>
-                    <td>130</td>
-                    <td>1,64%</td>
-                    <td>216</td>
-                    <td>Prevalensi dan jumlah balita relatif rendah.</td>
-                </tr>
-                <tr>
-                    <td><strong>1</strong></td>
-                    <td>59</td>
-                    <td><strong>10,76%</strong></td>
-                    <td>252</td>
-                    <td>Prevalensi stunting relatif tinggi.</td>
-                </tr>
-                <tr>
-                    <td><strong>2</strong></td>
-                    <td>88</td>
-                    <td>2,13%</td>
-                    <td><strong>507</strong></td>
-                    <td>Jumlah balita relatif tinggi.</td>
-                </tr>
-            </tbody>
-        </table>
+        <p>Algoritma membagi wilayah observasi ke dalam tiga profil desa dengan karakteristik operasional yang sangat berbeda:</p>
 
-        <div class="insight-card">
-            <strong>Key Insight & Kesimpulan:</strong> Cluster 1 secara spesifik mengisolasi 59 desa dengan rata-rata tingkat stunting terekstrem (10,76%), sedangkan Cluster 2 memetakan wilayah dengan rata-rata populasi balita terpadat (507 jiwa). Cluster 0 menampung mayoritas populasi desa (130 desa) dengan metrik yang paling landai. Pengelompokan spasio-demografis ini dirancang murni untuk mempermudah identifikasi pola kelompok guna prioritas intervensi, bukan sebagai landasan untuk menyimpulkan hubungan kausalitas (sebab-akibat) antara besaran populasi dan tingginya stunting.
-        </div>
+        <table>
+            <thead>
+                <tr>
+                    <th>Cluster</th>
+                    <th>Jumlah Desa</th>
+                    <th>Avg. Prevalensi</th>
+                    <th>Avg. Balita</th>
+                    <th>Karakteristik Utama</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><strong>0</strong></td>
+                    <td>130</td>
+                    <td>1,64%</td>
+                    <td>216</td>
+                    <td>Prevalensi dan jumlah balita relatif rendah.</td>
+                </tr>
+                <tr>
+                    <td><strong>1</strong></td>
+                    <td>59</td>
+                    <td><strong>10,76%</strong></td>
+                    <td>252</td>
+                    <td>Prevalensi stunting relatif tinggi.</td>
+                </tr>
+                <tr>
+                    <td><strong>2</strong></td>
+                    <td>88</td>
+                    <td>2,13%</td>
+                    <td><strong>507</strong></td>
+                    <td>Jumlah balita relatif tinggi.</td>
+                </tr>
+            </tbody>
+        </table>
 
-        <h4>9.1 Cluster Distribution</h4>
-        <p>Visualisasi <i>bar chart</i> di bawah ini mendeskripsikan secara kuantitatif pemetaan ke-277 desa ke dalam tiga klaster yang telah terbentuk:</p>
-        
-        <ul>
-            <li><strong>Cluster 0</strong> mendominasi pembagian wilayah dengan mengelompokkan jumlah anggota terbanyak, yakni <strong>130 desa</strong>.</li>
-            <li><strong>Cluster 2</strong> menempati posisi kedua dengan total agregat <strong>88 desa</strong>.</li>
-            <li><strong>Cluster 1</strong> bertindak sebagai kelompok yang paling spesifik dan berukuran paling kecil, mengisolasi <strong>59 desa</strong>.</li>
-        </ul>
-        
-        <p>Distribusi komposisi yang tidak simetris ini wajar terjadi dalam algoritma K-Medoids. Model secara natural mengumpulkan desa-desa murni berdasarkan kedekatan metrik prevalensi dan populasi, bukan berdasarkan kuota wilayah yang sama rata.</p>
+        <div class="insight-card">
+            <strong>Key Insight & Kesimpulan:</strong> Cluster 1 secara spesifik mengisolasi 59 desa dengan rata-rata tingkat stunting terekstrem (10,76%), sedangkan Cluster 2 memetakan wilayah dengan rata-rata populasi balita terpadat (507 jiwa). Cluster 0 menampung mayoritas populasi desa (130 desa) dengan metrik yang paling landai. Pengelompokan spasio-demografis ini dirancang murni untuk mempermudah identifikasi pola kelompok guna prioritas intervensi, bukan sebagai landasan untuk menyimpulkan hubungan kausalitas (sebab-akibat) antara besaran populasi dan tingginya stunting.
+        </div>
 
-        <!-- FIELD FOTO: CLUSTER DISTRIBUTION BAR CHART -->
-        <div class="image-placeholder" style="background-color: transparent; border: none; padding: 0;">
-            <img src="images/nama-gambar-distribusi-cluster.png" alt="Distribusi Desa pada Setiap Cluster" class="project-img">
-        </div>
+        <h4>9.1 Cluster Distribution</h4>
+        <p>Visualisasi <i>bar chart</i> di bawah ini mendeskripsikan secara kuantitatif pemetaan ke-277 desa ke dalam tiga klaster yang telah terbentuk:</p>
+        
+        <ul>
+            <li><strong>Cluster 0</strong> mendominasi pembagian wilayah dengan mengelompokkan jumlah anggota terbanyak, yakni <strong>130 desa</strong>.</li>
+            <li><strong>Cluster 2</strong> menempati posisi kedua dengan total agregat <strong>88 desa</strong>.</li>
+            <li><strong>Cluster 1</strong> bertindak sebagai kelompok yang paling spesifik dan berukuran paling kecil, mengisolasi <strong>59 desa</strong>.</li>
+        </ul>
+        
+        <p>Distribusi komposisi yang tidak simetris ini wajar terjadi dalam algoritma K-Medoids. Model secara natural mengumpulkan desa-desa murni berdasarkan kedekatan metrik prevalensi dan populasi, bukan berdasarkan kuota wilayah yang sama rata.</p>
 
-        <h4>9.2 Profiling Tingkat Prevalensi antar Klaster</h4>
-        <p>Analisis <i>cluster profiling</i> memvisualisasikan rata-rata prevalensi stunting (dalam skala normalisasi) untuk masing-masing kelompok. Grafik ini menyoroti ketimpangan yang sangat tajam dan mengonfirmasi karakteristik utama dari setiap klasternya:</p>
-        
-        <ul>
-            <li><strong>Cluster 1</strong> menonjol dengan lonjakan batang tertinggi, mencatatkan rata-rata prevalensi melampaui angka 0,40 pada skala normalisasi. Visual yang sangat kontras ini secara definitif memvalidasi status Cluster 1 sebagai kelompok wilayah paling kritis (darurat stunting) yang wajib menjadi target utama program pengentasan gizi buruk pemerintah daerah.</li>
-            <li><strong>Cluster 0 dan Cluster 2</strong> menunjukkan rata-rata prevalensi yang sangat landai, yakni berada jauh di bawah angka 0,10. Hal ini memberikan temuan analitik yang penting: meskipun Cluster 2 memiliki jumlah populasi balita terpadat (berdasarkan metrik sebelumnya), rasio kasus stunting di wilayah tersebut justru terbukti sangat terkendali dan relatif aman, setara dengan Cluster 0.</li>
-        </ul>
+        <!-- FIELD FOTO: CLUSTER DISTRIBUTION BAR CHART -->
+        <div class="image-placeholder" style="background-color: transparent; border: none; padding: 0;">
+            <img src="images/nama-gambar-distribusi-cluster.png" alt="Distribusi Desa pada Setiap Cluster" class="project-img">
+        </div>
 
-        <!-- FIELD FOTO: CLUSTER PROFILE PREVALENCE -->
-        <div class="image-placeholder" style="background-color: transparent; border: none; padding: 0;">
-            <img src="images/nama-gambar-cluster-profile.png" alt="Rata-rata Prevalensi per Cluster" class="project-img">
-        </div>
+        <h4>9.2 Profiling Tingkat Prevalensi antar Klaster</h4>
+        <p>Analisis <i>cluster profiling</i> memvisualisasikan rata-rata prevalensi stunting (dalam skala normalisasi) untuk masing-masing kelompok. Grafik ini menyoroti ketimpangan yang sangat tajam dan mengonfirmasi karakteristik utama dari setiap klasternya:</p>
+        
+        <ul>
+            <li><strong>Cluster 1</strong> menonjol dengan lonjakan batang tertinggi, mencatatkan rata-rata prevalensi melampaui angka 0,40 pada skala normalisasi. Visual yang sangat kontras ini secara definitif memvalidasi status Cluster 1 sebagai kelompok wilayah paling kritis (darurat stunting) yang wajib menjadi target utama program pengentasan gizi buruk pemerintah daerah.</li>
+            <li><strong>Cluster 0 dan Cluster 2</strong> menunjukkan rata-rata prevalensi yang sangat landai, yakni berada jauh di bawah angka 0,10. Hal ini memberikan temuan analitik yang penting: meskipun Cluster 2 memiliki jumlah populasi balita terpadat (berdasarkan metrik sebelumnya), rasio kasus stunting di wilayah tersebut justru terbukti sangat terkendali dan relatif aman, setara dengan Cluster 0.</li>
+        </ul>
 
-        <!-- 13. LIMITATIONS -->
-        <h3>13. Limitations</h3>
-        <ul>
-            <li>Model utama hanya menggunakan dua fitur: prevalensi stunting dan jumlah balita. Clustering tidak membuktikan hubungan kausal atau faktor penyebab stunting.</li>
-            <li>Variabel sosial-ekonomi, akses layanan kesehatan, geografis, dan indikator gizi belum tersedia dalam model.</li>
-            <li>Pemilihan k=3 perlu diperkuat dengan perbandingan Silhouette Score untuk beberapa nilai k.</li>
-        </ul>
+        <!-- FIELD FOTO: CLUSTER PROFILE PREVALENCE -->
+        <div class="image-placeholder" style="background-color: transparent; border: none; padding: 0;">
+            <img src="images/nama-gambar-cluster-profile.png" alt="Rata-rata Prevalensi per Cluster" class="project-img">
+        </div>
 
-        <!-- 14. RECOMMENDATIONS -->
-        <h3>14. Recommendations / Next Steps</h3>
-        <ul>
-            <li>Tambahkan variabel sosial-ekonomi, akses kesehatan, geografis, dan indikator gizi jika tersedia.</li>
-            <li>Bandingkan K-Medoids dengan metode clustering lain untuk menguji kestabilan pola.</li>
-            <li>Evaluasi kualitas cluster dengan beberapa metrik dan beberapa nilai k.</li>
-            <li>Gunakan hasil cluster sebagai dasar eksplorasi lebih lanjut, bukan sebagai bukti faktor penyebab mutlak.</li>
-        </ul>
+        <!-- 13. LIMITATIONS -->
+        <h3>13. Limitations</h3>
+        <ul>
+            <li>Model utama hanya menggunakan dua fitur: prevalensi stunting dan jumlah balita. Clustering tidak membuktikan hubungan kausal atau faktor penyebab stunting.</li>
+            <li>Variabel sosial-ekonomi, akses layanan kesehatan, geografis, dan indikator gizi belum tersedia dalam model.</li>
+            <li>Pemilihan k=3 perlu diperkuat dengan perbandingan Silhouette Score untuk beberapa nilai k.</li>
+        </ul>
 
-        <!-- ================= CTA / FOOTER PENUTUP ================= -->
-        <section id="contact" class="cta-section">
-            <h2>Let's Work Together 🚀</h2>
-            <p>Saya terbuka untuk peluang baru di bidang System Analyst, Data Analytics, maupun IT Solution Engineering. Jika Anda memiliki proyek atau posisi yang sesuai, mari terhubung!</p>
-            
-            <div style="display: flex; justify-content: center; gap: 15px; flex-wrap: wrap;">
-                <!-- Ganti email di bawah ini dengan email asli Anda -->
-                <a href="mailto:emailanda@gmail.com" class="btn-primary" style="padding: 14px 30px; font-size: 1.1rem;">
-                    ✉️ Send an Email
-                </a>
-                <!-- Ganti link di bawah ini dengan URL LinkedIn Anda -->
-                <a href="https://linkedin.com/in/usernameanda" target="_blank" class="btn-primary" style="background-color: #0A66C2; padding: 14px 30px; font-size: 1.1rem;">
-                    🔗 Connect on LinkedIn
-                </a>
-            </div>
-        </section>
+        <!-- 14. RECOMMENDATIONS -->
+        <h3>14. Recommendations / Next Steps</h3>
+        <ul>
+            <li>Tambahkan variabel sosial-ekonomi, akses kesehatan, geografis, dan indikator gizi jika tersedia.</li>
+            <li>Bandingkan K-Medoids dengan metode clustering lain untuk menguji kestabilan pola.</li>
+            <li>Evaluasi kualitas cluster dengan beberapa metrik dan beberapa nilai k.</li>
+            <li>Gunakan hasil cluster sebagai dasar eksplorasi lebih lanjut, bukan sebagai bukti faktor penyebab mutlak.</li>
+        </ul>
 
-    </div>
+    </div>
 
-    <!-- FOOTER KREDIT -->
-    <footer style="text-align: center; padding: 30px 0; color: var(--text-secondary); font-size: 0.9rem; margin-top: 20px; border-top: 1px solid var(--border-color);">
-        &copy; 2026 Leonardo Saragih. All Rights Reserved.
-    </footer>
+   
+    <script>
+        const currentTheme = localStorage.getItem('theme');
+        const themeBtn = document.getElementById('theme-btn');
+        
+        if (currentTheme === 'dark') {
+            document.documentElement.setAttribute('data-theme', 'dark');
+            themeBtn.innerHTML = '☀️ Light Mode';
+        }
 
-    <script>
-        const currentTheme = localStorage.getItem('theme');
-        const themeBtn = document.getElementById('theme-btn');
-        
-        if (currentTheme === 'dark') {
-            document.documentElement.setAttribute('data-theme', 'dark');
-            themeBtn.innerHTML = '☀️ Light Mode';
-        }
-
-        function toggleTheme() {
-            let theme = document.documentElement.getAttribute('data-theme');
-            
-            if (theme === 'dark') {
-                document.documentElement.removeAttribute('data-theme');
-                localStorage.setItem('theme', 'light');
-                themeBtn.innerHTML = '🌙 Dark Mode';
-            } else {
-                document.documentElement.setAttribute('data-theme', 'dark');
-                localStorage.setItem('theme', 'dark');
-                themeBtn.innerHTML = '☀️ Light Mode';
-            }
-        }
-    </script>
+        function toggleTheme() {
+            let theme = document.documentElement.getAttribute('data-theme');
+            
+            if (theme === 'dark') {
+                document.documentElement.removeAttribute('data-theme');
+                localStorage.setItem('theme', 'light');
+                themeBtn.innerHTML = '🌙 Dark Mode';
+            } else {
+                document.documentElement.setAttribute('data-theme', 'dark');
+                localStorage.setItem('theme', 'dark');
+                themeBtn.innerHTML = '☀️ Light Mode';
+            }
+        }
+    </script>
 </body>
 </html>
+ 
