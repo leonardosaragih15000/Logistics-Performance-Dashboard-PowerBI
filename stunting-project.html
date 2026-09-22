@@ -6,7 +6,7 @@
     <title>Stunting Risk Clustering | Leonardo Saragih</title>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <style>
-       
+        :root {
             --bg-color: #F8F9FA;
             --text-primary: #1F2937;
             --text-secondary: #4B5563;
@@ -47,29 +47,86 @@
             transition: background-color 0.3s ease, color 0.3s ease;
         }
 
-        .container {
-            max-width: 900px;
-            margin: 0 auto;
-            padding: 40px 20px;
-            position: relative;
-        }
-
-     
-        .nav-header {
+        /* ================= NEW: STICKY NAVBAR & CTA ================= */
+        .sticky-navbar {
+            position: sticky;
+            top: 0;
+            background: rgba(248, 249, 250, 0.85);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            z-index: 1000;
+            padding: 15px 5%;
             display: flex;
             justify-content: space-between;
             align-items: center;
-            margin-bottom: 40px;
+            border-bottom: 1px solid var(--border-color);
+            transition: background 0.3s ease;
+        }
+        
+        [data-theme="dark"] .sticky-navbar {
+            background: rgba(17, 24, 39, 0.85);
         }
 
-        .btn-back {
-            text-decoration: none;
-            color: var(--accent-color);
-            font-weight: 600;
-            font-size: 0.95rem;
+        .nav-links {
             display: flex;
+            gap: 25px;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--text-primary);
+            font-weight: 500;
+            font-size: 0.95rem;
+            transition: color 0.2s ease;
+        }
+
+        .nav-links a:hover {
+            color: var(--accent-color);
+        }
+
+        .btn-primary {
+            background-color: var(--accent-color);
+            color: #ffffff !important;
+            padding: 10px 20px;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 600;
+            display: inline-flex;
             align-items: center;
-            gap: 5px;
+            gap: 8px;
+            transition: opacity 0.2s, transform 0.2s;
+            border: none;
+            cursor: pointer;
+        }
+
+        .btn-primary:hover {
+            opacity: 0.9;
+            transform: translateY(-2px);
+        }
+
+        .cta-section {
+            text-align: center;
+            padding: 60px 20px;
+            margin: 60px 0 20px 0;
+            background-color: var(--card-bg);
+            border-radius: 16px;
+            border: 1px solid var(--border-color);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+        }
+
+        .cta-section h2 {
+            font-size: 2.2rem;
+            margin-bottom: 15px;
+            color: var(--text-primary);
+        }
+
+        .cta-section p {
+            font-size: 1.1rem;
+            color: var(--text-secondary);
+            margin-bottom: 30px;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
         }
 
         .theme-toggle {
@@ -82,6 +139,13 @@
             font-weight: 600;
             cursor: pointer;
             transition: all 0.2s ease;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 40px 20px;
+            position: relative;
         }
 
         /* HEADER PROJECT */
@@ -206,26 +270,39 @@
             box-shadow: 0 4px 6px rgba(0,0,0,0.1);
         }
 
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none; /* Menyembunyikan link di mobile agar tidak penuh */
+            }
+        }
     </style>
 </head>
 <body>
 
+    <!-- STICKY NAVBAR -->
+    <nav class="sticky-navbar">
+        <a href="index.html" class="nav-brand" style="text-decoration: none; font-weight: 800; font-size: 1.4rem; color: var(--accent-color);">
+            LS.
+        </a>
+        <div class="nav-links">
+            <a href="index.html#about">About</a>
+            <a href="index.html#skills">Skills</a>
+            <a href="index.html#projects">Projects</a>
+            <a href="index.html#experience">Experience</a>
+            <a href="index.html#education">Education</a>
+        </div>
+        <div class="nav-actions" style="display: flex; gap: 15px; align-items: center;">
+            <button class="theme-toggle" id="theme-btn" onclick="toggleTheme()" style="margin: 0;">🌙</button>
+            <a href="CV_Leonardo_Saragih.pdf" download class="btn-primary">📄 Download CV</a>
+        </div>
+    </nav>
+
     <div class="container">
         
-      
-        <div class="nav-header">
-            <a href="index.html" class="btn-back">⬅ Back to Portfolio</a>
-            <button class="theme-toggle" id="theme-btn" onclick="toggleTheme()">🌙 Dark Mode</button>
-        </div>
-
-      
-        <div class="project-header" style="margin-bottom: 40px;">
-            
-           
+        <div class="project-header" style="margin-bottom: 40px; margin-top: 20px;">
             <h1 style="font-size: 2.5rem; margin-bottom: 10px;">Stunting Risk Clustering in Langkat Regency Using K-Medoids</h1>
             <p style="font-size: 1.1rem; color: var(--text-secondary); margin-bottom: 25px;">Identifying village-level patterns based on stunting prevalence and under-five population.</p>
 
-           
             <div class="project-cover" style="margin-bottom: 30px; text-align: center;">
                 <img src="images/stunting-cover.jpg" alt="Stunting Project Banner" style="width: 100%; max-width: 1000px; border-radius: 16px; box-shadow: 0 8px 24px rgba(0,0,0,0.12); object-fit: cover;">
             </div>
@@ -279,7 +356,6 @@
                 </table>
             </div>
         </div>
- 
 
         <!-- 2. PROBLEM & ANALYTICAL QUESTIONS -->
         <h3>2. Problem & Analytical Questions</h3>
@@ -324,10 +400,7 @@
         
         <!-- FIELD FOTO: DATA QUALITY -->
         <div class="image-placeholder" style="background-color: transparent; border: none; padding: 0;">
-            <!-- Gambar Pertama: Data Info -->
             <img src="images/nama-gambar-data-quality.png" alt="Data Info" class="project-img" style="margin-bottom: 20px;">
-            
-            <!-- Gambar Kedua: Data Describe -->
             <img src="images/nama-gambar-data-desc.png" alt="Data Describe" class="project-img">
         </div>
 
@@ -341,29 +414,30 @@
         <h4>5.1 Distribution of Stunting Prevalence</h4>
         <p>Distribusi prevalensi stunting di Kabupaten Langkat memperlihatkan pola right-skewed atau condong ke kanan secara signifikan. Mayoritas desa berkerumun pada tingkat prevalensi yang sangat rendah, yakni di bawah 5%, dengan puncak kepadatan tertinggi berada di rentang 0% hingga 2%. Meskipun secara umum angka stunting tampak terkendali di sebagian besar wilayah, kurva ekor panjang (long tail) yang menjuntai ke sebelah kanan mengungkapkan adanya sejumlah kecil desa dengan tingkat stunting yang ekstrem. Terdapat beberapa desa yang mencatatkan prevalensi jauh melampaui rata-rata, membentang dari 10% hingga mendekati angka 25%.</p>
     
-          <!-- FIELD FOTO: EDA 1 -->
+        <!-- FIELD FOTO: EDA 1 -->
         <div class="image-placeholder" style="background-color: transparent; border: none; padding: 0;">
             <img src="images/nama-gambar-histogram.png" alt="Distribution of Stunting Prevalence" class="project-img">
         </div>
 
         <h4>5.2 Top 10 Villages by Prevalence</h4>
         <p>Visualisasi bar chart tersebut secara spesifik menyoroti 10 desa dengan tingkat prevalensi stunting tertinggi di Kabupaten Langkat. Desa Jaring Halus menempati urutan pertama sebagai wilayah paling kritis dengan angka prevalensi yang melampaui batas 25%. Posisi ini diikuti erat oleh desa Timbang Jaya, Perlis, Kebun Kelapa, dan Alur Gadung yang seluruhnya mencatatkan angka prevalensi di atas 20%. Bahkan, desa yang berada di urutan kesepuluh (Tebing Tanjung Selamat) masih menunjukkan tingkat stunting di kisaran 14,5%. Daftar 10 besar ini dengan jelas memetakan titik-titik lokasi darurat (hotspots) yang mutlak membutuhkan prioritas utama dan intervensi gizi segera dari pemerintah daerah. Selain itu, grafik ini mengonfirmasi keberadaan desa-desa outlier yang sebelumnya terlihat pada bagian ekor panjang (long tail) di histogram distribusi.</p>
+        
         <!-- FIELD FOTO: EDA 2 -->
         <div class="image-placeholder" style="background-color: transparent; border: none; padding: 0;">
             <img src="images/nama-gambar-barchart.png" alt="Distribution of Stunting Prevalence" class="project-img">
         </div>
 
-
         <h4>5.3 Distribution of Under-Five Population</h4> 
         <p>Visualisasi histogram distribusi jumlah balita kembali memperlihatkan pola right-skewed atau condong ke kanan. Mayoritas desa di Kabupaten Langkat memiliki populasi balita pada rentang yang moderat, yakni terpusat di kisaran 100 hingga 400 jiwa per desa. Meskipun sebagian besar desa memiliki populasi yang wajar, grafik ini dengan jelas menyoroti adanya ekor panjang (long tail) di sisi kanan. Hal ini mengindikasikan keberadaan segelintir desa "padat penduduk" yang memiliki jumlah balita di atas 600 hingga 800 jiwa. Bahkan, terlihat sangat jelas adanya nilai ekstrem (outlier) di mana sebuah desa mencatatkan populasi balita yang sangat masif, yaitu mendekati angka 1.400 jiwa. Distribusi yang tidak merata dan kehadiran desa-desa berpopulasi padat ini menjadi variabel penting. Dalam konteks kebijakan kesehatan, desa dengan populasi balita yang sangat besar memerlukan kapasitas fasilitas kesehatan (seperti Posyandu) yang jauh lebih masif untuk mencegah terjadinya ledakan kasus gizi buruk.</p>
+        
         <!-- FIELD FOTO: EDA 3 -->
-             <div class="image-placeholder" style="background-color: transparent; border: none; padding: 0;">
+        <div class="image-placeholder" style="background-color: transparent; border: none; padding: 0;">
             <img src="images/nama-gambar-populasi.png" alt="Distribution of Stunting Prevalence" class="project-img">
         </div>
-      
 
         <h4>5.4 Population vs Prevalence</h4>
         <p>Visualisasi scatterplot antara Jumlah Balita dan Prevalensi Stunting mengungkapkan ketiadaan korelasi linear yang positif antara kedua variabel tersebut. Desa-desa yang mencatatkan tingkat prevalensi stunting terekstrem (berada di kisaran 15% hingga melampaui 25%) justru didominasi oleh wilayah dengan jumlah populasi balita yang relatif kecil hingga menengah, yakni di bawah 400 jiwa. Sebaliknya, desa-desa padat penduduk dengan populasi balita di atas 600 hingga mendekati 1.400 jiwa secara konsisten mencatatkan angka prevalensi yang sangat rendah, rata-rata di bawah 5%.</p>
+        
         <!-- FIELD FOTO: EDA 4 -->
         <div class="image-placeholder" style="background-color: transparent; border: none; padding: 0;">
             <img src="images/nama-gambar-scatterplot.png" alt="Distribution of Stunting Prevalence" class="project-img">
@@ -375,14 +449,14 @@
         
         <h4>6.1 Min-Max Scaling</h4>
         <p>Terdapat perbedaan rentang nilai (magnitude) yang sangat timpang antara kedua fitur utama. Prevalensi berada dalam skala persentase kecil (0 hingga 25,7%), sedangkan jumlah balita berada dalam skala ratusan hingga ribuan (75 hingga 1.409 jiwa). Jika data mentah ini langsung diproses, perhitungan jarak Euclidean akan sangat bias dan sepenuhnya didominasi oleh variabel populasi. Oleh karena itu, transformasi menggunakan Min-Max Scaler diterapkan untuk mengonversi kedua variabel ke dalam rentang rasio standar (0 hingga 1) tanpa mengubah pola sebaran/distribusi aslinya.</p>
+        
         <!-- FIELD FOTO: SCALING -->
-          <div class="image-placeholder" style="background-color: transparent; border: none; padding: 0;">
+        <div class="image-placeholder" style="background-color: transparent; border: none; padding: 0;">
             <img src="images/nama-gambar-scaling.png" alt="Distribution of Stunting Prevalence" class="project-img">
         </div>
             
         <h4>7.1 Euclidean Distance</h4>
         <p>Setelah kedua variabel utama diseragamkan rentang nilainya melalui Min-Max Scaling, langkah selanjutnya adalah menghitung tingkat kemiripan karakteristik antar desa. Analisis ini menggunakan metrik <strong>Euclidean Distance</strong>, yang secara matematis mengukur jarak garis lurus terpendek antara titik-titik observasi berdasarkan ruang dua dimensi: <code>Prevalensi Norm</code> dan <code>Jumlah Balita Norm</code>.</p>
-        
         <p>Untuk memvalidasi cara kerja algoritma di balik layar, fungsi kalkulasi jarak Euclidean secara manual (<code>hitung_jarak_euclidean</code>) telah dibangun dan diuji pada data sampel. Sebagai contoh perhitungan, pengujian jarak antara desa <strong>Timbang Lawan</strong> dan <strong>Batu Jong Jong</strong> menggunakan metrik ini menghasilkan jarak sebesar <strong>0.254</strong>. Semakin kecil jarak skor ini, semakin mirip profil stunting kedua desa tersebut, yang pada akhirnya akan menjadi dasar pembentukan klaster.</p>
 
         <!-- FIELD FOTO: EUCLIDEAN DISTANCE -->
@@ -393,8 +467,9 @@
         <!-- 8. CHOOSING NUMBER OF CLUSTERS -->
         <h3>8. Choosing the Number of Clusters</h3>
         <p>Penentuan jumlah klaster yang optimal dilakukan secara analitik menggunakan Metode Elbow dengan menguji nilai k (jumlah klaster) mulai dari 2 hingga 9. Grafik Elbow Curve memvisualisasikan besaran inersia, yakni total jarak metrik dari setiap titik data ke pusat klasternya masing-masing (medoid). Semakin kecil inersia, semakin rapat dan padat kelompok data tersebut. Berdasarkan hasil pengujian, terlihat adanya penurunan nilai inersia yang sangat curam dan signifikan dari titik $k=2$ menuju $k=3$. Namun, setelah melewati titik $k=3$, laju penurunan inersia mulai melandai secara drastis, sehingga pergerakan kurvanya membentuk sudut patahan yang menyerupai siku (elbow). Mengacu pada prinsip analitik titik siku tersebut, penambahan klaster lebih dari 3 tidak lagi memberikan pengurangan inersia yang substansial. Oleh karena itu, k=3 ditetapkan sebagai jumlah klaster yang paling ideal dan efisien secara komputasi. Dari perspektif bisnis dan operasional, pembagian menjadi 3 klaster ini juga sangat rasional dan strategis. Klasifikasi ini akan memudahkan pemerintah daerah Kabupaten Langkat dalam memetakan tingkat kerawanan desa ke dalam tiga status prioritas intervensi gizi yang terukur (misalnya: Prioritas Rendah, Prioritas Menengah, dan Darurat).</p>
+        
         <!-- FIELD FOTO: ELBOW & SILHOUETTE -->
-              <div class="image-placeholder" style="background-color: transparent; border: none; padding: 0;">
+        <div class="image-placeholder" style="background-color: transparent; border: none; padding: 0;">
             <img src="images/nama-gambar-elbow.png" alt="Manual Euclidean Distance Calculation" class="project-img">
         </div>
        
@@ -404,7 +479,6 @@
 
         <!-- FIELD FOTO: CLUSTERING MAP -->
         <div class="image-placeholder" style="background-color: transparent; border: none; padding: 0;">
-            
             <img src="images/nama-gambar-cluster-map.png" alt="Cluster Map K-Medoids" class="project-img">
         </div>
 
@@ -495,9 +569,30 @@
             <li>Gunakan hasil cluster sebagai dasar eksplorasi lebih lanjut, bukan sebagai bukti faktor penyebab mutlak.</li>
         </ul>
 
+        <!-- ================= CTA / FOOTER PENUTUP ================= -->
+        <section id="contact" class="cta-section">
+            <h2>Let's Work Together 🚀</h2>
+            <p>Saya terbuka untuk peluang baru di bidang System Analyst, Data Analytics, maupun IT Solution Engineering. Jika Anda memiliki proyek atau posisi yang sesuai, mari terhubung!</p>
+            
+            <div style="display: flex; justify-content: center; gap: 15px; flex-wrap: wrap;">
+                <!-- Ganti email di bawah ini dengan email asli Anda -->
+                <a href="mailto:emailanda@gmail.com" class="btn-primary" style="padding: 14px 30px; font-size: 1.1rem;">
+                    ✉️ Send an Email
+                </a>
+                <!-- Ganti link di bawah ini dengan URL LinkedIn Anda -->
+                <a href="https://linkedin.com/in/usernameanda" target="_blank" class="btn-primary" style="background-color: #0A66C2; padding: 14px 30px; font-size: 1.1rem;">
+                    🔗 Connect on LinkedIn
+                </a>
+            </div>
+        </section>
+
     </div>
 
-   
+    <!-- FOOTER KREDIT -->
+    <footer style="text-align: center; padding: 30px 0; color: var(--text-secondary); font-size: 0.9rem; margin-top: 20px; border-top: 1px solid var(--border-color);">
+        &copy; 2026 Leonardo Saragih. All Rights Reserved.
+    </footer>
+
     <script>
         const currentTheme = localStorage.getItem('theme');
         const themeBtn = document.getElementById('theme-btn');
