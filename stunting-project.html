@@ -369,44 +369,56 @@
         </div>
        
 
-        <!-- 9. CLUSTERING RESULTS -->
+       <!-- 9. CLUSTERING RESULTS -->
         <h3>9. Clustering Results</h3>
+        <p>Penerapan algoritma <strong>K-Medoids (k=3)</strong> pada 277 desa di Kabupaten Langkat menghasilkan pemisahan kelompok dengan kualitas pemisahan yang dikonfirmasi oleh <strong>Silhouette Score sebesar 0,410</strong>[cite: 15]. Visualisasi <i>scatter plot</i> di bawah ini memetakan sebaran hasil klasterisasi, di mana tanda <strong>X merah</strong> menandakan posisi <em>medoid</em> (observasi data aktual yang paling merepresentasikan titik pusat karakteristik dari masing-masing klaster)[cite: 15].</p>
+
         <!-- FIELD FOTO: CLUSTERING MAP -->
-        <div class="image-placeholder">
-            <p>📷 <strong>[Tempat Foto: Visualisasi Hasil Clustering (Scatter Plot Cluster)]</strong></p>
-            <img src="images/nama-gambar-cluster-map.png" alt="Cluster Map" class="project-img" style="display: none;">
+        <div class="image-placeholder" style="background-color: transparent; border: none; padding: 0;">
+            
+            <img src="images/nama-gambar-cluster-map.png" alt="Cluster Map K-Medoids" class="project-img">
         </div>
 
+        <p>Algoritma membagi wilayah observasi ke dalam tiga profil desa dengan karakteristik operasional yang sangat berbeda.:</p>
+
         <table>
-            <tr>
-                <th>Cluster</th>
-                <th>Villages</th>
-                <th>Avg. Prevalence</th>
-                <th>Avg. Under-five</th>
-                <th>Profile</th>
-            </tr>
-            <tr>
-                <td>0</td>
-                <td>130</td>
-                <td>1.64%</td>
-                <td>216</td>
-                <td>Low prevalence / moderate population</td>
-            </tr>
-            <tr>
-                <td>1</td>
-                <td>59</td>
-                <td>10.76%</td>
-                <td>252</td>
-                <td>High prevalence / moderate population</td>
-            </tr>
-            <tr>
-                <td>2</td>
-                <td>88</td>
-                <td>2.13%</td>
-                <td>507</td>
-                <td>Moderate prevalence / high population</td>
-            </tr>
+            <thead>
+                <tr>
+                    <th>Cluster</th>
+                    <th>Jumlah Desa</th>
+                    <th>Avg. Prevalensi</th>
+                    <th>Avg. Balita</th>
+                    <th>Karakteristik Utama</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><strong>0</strong></td>
+                    <td>130</td>
+                    <td>1,64%</td>
+                    <td>216</td>
+                    <td>Prevalensi dan jumlah balita relatif rendah[cite: 15].</td>
+                </tr>
+                <tr>
+                    <td><strong>1</strong></td>
+                    <td>59</td>
+                    <td><strong>10,76%</strong></td>
+                    <td>252</td>
+                    <td>Prevalensi stunting relatif tinggi[cite: 15].</td>
+                </tr>
+                <tr>
+                    <td><strong>2</strong></td>
+                    <td>88</td>
+                    <td>2,13%</td>
+                    <td><strong>507</strong></td>
+                    <td>Jumlah balita relatif tinggi[cite: 15].</td>
+                </tr>
+            </tbody>
         </table>
+
+        <div class="insight-card">
+            <strong>Key Insight & Kesimpulan:</strong> Cluster 1 secara spesifik mengisolasi 59 desa dengan rata-rata tingkat stunting terekstrem (10,76%), sedangkan Cluster 2 memetakan wilayah dengan rata-rata populasi balita terpadat (507 jiwa)[cite: 15]. Cluster 0 menampung mayoritas populasi desa (130 desa) dengan metrik yang paling landai[cite: 15]. Pengelompokan spasio-demografis ini dirancang murni untuk mempermudah identifikasi pola kelompok guna prioritas intervensi, bukan sebagai landasan untuk menyimpulkan hubungan kausalitas (sebab-akibat) antara besaran populasi dan tingginya stunting[cite: 15].
+        </div>
 
         <!-- 11. KEY INSIGHTS -->
         <h3>11. Key Insights</h3>
