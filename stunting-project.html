@@ -344,11 +344,10 @@
         <p><strong>Feature selection:</strong> Menggunakan Prevalensi (%) dan Jumlah Balita sebagai fitur clustering. Identifier seperti No, ID BPS, ID Dagri, dan Nama Desa tidak dimasukkan ke model.</p>
         
         <h4>6.1 Min-Max Scaling</h4>
-        <p>Normalisasi mengubah kedua fitur ke skala 0-1 sehingga perbedaan satuan/magnitude tidak mendominasi perhitungan jarak.</p>
+        <p>Terdapat perbedaan rentang nilai (magnitude) yang sangat timpang antara kedua fitur utama. Prevalensi berada dalam skala persentase kecil (0 hingga 25,7%), sedangkan jumlah balita berada dalam skala ratusan hingga ribuan (75 hingga 1.409 jiwa). Jika data mentah ini langsung diproses, perhitungan jarak Euclidean akan sangat bias dan sepenuhnya didominasi oleh variabel populasi. Oleh karena itu, transformasi menggunakan Min-Max Scaler diterapkan untuk mengonversi kedua variabel ke dalam rentang rasio standar (0 hingga 1) tanpa mengubah pola sebaran/distribusi aslinya.</p>
         <!-- FIELD FOTO: SCALING -->
-        <div class="image-placeholder">
-            <p>📷 <strong>[Tempat Foto: Hasil Normalisasi / Min-Max Scaling]</strong></p>
-            <img src="images/nama-gambar-scaling.png" alt="Min-Max Scaling Result" class="project-img" style="display: none;">
+          <div class="image-placeholder" style="background-color: transparent; border: none; padding: 0;">
+            <img src="images/nama-gambar-scaling.png" alt="Distribution of Stunting Prevalence" class="project-img">
         </div>
 
         <!-- 7. CLUSTERING METHODOLOGY -->
