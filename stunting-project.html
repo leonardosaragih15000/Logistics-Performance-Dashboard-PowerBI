@@ -352,7 +352,7 @@
             <h4>7.1 Euclidean Distance</h4>
         <p>Setelah kedua variabel utama diseragamkan rentang nilainya melalui Min-Max Scaling, langkah selanjutnya adalah menghitung tingkat kemiripan karakteristik antar desa. Analisis ini menggunakan metrik <strong>Euclidean Distance</strong>, yang secara matematis mengukur jarak garis lurus terpendek antara titik-titik observasi berdasarkan ruang dua dimensi: <code>Prevalensi Norm</code> dan <code>Jumlah Balita Norm</code>.</p>
         
-        <p>Untuk memvalidasi cara kerja algoritma di balik layar, fungsi kalkulasi jarak Euclidean secara manual (<code>hitung_jarak_euclidean</code>) telah dibangun dan diuji pada data sampel[cite: 17]. Sebagai contoh perhitungan, pengujian jarak antara desa <strong>Timbang Lawan</strong> dan <strong>Batu Jong Jong</strong> menggunakan metrik ini menghasilkan jarak sebesar <strong>0.254</strong>[cite: 17]. Semakin kecil jarak skor ini, semakin mirip profil stunting kedua desa tersebut, yang pada akhirnya akan menjadi dasar pembentukan klaster.</p>
+        <p>Untuk memvalidasi cara kerja algoritma di balik layar, fungsi kalkulasi jarak Euclidean secara manual (<code>hitung_jarak_euclidean</code>) telah dibangun dan diuji pada data sampel. Sebagai contoh perhitungan, pengujian jarak antara desa <strong>Timbang Lawan</strong> dan <strong>Batu Jong Jong</strong> menggunakan metrik ini menghasilkan jarak sebesar <strong>0.254</strong>[cite: 17]. Semakin kecil jarak skor ini, semakin mirip profil stunting kedua desa tersebut, yang pada akhirnya akan menjadi dasar pembentukan klaster.</p>
 
         <!-- FIELD FOTO: EUCLIDEAN DISTANCE -->
         <div class="image-placeholder" style="background-color: transparent; border: none; padding: 0;">
@@ -362,12 +362,12 @@
 
         <!-- 8. CHOOSING NUMBER OF CLUSTERS -->
         <h3>8. Choosing the Number of Clusters</h3>
-        <p>Gunakan Elbow Method untuk melihat perubahan inertia pada k=2 sampai k=9. Dokumentasi menunjukkan elbow sekitar k=3-4, sehingga pemilihan k=3 dipilih.</p>
+        <p>Penentuan jumlah klaster yang optimal dilakukan secara analitik menggunakan Metode Elbow dengan menguji nilai k (jumlah klaster) mulai dari 2 hingga 9. Grafik Elbow Curve memvisualisasikan besaran inersia, yakni total jarak metrik dari setiap titik data ke pusat klasternya masing-masing (medoid). Semakin kecil inersia, semakin rapat dan padat kelompok data tersebut.Berdasarkan hasil pengujian, terlihat adanya penurunan nilai inersia yang sangat curam dan signifikan dari titik $k=2$ menuju $k=3$. Namun, setelah melewati titik $k=3$, laju penurunan inersia mulai melandai secara drastis, sehingga pergerakan kurvanya membentuk sudut patahan yang menyerupai siku (elbow).Mengacu pada prinsip analitik titik siku tersebut, penambahan klaster lebih dari 3 tidak lagi memberikan pengurangan inersia yang substansial. Oleh karena itu, k=3 ditetapkan sebagai jumlah klaster yang paling ideal dan efisien secara komputasi.Dari perspektif bisnis dan operasional, pembagian menjadi 3 klaster ini juga sangat rasional dan strategis. Klasifikasi ini akan memudahkan pemerintah daerah Kabupaten Langkat dalam memetakan tingkat kerawanan desa ke dalam tiga status prioritas intervensi gizi yang terukur (misalnya: Prioritas Rendah, Prioritas Menengah, dan Darurat).</p>
         <!-- FIELD FOTO: ELBOW & SILHOUETTE -->
-        <div class="image-placeholder">
-            <p>📷 <strong>[Tempat Foto: Grafik Elbow Curve & Silhouette Score]</strong></p>
-            <img src="images/nama-gambar-elbow.png" alt="Elbow Curve" class="project-img" style="display: none;">
+              <div class="image-placeholder" style="background-color: transparent; border: none; padding: 0;">
+            <img src="images/nama-gambar-elbow.png" alt="Manual Euclidean Distance Calculation" class="project-img">
         </div>
+       
 
         <!-- 9. CLUSTERING RESULTS -->
         <h3>9. Clustering Results</h3>
