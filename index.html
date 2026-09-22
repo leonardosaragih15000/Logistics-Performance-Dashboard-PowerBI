@@ -18,6 +18,8 @@
             --chip-text: #3730A3;
             --btn-toggle-bg: #E5E7EB;
             --btn-toggle-text: #1F2937;
+            --table-header-bg: #F3F4F6;
+            --table-row-border: #E5E7EB;
         }
         
         /* TEMA GELAP */
@@ -25,13 +27,15 @@
             --bg-color: #111827;
             --text-primary: #F9FAFB;
             --text-secondary: #9CA3AF;
-            --accent-color: #3B82F6; /* Biru yang lebih terang untuk mode gelap */
+            --accent-color: #3B82F6;
             --card-bg: #1F2937;
             --border-color: #374151;
             --chip-bg: #374151;
             --chip-text: #BFDBFE;
             --btn-toggle-bg: #374151;
             --btn-toggle-text: #F9FAFB;
+            --table-header-bg: #374151;
+            --table-row-border: #4B5563;
         }
 
         body {
@@ -44,18 +48,58 @@
             transition: background-color 0.3s ease, color 0.3s ease;
         }
 
-        .container {
-            max-width: 900px;
-            margin: 0 auto;
-            padding: 40px 20px;
-            position: relative; 
+        /* ================= NEW: STICKY NAVBAR ================= */
+        .sticky-navbar {
+            position: sticky;
+            top: 0;
+            background: rgba(248, 249, 250, 0.85);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            z-index: 1000;
+            padding: 15px 5%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid var(--border-color);
+            transition: background 0.3s ease;
         }
 
-        
+        [data-theme="dark"] .sticky-navbar {
+            background: rgba(17, 24, 39, 0.85);
+        }
+
+        .nav-brand {
+            font-weight: 800;
+            font-size: 1.4rem;
+            color: var(--accent-color);
+            text-decoration: none;
+            letter-spacing: -0.5px;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 25px;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--text-primary);
+            font-weight: 500;
+            font-size: 0.95rem;
+            transition: color 0.2s ease;
+        }
+
+        .nav-links a:hover {
+            color: var(--accent-color);
+        }
+
+        .nav-actions {
+            display: flex;
+            gap: 15px;
+            align-items: center;
+        }
+
         .theme-toggle {
-            position: absolute;
-            top: 40px;
-            right: 20px;
             background-color: var(--btn-toggle-bg);
             color: var(--btn-toggle-text);
             border: none;
@@ -73,6 +117,13 @@
         .theme-toggle:hover {
             opacity: 0.8;
             transform: translateY(-2px);
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 40px 20px;
+            position: relative; 
         }
 
         /* HERO SECTION */
@@ -138,11 +189,14 @@
             font-size: 0.9rem;
             font-weight: 600;
             transition: all 0.2s ease;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
         }
 
         .btn-primary {
             background-color: var(--accent-color);
-            color: white;
+            color: #ffffff !important;
         }
 
         .btn-primary:hover {
@@ -164,6 +218,7 @@
         /* SECTIONS */
         section {
             margin-bottom: 50px;
+            scroll-margin-top: 100px; /* Offset untuk sticky navbar saat di-klik */
         }
 
         .section-title {
@@ -269,8 +324,52 @@
             color: var(--text-secondary);
         }
 
+        /* ================= NEW: CTA SECTION ================= */
+        .cta-section {
+            text-align: center;
+            padding: 60px 30px;
+            margin: 60px 0 20px 0;
+            background-color: var(--card-bg);
+            border-radius: 16px;
+            border: 1px solid var(--border-color);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+        }
+
+        .cta-section h2 {
+            font-size: 2rem;
+            margin-bottom: 15px;
+            color: var(--text-primary);
+        }
+
+        .cta-section p {
+            font-size: 1.05rem;
+            color: var(--text-secondary);
+            margin-bottom: 30px;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .footer-credit {
+            text-align: center;
+            padding: 20px 0;
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+            margin-top: 20px;
+        }
+
         /* RESPONSIVE */
         @media (max-width: 768px) {
+            .sticky-navbar {
+                flex-direction: column;
+                gap: 15px;
+                padding: 15px;
+            }
+            .nav-links {
+                flex-wrap: wrap;
+                justify-content: center;
+                gap: 15px;
+            }
             .hero {
                 flex-direction: column-reverse;
                 text-align: center;
@@ -289,43 +388,55 @@
             .card-date {
                 margin-top: 5px;
             }
-            .theme-toggle {
-                top: 10px;
-                right: 10px;
+            .skill-category {
+                flex-direction: column;
+                gap: 5px;
             }
         }
     </style>
 </head>
 <body>
 
+    <!-- STICKY NAVBAR -->
+    <nav class="sticky-navbar">
+        <a href="#" class="nav-brand">LS.</a>
+        <div class="nav-links">
+            <a href="#about">About</a>
+            <a href="#skills">Skills</a>
+            <a href="#projects">Projects</a>
+            <a href="#experience">Experience</a>
+            <a href="#education">Education</a>
+        </div>
+        <div class="nav-actions">
+            <button class="theme-toggle" id="theme-btn" onclick="toggleTheme()">
+                🌙 Dark Mode
+            </button>
+            <!-- Pastikan Anda memiliki file CV Anda (misal: cv-leonardo.pdf) di folder yang sama atau sesuaikan link href-nya -->
+            <a href="CV_Leonardo_Saragih.pdf" download class="btn btn-primary" style="padding: 8px 16px; font-size: 0.85rem;">
+                📄 Download CV
+            </a>
+        </div>
+    </nav>
+
     <div class="container">
         
-      
-        <button class="theme-toggle" id="theme-btn" onclick="toggleTheme()">
-            🌙 Dark Mode
-        </button>
-
-        <header class="hero">
+        <!-- ABOUT / HERO SECTION -->
+        <header id="about" class="hero">
             <div class="hero-content">
                 <h1>LEONARDO SARAGIH</h1>
                 <h2>Data Analyst | IT Solution Engineer</h2>
-                <p>Profesional Sistem Informasi dengan pengalaman dalam analisis data operasional, monitoring proses bisnis, identifikasi anomali, dan quality control
-di industri logistik, kesehatan, dan konsultan IT. Berpengalaman mengolah dan menganalisis data pengiriman, tracking paket, serta hasil pengujian
-sistem untuk mengidentifikasi pola, anomali, dan peluang perbaikan proses.
-Terampil menggunakan SQL, Microsoft Excel, Python, dan Power BI untuk data preparation, analisis, dan visualisasi data. Memahami SOP & SLA
-monitoring, root cause analysis, serta penyusunan dashboard dan laporan untuk menghasilkan insight yang mendukung efisiensi operasional dan
-pengambilan keputusan berbasis data.</p>
+                <p>Profesional Sistem Informasi dengan pengalaman dalam analisis data operasional, monitoring proses bisnis, identifikasi anomali, dan quality control di industri logistik, kesehatan, dan konsultan IT. Berpengalaman mengolah dan menganalisis data pengiriman, tracking paket, serta hasil pengujian sistem untuk mengidentifikasi pola, anomali, dan peluang perbaikan proses. Terampil menggunakan SQL, Microsoft Excel, Python, dan Power BI untuk data preparation, analisis, dan visualisasi data. Memahami SOP & SLA monitoring, root cause analysis, serta penyusunan dashboard dan laporan untuk menghasilkan insight yang mendukung efisiensi operasional dan pengambilan keputusan berbasis data.</p>
                 <div class="btn-group">
                     <a href="https://www.linkedin.com/in/leonardo-saragih-4340212aa" target="_blank" class="btn btn-primary">LinkedIn</a>
                     <a href="https://github.com/leonardosaragih15000" target="_blank" class="btn btn-outline">GitHub</a>
-                    <a href="mailto:leonardosaragih15000@gmail.com" class="btn btn-outline">Email</a>
+                    <a href="#contact" class="btn btn-outline">Contact Me</a>
                 </div>
             </div>
             <img src="images/foto-leo.png" alt="Leonardo Saragih">
         </header>
 
         <!-- SKILLS SECTION -->
-        <section>
+        <section id="skills">
             <h3 class="section-title">Skills & Expertise</h3>
             
             <div class="skill-category">
@@ -376,7 +487,7 @@ pengambilan keputusan berbasis data.</p>
         </section>
 
         <!-- MY FEATURED PROJECTS SECTION -->
-        <section>
+        <section id="projects">
             <h3 class="section-title">Featured Projects</h3>
             
             <!-- PROJECT 1: LOGISTICS DASHBOARD -->
@@ -387,7 +498,7 @@ pengambilan keputusan berbasis data.</p>
                 <div style="padding: 25px;">
                     <h4 class="card-title" style="font-size: 1.25rem;">Logistics Performance & SLA Dashboard</h4>
                     
-                    <!-- Tech Stack dengan Logo Resmi (SUDAH DIPERBAIKI) -->
+                    <!-- Tech Stack -->
                     <div style="display: flex; gap: 18px; align-items: center; margin: 15px 0 20px 0; flex-wrap: wrap;">
                         <span style="display: flex; align-items: center; gap: 6px; font-size: 0.85rem; color: var(--text-secondary); font-weight: 600;">
                             <img src="https://img.icons8.com/color/48/power-bi.png" style="height: 18px;" alt="Power BI"> Power BI
@@ -410,9 +521,7 @@ pengambilan keputusan berbasis data.</p>
                 <img src="images/stunting-cover.jpg" alt="Stunting Analysis Preview" style="width: 100%; height: 240px; object-fit: cover; border-bottom: 1px solid var(--border-color); background-color: #E5E7EB;">
                 
                 <div style="padding: 25px;">
-                    <h4 class="card-title" style="font-size: 1.25rem;">Analyzed 250+ stunting cases in Langkat Regency using Python and
-K-Medoids clustering, generating 3 data clusters and interactive
-visualizations to support data-driven insights.</h4>
+                    <h4 class="card-title" style="font-size: 1.25rem;">Analyzed 250+ stunting cases in Langkat Regency using Python and K-Medoids clustering, generating 3 data clusters and interactive visualizations to support data-driven insights.</h4>
                     
                     <div style="display: flex; gap: 18px; align-items: center; margin: 15px 0 20px 0; flex-wrap: wrap;">
                         <span style="display: flex; align-items: center; gap: 6px; font-size: 0.85rem; color: var(--text-secondary); font-weight: 600;">
@@ -432,7 +541,7 @@ visualizations to support data-driven insights.</h4>
         </section>
 
         <!-- EXPERIENCE SECTION -->
-        <section>
+        <section id="experience">
             <h3 class="section-title">Professional Experience</h3>
 
             <div class="card">
@@ -475,7 +584,7 @@ visualizations to support data-driven insights.</h4>
         </section>
 
         <!-- EDUCATION & CERTIFICATION SECTION -->
-        <section>
+        <section id="education">
             <h3 class="section-title">Education & Certifications</h3>
 
             <div class="card">
@@ -509,10 +618,29 @@ visualizations to support data-driven insights.</h4>
                         Data Analytics (RevoU),
                         Microsoft Power BI,
                         Course Data Analytics(RevoU).</li>
-                    
                 </ul>
             </div>
         </section>
+
+        <!-- CONTACT / CTA SECTION -->
+        <section id="contact" class="cta-section">
+            <h2>Let's Work Together 🚀</h2>
+            <p>Saya terbuka untuk peluang baru di bidang System Analyst, Data Analytics, maupun IT Solution Engineering. Jika Anda memiliki proyek atau posisi yang sesuai, mari terhubung!</p>
+            
+            <div style="display: flex; justify-content: center; gap: 15px; flex-wrap: wrap;">
+                <a href="mailto:leonardosaragih15000@gmail.com" class="btn btn-primary" style="padding: 14px 30px; font-size: 1.05rem;">
+                    ✉️ Send an Email
+                </a>
+                <a href="https://www.linkedin.com/in/leonardo-saragih-4340212aa" target="_blank" class="btn btn-primary" style="background-color: #0A66C2; padding: 14px 30px; font-size: 1.05rem;">
+                    🔗 Connect on LinkedIn
+                </a>
+            </div>
+        </section>
+
+        <!-- FOOTER KREDIT -->
+        <footer class="footer-credit">
+            &copy; 2026 Leonardo Saragih. All Rights Reserved.
+        </footer>
 
     </div>
 
