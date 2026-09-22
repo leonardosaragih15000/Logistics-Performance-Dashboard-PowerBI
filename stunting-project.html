@@ -349,20 +349,16 @@
           <div class="image-placeholder" style="background-color: transparent; border: none; padding: 0;">
             <img src="images/nama-gambar-scaling.png" alt="Distribution of Stunting Prevalence" class="project-img">
         </div>
+            <h4>7.1 Euclidean Distance</h4>
+        <p>Setelah kedua variabel utama diseragamkan rentang nilainya melalui Min-Max Scaling, langkah selanjutnya adalah menghitung tingkat kemiripan karakteristik antar desa. Analisis ini menggunakan metrik <strong>Euclidean Distance</strong>, yang secara matematis mengukur jarak garis lurus terpendek antara titik-titik observasi berdasarkan ruang dua dimensi: <code>Prevalensi Norm</code> dan <code>Jumlah Balita Norm</code>.</p>
+        
+        <p>Untuk memvalidasi cara kerja algoritma di balik layar, fungsi kalkulasi jarak Euclidean secara manual (<code>hitung_jarak_euclidean</code>) telah dibangun dan diuji pada data sampel[cite: 17]. Sebagai contoh perhitungan, pengujian jarak antara desa <strong>Timbang Lawan</strong> dan <strong>Batu Jong Jong</strong> menggunakan metrik ini menghasilkan jarak sebesar <strong>0.254</strong>[cite: 17]. Semakin kecil jarak skor ini, semakin mirip profil stunting kedua desa tersebut, yang pada akhirnya akan menjadi dasar pembentukan klaster.</p>
 
-        <!-- 7. CLUSTERING METHODOLOGY -->
-        <h3>7. Clustering Methodology</h3>
-        <h4>7.1 Euclidean Distance</h4>
-        <p>Mengukur jarak antar desa berdasarkan fitur yang telah dinormalisasi.</p>
-        <h4>7.2 K-Medoids</h4>
-        <p>Mengelompokkan observasi berdasarkan medoid yang merupakan observasi aktual dalam dataset.</p>
-        <h4>7.3 Model Configuration</h4>
-        <p>Model final menggunakan K-Medoids dengan <code>k=3</code> dan <code>random_state=42</code>.</p>
-        <!-- FIELD FOTO: CODE K-MEDOIDS -->
-        <div class="image-placeholder">
-            <p>📷 <strong>[Tempat Foto: Snippet Kode K-Medoids]</strong></p>
-            <img src="images/nama-gambar-kode-model.png" alt="K-Medoids Code" class="project-img" style="display: none;">
+        <!-- FIELD FOTO: EUCLIDEAN DISTANCE -->
+        <div class="image-placeholder" style="background-color: transparent; border: none; padding: 0;">
+            <img src="images/nama-gambar-euclidean.png" alt="Manual Euclidean Distance Calculation" class="project-img">
         </div>
+
 
         <!-- 8. CHOOSING NUMBER OF CLUSTERS -->
         <h3>8. Choosing the Number of Clusters</h3>
