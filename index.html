@@ -40,7 +40,7 @@
         }
 
         /* TRANSISI SMOOTH UNTUK SEMUA ELEMEN SAAT DARK MODE TOGGLE */
-        body, .sticky-navbar, .card, .btn, .chip, .timeline-dot, .cta-section {
+        body, .sticky-navbar, .card, .btn, .timeline-dot, .cta-section, .skill-card {
             transition: background-color 0.4s ease, color 0.4s ease, border-color 0.4s ease, box-shadow 0.4s ease;
         }
 
@@ -70,7 +70,7 @@
         .sticky-navbar {
             position: sticky;
             top: 0;
-            background: rgba(248, 250, 252, 0.85); /* Sesuai dengan --bg-color light */
+            background: rgba(248, 250, 252, 0.85);
             backdrop-filter: blur(12px);
             -webkit-backdrop-filter: blur(12px);
             z-index: 1000;
@@ -82,7 +82,7 @@
         }
 
         [data-theme="dark"] .sticky-navbar {
-            background: rgba(15, 23, 42, 0.85); /* Sesuai dengan --bg-color dark */
+            background: rgba(15, 23, 42, 0.85);
         }
 
         .nav-brand {
@@ -159,7 +159,7 @@
         }
 
         .hero h2 {
-            font-family: 'Inter', sans-serif; /* Subtitle tetap sans-serif agar modern */
+            font-family: 'Inter', sans-serif;
             font-size: 1.15rem;
             color: var(--accent-gold);
             font-weight: 600;
@@ -262,14 +262,12 @@
             box-shadow: 0 2px 4px rgba(0,0,0,0.02);
         }
 
-        /* Hover Effect: Lift up & Shadow */
         .card.interactive:hover {
             transform: translateY(-5px);
             box-shadow: 0 15px 30px -5px rgba(0,0,0,0.1);
-            border-color: var(--border-color); /* Menghindari warna loncat */
+            border-color: var(--border-color);
         }
 
-        /* Hover Effect: Image Zoom for Project Cards */
         .project-cover {
             width: 100%;
             height: 240px;
@@ -360,44 +358,63 @@
             box-shadow: 0 0 0 1px var(--timeline-line);
         }
 
-        /* SKILLS CHIPS */
-        .skill-category {
-            display: flex;
-            align-items: flex-start;
-            margin-bottom: 20px;
-            gap: 15px;
+        /* ================= SKILLS GRID (NEW DESIGN) ================= */
+        .skill-group {
+            margin-bottom: 35px;
         }
 
         .skill-label {
             font-family: 'Inter', sans-serif;
-            font-weight: 700;
-            color: var(--text-primary);
-            width: 170px; 
-            flex-shrink: 0;
-            padding-top: 4px;
             font-size: 0.95rem;
+            color: var(--text-secondary); /* Warna muted */
+            font-weight: 500;
+            margin-bottom: 12px;
+            letter-spacing: 0.3px;
         }
 
-        .skills-container {
+        .skill-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+            gap: 15px;
+        }
+
+        .skill-card {
+            background: var(--card-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            padding: 20px 10px;
             display: flex;
-            flex-wrap: wrap;
-            gap: 10px;
-            flex: 1;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 12px;
+            transition: all 0.2s ease;
+            text-align: center;
         }
 
-        .skill-chip {
-            background-color: var(--chip-bg);
-            color: var(--chip-text);
-            padding: 6px 14px;
-            border-radius: 20px;
+        .skill-card:hover {
+            border-color: var(--accent-gold);
+            transform: translateY(-3px);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+        }
+
+        .skill-icon {
+            width: 40px;
+            height: 40px;
+            object-fit: contain;
+            transition: transform 0.2s ease;
+        }
+
+        .skill-card:hover .skill-icon {
+            transform: scale(1.1);
+        }
+
+        .skill-name {
+            font-family: 'Inter', sans-serif;
             font-size: 0.85rem;
             font-weight: 600;
-        }
-
-        .skill-chip.soft-skill {
-            background-color: transparent;
-            border: 1px solid var(--border-color);
-            color: var(--text-secondary);
+            color: var(--text-primary);
+            line-height: 1.3;
         }
 
         /* CTA SECTION */
@@ -473,9 +490,8 @@
             .timeline-dot {
                 left: -20px;
             }
-            .skill-category {
-                flex-direction: column;
-                gap: 5px;
+            .skill-grid {
+                grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
             }
         }
     </style>
@@ -521,51 +537,100 @@
 
         <!-- SKILLS SECTION -->
         <section id="skills">
-            <h3 class="section-title">Skills & Expertise</h3>
+            <!-- Memaksa logo ampersand (&) agar menggunakan font sans-serif -->
+            <h3 class="section-title">Skills <span style="font-family: 'Inter', sans-serif;">&amp;</span> Expertise</h3>
             
-            <div class="skill-category">
-                <div class="skill-label">Data Analyst</div>
-                <div class="skills-container">
-                    <span class="skill-chip">SQL</span>
-                    <span class="skill-chip">Microsoft Excel</span>
-                    <span class="skill-chip">Python</span>
+            <div class="skill-group">
+                <div class="skill-label">Data analyst</div>
+                <div class="skill-grid">
+                    <div class="skill-card">
+                        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/mysql/mysql-original.svg" alt="SQL" class="skill-icon">
+                        <span class="skill-name">SQL</span>
+                    </div>
+                    <div class="skill-card">
+                        <img src="https://img.icons8.com/color/48/microsoft-excel-2019--v1.png" alt="Excel" class="skill-icon">
+                        <span class="skill-name">Microsoft Excel</span>
+                    </div>
+                    <div class="skill-card">
+                        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/python/python-original.svg" alt="Python" class="skill-icon">
+                        <span class="skill-name">Python</span>
+                    </div>
                 </div>
             </div>
 
-            <div class="skill-category">
-                <div class="skill-label">Data Visualization</div>
-                <div class="skills-container">
-                    <span class="skill-chip">Power BI</span>
-                    <span class="skill-chip">Tableau</span>
-                    <span class="skill-chip">Looker Studio</span>
+            <div class="skill-group">
+                <div class="skill-label">Data visualization</div>
+                <div class="skill-grid">
+                    <div class="skill-card">
+                        <img src="https://img.icons8.com/color/48/power-bi.png" alt="Power BI" class="skill-icon">
+                        <span class="skill-name">Power BI</span>
+                    </div>
+                    <div class="skill-card">
+                        <img src="https://img.icons8.com/color/48/tableau-software.png" alt="Tableau" class="skill-icon">
+                        <span class="skill-name">Tableau</span>
+                    </div>
+                    <div class="skill-card">
+                        <img src="https://img.icons8.com/color/48/looker.png" alt="Looker Studio" class="skill-icon">
+                        <span class="skill-name">Looker Studio</span>
+                    </div>
                 </div>
             </div>
 
-            <div class="skill-category">
-                <div class="skill-label">Data Analytics</div>
-                <div class="skills-container">
-                    <span class="skill-chip">Data Cleaning & Validation</span>
-                    <span class="skill-chip">Exploratory Data Analysis</span>
-                    <span class="skill-chip">Anomaly Detection</span>
-                    <span class="skill-chip">Root Cause Analysis</span>
+            <div class="skill-group">
+                <div class="skill-label">Data analytics</div>
+                <div class="skill-grid">
+                    <div class="skill-card">
+                        <img src="https://img.icons8.com/fluency/48/broom.png" alt="Data Cleaning" class="skill-icon">
+                        <span class="skill-name">Data Cleaning & Validation</span>
+                    </div>
+                    <div class="skill-card">
+                        <img src="https://img.icons8.com/fluency/48/combo-chart.png" alt="EDA" class="skill-icon">
+                        <span class="skill-name">Exploratory Analysis</span>
+                    </div>
+                    <div class="skill-card">
+                        <img src="https://img.icons8.com/fluency/48/data-pending.png" alt="Anomaly Detection" class="skill-icon">
+                        <span class="skill-name">Anomaly Detection</span>
+                    </div>
+                    <div class="skill-card">
+                        <img src="https://img.icons8.com/fluency/48/tree-structure.png" alt="Root Cause Analysis" class="skill-icon">
+                        <span class="skill-name">Root Cause Analysis</span>
+                    </div>
                 </div>
             </div>
 
-            <div class="skill-category">
+            <div class="skill-group">
                 <div class="skill-label">Database</div>
-                <div class="skills-container">
-                    <span class="skill-chip">MySQL</span>
+                <div class="skill-grid">
+                    <div class="skill-card">
+                        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/mysql/mysql-original.svg" alt="MySQL" class="skill-icon">
+                        <span class="skill-name">MySQL</span>
+                    </div>
                 </div>
             </div>
 
-            <div class="skill-category" style="margin-top: 30px;">
-                <div class="skill-label">Soft Skills</div>
-                <div class="skills-container">
-                    <span class="skill-chip soft-skill">Analytical & Problem Solving</span>
-                    <span class="skill-chip soft-skill">Detail-Oriented</span>
-                    <span class="skill-chip soft-skill">Communication</span>
-                    <span class="skill-chip soft-skill">Teamwork</span>
-                    <span class="skill-chip soft-skill">Business Process Understanding</span>
+            <div class="skill-group">
+                <div class="skill-label">Soft skills</div>
+                <div class="skill-grid">
+                    <div class="skill-card">
+                        <img src="https://img.icons8.com/fluency/48/creativity.png" alt="Analytical" class="skill-icon">
+                        <span class="skill-name">Analytical & Problem Solving</span>
+                    </div>
+                    <div class="skill-card">
+                        <img src="https://img.icons8.com/fluency/48/accuracy.png" alt="Detail-Oriented" class="skill-icon">
+                        <span class="skill-name">Detail-Oriented</span>
+                    </div>
+                    <div class="skill-card">
+                        <img src="https://img.icons8.com/fluency/48/communication.png" alt="Communication" class="skill-icon">
+                        <span class="skill-name">Communication</span>
+                    </div>
+                    <div class="skill-card">
+                        <img src="https://img.icons8.com/fluency/48/group.png" alt="Teamwork" class="skill-icon">
+                        <span class="skill-name">Teamwork</span>
+                    </div>
+                    <div class="skill-card">
+                        <img src="https://img.icons8.com/fluency/48/workflow.png" alt="Business Process" class="skill-icon">
+                        <span class="skill-name">Business Process</span>
+                    </div>
                 </div>
             </div>
         </section>
