@@ -4,16 +4,16 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Leonardo Saragih | Data Analyst Portfolio</title>
-    <!-- Kombinasi Font Premium: Playfair Display (Heading) + Inter (Body) -->
+    
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,500;0,600;0,700;1,600&display=swap" rel="stylesheet">
     <style>
-        /* CSS RESET & PALET NAVY + AMBER (LIGHT MODE) */
+        
         :root {
-            --bg-color: #F8FAFC;         /* Slate 50 - Off white */
-            --text-primary: #0F172A;     /* Slate 900 - Sangat gelap */
-            --text-secondary: #475569;   /* Slate 600 - Abu-abu kebiruan */
-            --navy-primary: #1E3A8A;     /* Blue 900 - Navy elegan */
-            --accent-gold: #D97706;      /* Amber 600 - Emas/Oranye profesional */
+            --bg-color: #F8FAFC;        
+            --text-primary: #0F172A;     
+            --text-secondary: #475569;  
+            --navy-primary: #1E3A8A;     
+            --accent-gold: #D97706;      
             --card-bg: #FFFFFF;
             --border-color: #E2E8F0;
             --chip-bg: #F1F5F9;
@@ -23,14 +23,14 @@
             --timeline-line: #CBD5E1;
         }
         
-        /* TEMA GELAP (DARK MODE) */
+        
         [data-theme="dark"] {
-            --bg-color: #0F172A;         /* Slate 900 - Navy Gelap */
-            --text-primary: #F8FAFC;     /* Slate 50 - Hampir putih */
-            --text-secondary: #94A3B8;   /* Slate 400 */
-            --navy-primary: #3B82F6;     /* Blue 500 - Lebih terang agar kontras */
-            --accent-gold: #F59E0B;      /* Amber 500 */
-            --card-bg: #1E293B;          /* Slate 800 */
+            --bg-color: #0F172A;         
+            --text-primary: #F8FAFC;     
+            --text-secondary: #94A3B8;   
+            --navy-primary: #3B82F6;     
+            --accent-gold: #F59E0B;      
+            --card-bg: #1E293B;          
             --border-color: #334155;     
             --chip-bg: #334155;
             --chip-text: #F8FAFC;
@@ -39,7 +39,7 @@
             --timeline-line: #475569;
         }
 
-        /* TRANSISI SMOOTH UNTUK SEMUA ELEMEN SAAT DARK MODE TOGGLE */
+
         body, .sticky-navbar, .card, .btn, .timeline-dot, .cta-section, .skill-card {
             transition: background-color 0.4s ease, color 0.4s ease, border-color 0.4s ease, box-shadow 0.4s ease;
         }
@@ -53,7 +53,6 @@
             padding: 0;
         }
 
-        /* TIPOGRAFI HEADING MENGGUNAKAN SERIF */
         h1, h2, h3, h4, h5, .nav-brand {
             font-family: 'Playfair Display', serif;
             color: var(--text-primary);
@@ -66,7 +65,6 @@
             position: relative; 
         }
 
-        /* ================= STICKY NAVBAR ================= */
         .sticky-navbar {
             position: sticky;
             top: 0;
@@ -241,7 +239,7 @@
             position: relative;
         }
 
-        /* Garis aksen emas di bawah heading */
+ 
         .section-title::after {
             content: '';
             position: absolute;
@@ -252,7 +250,7 @@
             background-color: var(--accent-gold);
         }
 
-        /* CARDS & MICRO-INTERACTIONS */
+        
         .card {
             background: var(--card-bg);
             border: 1px solid var(--border-color);
@@ -323,7 +321,7 @@
             margin-bottom: 8px;
         }
 
-        /* ================= TIMELINE EXPERIENCE ================= */
+ 
         .timeline {
             position: relative;
             padding-left: 40px;
@@ -358,7 +356,7 @@
             box-shadow: 0 0 0 1px var(--timeline-line);
         }
 
-        /* ================= SKILLS GRID (NEW DESIGN) ================= */
+
         .skill-group {
             margin-bottom: 35px;
         }
@@ -801,14 +799,14 @@
             </div>
         </section>
 
-        <!-- FOOTER KREDIT -->
+ 
         <footer class="footer-credit">
             &copy; 2026 Leonardo Saragih. Designed for Clarity.
         </footer>
 
     </div>
 
-    <!-- SCRIPT UNTUK FITUR DARK MODE -->
+
     <script>
         const currentTheme = localStorage.getItem('theme');
         const themeBtn = document.getElementById('theme-btn');
