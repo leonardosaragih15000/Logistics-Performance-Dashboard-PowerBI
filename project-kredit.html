@@ -1,1 +1,325 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Analisis Kualitas Portofolio Kredit - Leonardo Saragih</title>
+    
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,500;0,600;0,700;1,600&display=swap" rel="stylesheet">
+    <style>
+        /* CSS Variables - Sama dengan index.html */
+        :root {
+            --bg-color: #F8FAFC;        
+            --text-primary: #0F172A;     
+            --text-secondary: #475569;  
+            --navy-primary: #1E3A8A;     
+            --accent-gold: #D97706;      
+            --card-bg: #FFFFFF;
+            --border-color: #E2E8F0;
+            --chip-bg: #F1F5F9;
+            --chip-text: #1E3A8A;
+            --btn-toggle-bg: #E2E8F0;
+            --btn-toggle-text: #0F172A;
+        }
+        
+        [data-theme="dark"] {
+            --bg-color: #0F172A;         
+            --text-primary: #F8FAFC;     
+            --text-secondary: #94A3B8;   
+            --navy-primary: #3B82F6;     
+            --accent-gold: #F59E0B;      
+            --card-bg: #1E293B;          
+            --border-color: #334155;     
+            --chip-bg: #334155;
+            --chip-text: #F8FAFC;
+            --btn-toggle-bg: #1E293B;
+            --btn-toggle-text: #F8FAFC;
+        }
 
+        /* Transisi Global */
+        body, .sticky-navbar, .btn, .pdf-container {
+            transition: background-color 0.4s ease, color 0.4s ease, border-color 0.4s ease, box-shadow 0.4s ease;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-primary);
+            line-height: 1.6;
+            margin: 0;
+            padding: 0;
+        }
+
+        h1, h2, h3, h4, h5, .nav-brand {
+            font-family: 'Playfair Display', serif;
+            color: var(--text-primary);
+        }
+
+        .container {
+            max-width: 1000px; /* Sedikit lebih lebar untuk frame PDF */
+            margin: 0 auto;
+            padding: 40px 20px;
+        }
+
+        /* NAVBAR */
+        .sticky-navbar {
+            position: sticky;
+            top: 0;
+            background: rgba(248, 250, 252, 0.85);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            z-index: 1000;
+            padding: 15px 5%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        [data-theme="dark"] .sticky-navbar {
+            background: rgba(15, 23, 42, 0.85);
+        }
+
+        .nav-brand {
+            font-weight: 700;
+            font-size: 1.6rem;
+            color: var(--navy-primary);
+            text-decoration: none;
+            letter-spacing: -0.5px;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 25px;
+        }
+
+        .nav-links a {
+            font-family: 'Inter', sans-serif;
+            text-decoration: none;
+            color: var(--text-primary);
+            font-weight: 500;
+            font-size: 0.95rem;
+            transition: color 0.2s ease;
+        }
+
+        .nav-links a:hover {
+            color: var(--accent-gold);
+        }
+
+        .nav-actions {
+            display: flex;
+            gap: 15px;
+            align-items: center;
+        }
+
+        .theme-toggle {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--btn-toggle-bg);
+            color: var(--btn-toggle-text);
+            border: none;
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .theme-toggle:hover {
+            opacity: 0.8;
+            transform: translateY(-2px);
+        }
+
+        /* BUTTONS */
+        .btn {
+            font-family: 'Inter', sans-serif;
+            text-decoration: none;
+            padding: 12px 24px;
+            border-radius: 8px;
+            font-size: 0.95rem;
+            font-weight: 600;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .btn-primary {
+            background-color: var(--navy-primary);
+            color: #ffffff !important;
+            box-shadow: 0 4px 12px rgba(30, 58, 138, 0.2);
+        }
+
+        .btn-primary:hover {
+            background-color: var(--text-primary);
+            transform: translateY(-3px);
+            box-shadow: 0 6px 15px rgba(0,0,0,0.15);
+        }
+
+        /* PROJECT DETAIL STYLES */
+        .back-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            color: var(--accent-gold);
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 0.95rem;
+            margin-bottom: 20px;
+            transition: transform 0.2s;
+        }
+        
+        .back-link:hover {
+            transform: translateX(-5px);
+        }
+
+        .project-title {
+            font-size: 2.5rem;
+            margin-bottom: 15px;
+            line-height: 1.2;
+            color: var(--text-primary);
+        }
+
+        .project-description {
+            font-size: 1.1rem;
+            color: var(--text-secondary);
+            margin-bottom: 40px;
+            max-width: 850px;
+        }
+
+        .pdf-container {
+            width: 100%;
+            height: 75vh;
+            min-height: 500px;
+            background-color: var(--card-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+            margin-bottom: 30px;
+        }
+
+        .download-wrapper {
+            text-align: center;
+            margin-top: 30px;
+            margin-bottom: 60px;
+        }
+
+        .footer-credit {
+            text-align: center;
+            padding: 30px 0;
+            border-top: 1px solid var(--border-color);
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+            margin-top: 40px;
+        }
+
+        /* RESPONSIVE */
+        @media (max-width: 768px) {
+            .sticky-navbar {
+                flex-direction: column;
+                gap: 15px;
+                padding: 15px;
+            }
+            .nav-links {
+                flex-wrap: wrap;
+                justify-content: center;
+                gap: 15px;
+            }
+            .project-title {
+                font-size: 2rem;
+            }
+            .pdf-container {
+                height: 60vh;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- STICKY NAVBAR -->
+    <nav class="sticky-navbar">
+        <a href="index.html" class="nav-brand">Leonardo Saragih.</a>
+        <div class="nav-links">
+            <!-- Tautan diarahkan kembali ke index.html -->
+            <a href="index.html#about">About</a>
+            <a href="index.html#skills">Skills</a>
+            <a href="index.html#projects">Projects</a>
+            <a href="index.html#experience">Experience</a>
+            <a href="index.html#education">Education</a>
+        </div>
+        <div class="nav-actions">
+            <button class="theme-toggle" id="theme-btn" onclick="toggleTheme()">
+                🌙 Dark Mode
+            </button>
+            <a href="CV_Leonardo_Saragih.pdf" download class="btn btn-primary" style="padding: 8px 16px; font-size: 0.85rem;">
+                📄 Download CV
+            </a>
+        </div>
+    </nav>
+
+    <main class="container">
+        
+        <!-- HEADER PROJECT -->
+        <a href="index.html#projects" class="back-link">
+            ← Kembali ke Portofolio
+        </a>
+        
+        <h1 class="project-title">Analisis Kualitas Portofolio Kredit Menggunakan Python</h1>
+        <p class="project-description">
+            Studi kasus analisis risiko portofolio kredit menggunakan bahasa pemrograman Python. Proyek ini berfokus pada evaluasi Non-Performing Loan (NPL) berdasarkan jenis pinjaman, melakukan uji signifikansi statistik menggunakan Chi-Square dan Fisher's Exact Test, serta membandingkan sensitivitas definisi NPL antara status sistem versus aktual tunggakan 90 hari.
+        </p>
+
+        <!-- PDF VIEWER (IFRAME) -->
+        <div class="pdf-container">
+            <!-- Pastikan file portofolio-kredit.pdf sudah berada di folder yang sama (root) di GitHub Anda -->
+            <iframe src="portofolio-kredit.pdf" width="100%" height="100%" style="border: none;" title="Presentasi Analisis Kredit">
+                <p style="text-align: center; padding: 40px; color: var(--text-secondary);">
+                    Browser Anda tidak mendukung pratinjau PDF (iFrames). <br>
+                    Silakan unduh file PDF untuk melihat presentasi.
+                </p>
+            </iframe>
+        </div>
+
+        <!-- DOWNLOAD BUTTON -->
+        <div class="download-wrapper">
+            <a href="portofolio-kredit.pdf" download class="btn btn-primary" style="padding: 16px 32px; font-size: 1.1rem;">
+                ⬇️ Unduh Presentasi Lengkap (PDF)
+            </a>
+        </div>
+
+    </main>
+
+    <footer class="footer-credit">
+        &copy; 2026 Leonardo Saragih. Data Analyst Portfolio.
+    </footer>
+
+    <script>
+        // Logika Dark Mode (Sama dengan index.html)
+        const currentTheme = localStorage.getItem('theme');
+        const themeBtn = document.getElementById('theme-btn');
+        
+        if (currentTheme === 'dark') {
+            document.documentElement.setAttribute('data-theme', 'dark');
+            themeBtn.innerHTML = '☀️ Light Mode';
+        }
+
+        function toggleTheme() {
+            let theme = document.documentElement.getAttribute('data-theme');
+            
+            if (theme === 'dark') {
+                document.documentElement.removeAttribute('data-theme');
+                localStorage.setItem('theme', 'light');
+                themeBtn.innerHTML = '🌙 Dark Mode';
+            } else {
+                document.documentElement.setAttribute('data-theme', 'dark');
+                localStorage.setItem('theme', 'dark');
+                themeBtn.innerHTML = '☀️ Light Mode';
+            }
+        }
+    </script>
+</body>
+</html>
